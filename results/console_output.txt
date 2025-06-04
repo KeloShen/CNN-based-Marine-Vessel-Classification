@@ -1,0 +1,4175 @@
+!pip install pillow numpy torch torchvision matplotlib tqdm
+!python test_pipeline.py
+
+=== 第1步：数据集划分 ===
+
+执行命令: python split_dataset.py --dataset_root ./data/ --train_ratio 0.8
+
+正在收集数据集信息...
+找到 3000 张非船只(sea)图片
+找到 1000 张船只(ship)图片
+总计 4000 张图片
+
+创建目录结构...
+
+正在复制训练集文件...
+
+正在复制验证集文件...
+
+数据集划分完成!
+训练集:
+- 非船只图片: 2400张
+- 船只图片: 800张
+验证集:
+- 非船只图片: 600张
+- 船只图片: 200张
+
+复制非船只训练图片: 100%|██████████| 2400/2400 [00:01<00:00, 2077.85it/s]
+复制船只训练图片: 100%|██████████| 800/800 [00:00<00:00, 1929.88it/s]
+复制非船只验证图片: 100%|██████████| 600/600 [00:00<00:00, 5430.02it/s]
+复制船只验证图片: 100%|██████████| 200/200 [00:00<00:00, 5832.75it/s]
+
+
+=== 第2步：训练模型 ===
+
+执行命令: python train.py --dataset_root ./data/ --epochs 20 --batch_size 64 --lr 0.001
+
+Using cuda:0 device
+Using 2 dataloader workers
+Using 3200 images for training, 800 images for validation.
+train epoch[1/20] loss:0.416: 100%|██████████| 50/50 [00:35<00:00,  1.41it/s]
+valid epoch[1/20]: 100%|██████████| 13/13 [00:03<00:00,  3.69it/s]
+[epoch 1] train_loss: 3.153  val_accuracy: 0.750  time: 39.08s
+train epoch[2/20] loss:0.510: 100%|██████████| 50/50 [00:35<00:00,  1.40it/s]
+valid epoch[2/20]: 100%|██████████| 13/13 [00:03<00:00,  3.73it/s]
+[epoch 2] train_loss: 0.531  val_accuracy: 0.802  time: 39.23s
+train epoch[3/20] loss:0.559: 100%|██████████| 50/50 [00:36<00:00,  1.38it/s]
+valid epoch[3/20]: 100%|██████████| 13/13 [00:03<00:00,  3.64it/s]
+[epoch 3] train_loss: 0.422  val_accuracy: 0.866  time: 39.86s
+train epoch[4/20] loss:0.413: 100%|██████████| 50/50 [00:36<00:00,  1.38it/s]
+valid epoch[4/20]: 100%|██████████| 13/13 [00:03<00:00,  3.65it/s]
+[epoch 4] train_loss: 0.389  val_accuracy: 0.874  time: 39.74s
+train epoch[5/20] loss:0.567: 100%|██████████| 50/50 [00:36<00:00,  1.38it/s]
+valid epoch[5/20]: 100%|██████████| 13/13 [00:03<00:00,  3.69it/s]
+[epoch 5] train_loss: 0.377  val_accuracy: 0.901  time: 39.80s
+train epoch[6/20] loss:0.252: 100%|██████████| 50/50 [00:36<00:00,  1.38it/s]
+valid epoch[6/20]: 100%|██████████| 13/13 [00:03<00:00,  3.64it/s]
+[epoch 6] train_loss: 0.327  val_accuracy: 0.935  time: 39.93s
+train epoch[7/20] loss:0.478: 100%|██████████| 50/50 [00:36<00:00,  1.38it/s]
+valid epoch[7/20]: 100%|██████████| 13/13 [00:03<00:00,  3.67it/s]
+[epoch 7] train_loss: 0.309  val_accuracy: 0.931  time: 39.81s
+train epoch[8/20] loss:0.225: 100%|██████████| 50/50 [00:36<00:00,  1.39it/s]
+valid epoch[8/20]: 100%|██████████| 13/13 [00:03<00:00,  3.67it/s]
+[epoch 8] train_loss: 0.319  val_accuracy: 0.950  time: 39.59s
+train epoch[9/20] loss:0.325: 100%|██████████| 50/50 [00:36<00:00,  1.38it/s]
+valid epoch[9/20]: 100%|██████████| 13/13 [00:03<00:00,  3.65it/s]
+[epoch 9] train_loss: 0.282  val_accuracy: 0.945  time: 39.68s
+train epoch[10/20] loss:0.255: 100%|██████████| 50/50 [00:36<00:00,  1.38it/s]
+valid epoch[10/20]: 100%|██████████| 13/13 [00:03<00:00,  3.67it/s]
+[epoch 10] train_loss: 0.314  val_accuracy: 0.956  time: 39.70s
+train epoch[11/20] loss:0.323: 100%|██████████| 50/50 [00:36<00:00,  1.38it/s]
+valid epoch[11/20]: 100%|██████████| 13/13 [00:03<00:00,  3.65it/s]
+[epoch 11] train_loss: 0.296  val_accuracy: 0.961  time: 39.82s
+train epoch[12/20] loss:0.279: 100%|██████████| 50/50 [00:36<00:00,  1.38it/s]
+valid epoch[12/20]: 100%|██████████| 13/13 [00:03<00:00,  3.68it/s]
+[epoch 12] train_loss: 0.272  val_accuracy: 0.958  time: 39.70s
+train epoch[13/20] loss:0.439: 100%|██████████| 50/50 [00:36<00:00,  1.39it/s]
+valid epoch[13/20]: 100%|██████████| 13/13 [00:03<00:00,  3.69it/s]
+[epoch 13] train_loss: 0.266  val_accuracy: 0.959  time: 39.59s
+train epoch[14/20] loss:0.209: 100%|██████████| 50/50 [00:36<00:00,  1.38it/s]
+valid epoch[14/20]: 100%|██████████| 13/13 [00:03<00:00,  3.71it/s]
+[epoch 14] train_loss: 0.272  val_accuracy: 0.961  time: 39.63s
+train epoch[15/20] loss:0.238: 100%|██████████| 50/50 [00:36<00:00,  1.39it/s]
+valid epoch[15/20]: 100%|██████████| 13/13 [00:03<00:00,  3.68it/s]
+[epoch 15] train_loss: 0.272  val_accuracy: 0.934  time: 39.63s
+train epoch[16/20] loss:0.298: 100%|██████████| 50/50 [00:36<00:00,  1.39it/s]
+valid epoch[16/20]: 100%|██████████| 13/13 [00:03<00:00,  3.55it/s]
+[epoch 16] train_loss: 0.265  val_accuracy: 0.953  time: 39.68s
+train epoch[17/20] loss:0.448: 100%|██████████| 50/50 [00:36<00:00,  1.39it/s]
+valid epoch[17/20]: 100%|██████████| 13/13 [00:03<00:00,  3.33it/s]
+[epoch 17] train_loss: 0.264  val_accuracy: 0.964  time: 39.96s
+train epoch[18/20] loss:0.264: 100%|██████████| 50/50 [00:36<00:00,  1.39it/s]
+valid epoch[18/20]: 100%|██████████| 13/13 [00:03<00:00,  3.59it/s]
+[epoch 18] train_loss: 0.250  val_accuracy: 0.968  time: 39.68s
+train epoch[19/20] loss:0.320: 100%|██████████| 50/50 [00:36<00:00,  1.39it/s]
+valid epoch[19/20]: 100%|██████████| 13/13 [00:03<00:00,  3.67it/s]
+[epoch 19] train_loss: 0.244  val_accuracy: 0.955  time: 39.63s
+train epoch[20/20] loss:0.171: 100%|██████████| 50/50 [00:36<00:00,  1.39it/s]
+valid epoch[20/20]: 100%|██████████| 13/13 [00:03<00:00,  3.70it/s]
+[epoch 20] train_loss: 0.264  val_accuracy: 0.970  time: 39.55s
+Training finished!
+Best accuracy: 0.97
+
+
+=== 第3步：测试模型 ===
+
+执行命令: python test.py --weights_path weights/vgg13_best.pth --img_paths ./data/val --batch_size 64 --cls_index class_index.json
+
+image: ./data/val/sea/sea__20180708_180908_0f47__-118.33059710066665_33.677833331038805.png  class: sea  prob: 0.968
+image: ./data/val/sea/sea__20180710_180333_1002__-118.02944306890663_33.68617467845348.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170419_181315_0e0d__-122.4782836426212_37.70070035361353.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20171210_181628_100a__-122.39671965906082_37.678571300624995.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170830_190816_104d__-122.25693269128443_37.70870662396175.png  class: sea  prob: 0.964
+image: ./data/val/sea/sea__20170328_181231_0e0f__-122.48083752760154_37.76874336105107.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170909_181400_0f28__-122.32829455214761_37.73609316580097.png  class: sea  prob: 0.976
+image: ./data/val/sea/sea__20170609_180756_103a__-122.33747868524297_37.73706448518304.png  class: sea  prob: 0.988
+image: ./data/val/sea/sea__20161006_004004_0c38__-122.35115763991095_37.7692093023039.png  class: sea  prob: 0.952
+image: ./data/val/sea/sea__20170707_174131_0c0b__-122.34631412652476_37.72737959937634.png  class: sea  prob: 0.929
+image: ./data/val/sea/sea__20170508_180612_1010__-122.39584980194846_37.7186937698805.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20161006_002711_1_0c1b__-122.31250467028002_37.76466384872186.png  class: sea  prob: 0.966
+image: ./data/val/sea/sea__20170724_181035_1011__-122.28400615724813_37.82717080051246.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170901_181520_0e14__-122.35963864537221_37.79296914588649.png  class: sea  prob: 0.998
+image: ./data/val/sea/sea__20170430_181117_0e26__-122.0379156769904_37.70385111295526.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170721_180825_100b__-122.34414301813885_37.75738131641715.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180209_181715_103e__-122.062299790021_37.66735533941145.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170419_180520_1009__-122.19340145417618_37.67938395786231.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20170505_181258_0e2f__-122.21169034793705_37.706465970127944.png  class: sea  prob: 0.977
+image: ./data/val/sea/sea__20180713_180403_1035__-118.15139576275439_33.734773089860845.png  class: sea  prob: 0.995
+image: ./data/val/sea/sea__20170501_180619_1005__-122.23634748660587_37.674964982942555.png  class: sea  prob: 0.938
+image: ./data/val/sea/sea__20180708_182358_1032__-122.33910465917585_37.76862857357101.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20160905_193458_0c37__-122.46381277841687_37.64028234913973.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170719_180903_101d__-122.42316354000585_37.6949274801214.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170617_180854_1031__-122.47157916689906_37.84433113894968.png  class: ship  prob: 0.963
+image: ./data/val/sea/sea__20170609_180757_103a__-122.34802042832878_37.73855635648978.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20161022_180611_0e19__-122.16475986533197_37.80626862462419.png  class: sea  prob: 0.987
+image: ./data/val/sea/sea__20170723_181447_0e0e__-122.54581507094935_37.84891303958385.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170719_180900_101d__-122.46399848545515_37.87882573768487.png  class: sea  prob: 0.992
+image: ./data/val/sea/sea__20170821_175602_0e0e__-118.32531273789856_33.76568419793638.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180210_181908_1006__-122.42684602030572_37.80875469570261.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170917_190615_0f3c__-122.42409613821076_37.7634774262539.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180206_181844_0f34__-122.52777790390613_37.827291835076295.png  class: ship  prob: 0.683
+image: ./data/val/sea/sea__20170730_181514_0e20__-122.28516743555205_37.67827239169895.png  class: sea  prob: 0.909
+image: ./data/val/sea/sea__20170719_180901_101d__-122.35264367897956_37.75112813756855.png  class: sea  prob: 0.907
+image: ./data/val/sea/sea__20180708_180454_0f28__-118.22731521660256_33.722110261322406.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20170328_181230_0e0f__-122.47866587608571_37.82089270670238.png  class: sea  prob: 0.966
+image: ./data/val/sea/sea__20171022_175534_100e__-118.21704970914001_33.70822408902945.png  class: sea  prob: 0.916
+image: ./data/val/sea/sea__20170502_180546_1044__-122.25682086658408_37.73693505174775.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170605_180824_1032__-122.4170477903312_37.82825594616288.png  class: sea  prob: 0.965
+image: ./data/val/sea/sea__20170427_180608_1041__-122.27061045970297_37.740374067144735.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20161103_195522_0c27__-122.37504308803496_37.80067692996824.png  class: ship  prob: 0.521
+image: ./data/val/sea/sea__20170910_181215_1010__-122.25494454015018_37.80519713108007.png  class: sea  prob: 0.988
+image: ./data/val/sea/sea__20171129_181545_1022__-122.33437875980434_37.74864693313823.png  class: sea  prob: 0.844
+image: ./data/val/sea/sea__20170508_180612_1010__-122.42206174502493_37.72288112534968.png  class: sea  prob: 0.996
+image: ./data/val/sea/sea__20170501_181319_0e1f__-122.53538876644996_37.880210685313294.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170715_180931_101a__-122.19404806274876_37.73279113984119.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170905_181215_0f12__-122.25944612619553_37.70580217475798.png  class: sea  prob: 0.954
+image: ./data/val/sea/sea__20170101_180916_0e30__-122.31583398474844_37.79886079858637.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170615_181426_0e0d__-122.4384750460101_37.75373148445022.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20171203_185451_0f2b__-122.41015637175697_37.687373121594675.png  class: sea  prob: 0.980
+image: ./data/val/sea/sea__20180705_182236_0f4d__-122.33261834104384_37.75128683801146.png  class: sea  prob: 0.799
+image: ./data/val/sea/sea__20170703_180944_1009__-122.32882122041141_37.83227469668378.png  class: sea  prob: 0.991
+image: ./data/val/sea/sea__20170419_181314_0e0d__-122.45993190878904_37.77221861331352.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20170707_181135_100b__-122.33788016568006_37.76843242458194.png  class: sea  prob: 0.798
+image: ./data/val/sea/sea__20170718_180714_102f__-122.21365198865877_37.64961493369818.png  class: sea  prob: 0.988
+image: ./data/val/sea/sea__20161103_195523_0c27__-122.44450877236157_37.68456556040708.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20161102_202000_0c75__-122.31632536094651_37.82687613752323.png  class: sea  prob: 0.600
+image: ./data/val/sea/sea__20170430_181116_0e26__-122.24455728212082_37.77106172978549.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170730_181513_0e20__-122.34279745119264_37.75164147174362.png  class: sea  prob: 0.826
+image: ./data/val/sea/sea__20161103_195402_1_0c24__-122.1835914225617_37.86942799517098.png  class: sea  prob: 0.995
+image: ./data/val/sea/sea__20170403_180411_100f__-122.0817469318917_37.7260752833062.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170830_181004_0f4e__-122.27386968647853_37.748316713710416.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20170613_180813_1017__-122.32691388848154_37.70807236158589.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170222_231255_0c27__-122.3815265638458_37.70961530760523.png  class: sea  prob: 0.985
+image: ./data/val/sea/sea__20171127_181539_101e__-122.19874999936656_37.71665369534413.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170909_181359_0f28__-122.30201592380763_37.77533677476695.png  class: sea  prob: 0.977
+image: ./data/val/sea/sea__20180709_182125_0e20__-122.34817335529014_37.740531082583885.png  class: sea  prob: 0.939
+image: ./data/val/sea/sea__20170717_180818_1010__-122.35396562080241_37.751838415769015.png  class: sea  prob: 0.891
+image: ./data/val/sea/sea__20170909_181401_0f28__-122.236975876142_37.62353954077655.png  class: sea  prob: 0.996
+image: ./data/val/sea/sea__20170716_180817_103a__-122.36791436875023_37.661277201750025.png  class: sea  prob: 0.895
+image: ./data/val/sea/sea__20161116_180804_0e14__-122.48298739296371_37.684929808845375.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20180209_181715_103e__-122.21976402071296_37.73169331592152.png  class: sea  prob: 0.998
+image: ./data/val/sea/sea__20180708_180453_0f28__-118.06540883468756_33.73662725676796.png  class: sea  prob: 0.996
+image: ./data/val/sea/sea__20170708_180826_1021__-122.33579750385003_37.75755089227916.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20161218_180845_0e26__-122.47545417494631_37.793055002914755.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170619_180826_1032__-122.40782638332067_37.672300272887064.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20171217_181636_1032__-122.12556990129535_37.76569627819091.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170605_180825_1032__-122.50167172162236_37.72992332772677.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170709_180806_1024__-122.30120886253196_37.792312602393324.png  class: ship  prob: 0.747
+image: ./data/val/sea/sea__20161202_180734_0e30__-122.12619882266284_37.761455821205416.png  class: sea  prob: 0.998
+image: ./data/val/sea/sea__20170703_180945_1009__-122.33692927491354_37.72995001569902.png  class: sea  prob: 0.959
+image: ./data/val/sea/sea__20171207_181640_101b__-122.36155365243461_37.79216836197162.png  class: sea  prob: 0.598
+image: ./data/val/sea/sea__20170619_181346_0e30__-122.34514251553766_37.759901535462234.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170508_180611_1010__-122.23568048212545_37.77965700768495.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170504_180550_1025__-122.2636176093811_37.683196208831994.png  class: sea  prob: 0.996
+image: ./data/val/sea/sea__20170427_180608_1041__-122.25699379619586_37.73666574857436.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20160622_170157_0c64__-122.34994908648167_37.78274932761714.png  class: sea  prob: 0.964
+image: ./data/val/sea/sea__20180711_182156_1048__-122.33330511453052_37.72787457355804.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170919_181413_0f1b__-122.36131996829101_37.73219376997982.png  class: sea  prob: 0.966
+image: ./data/val/sea/sea__20170910_181216_1010__-122.42511841363877_37.77221615214605.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170501_181320_0e1f__-122.47884285683557_37.74718404926336.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170721_180936_0f31__-122.33856185728798_37.76838217426367.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170702_180943_103c__-122.37831171763855_37.7033252018865.png  class: sea  prob: 0.963
+image: ./data/val/sea/sea__20170501_180611_100e__-122.43868358199471_37.72160945742322.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170502_180546_1044__-122.34818544693388_37.739152137243494.png  class: sea  prob: 0.882
+image: ./data/val/sea/sea__20170721_180936_0f31__-122.39195373920572_37.79549277239497.png  class: sea  prob: 0.987
+image: ./data/val/sea/sea__20170712_180940_0f15__-122.33910730620694_37.76833115597761.png  class: sea  prob: 0.996
+image: ./data/val/sea/sea__20180709_182127_0e20__-122.33269139029335_37.727979258953425.png  class: sea  prob: 0.802
+image: ./data/val/sea/sea__20170717_180819_1010__-122.51393695772063_37.68162736325149.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170501_181321_0e1f__-122.56935492461373_37.69428111888604.png  class: sea  prob: 0.992
+image: ./data/val/sea/sea__20160704_204349_0d05__-122.29233586278269_37.76519340123061.png  class: sea  prob: 0.996
+image: ./data/val/sea/sea__20171207_181551_103c__-122.33439856876691_37.727421081235406.png  class: sea  prob: 0.933
+image: ./data/val/sea/sea__20170501_181321_0e1f__-122.61844159751526_37.690880889718834.png  class: sea  prob: 0.898
+image: ./data/val/sea/sea__20170716_180816_103a__-122.21168771515327_37.72598836793689.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180708_180909_0f47__-118.22976104034689_33.72787581870198.png  class: sea  prob: 0.803
+image: ./data/val/sea/sea__20170730_181044_103d__-122.31136595432358_37.66696344150505.png  class: sea  prob: 0.949
+image: ./data/val/sea/sea__20180203_181746_1035__-122.09920411055788_37.720991426079586.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20170129_181027_0e1f__-122.32641053028124_37.737353268295664.png  class: sea  prob: 0.707
+image: ./data/val/sea/sea__20170609_180757_103a__-122.44405741916891_37.69489263868699.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180714_180352_100e__-118.01511678073008_33.64308384436882.png  class: sea  prob: 0.994
+image: ./data/val/sea/sea__20170226_180945_0e26__-122.08245218963201_37.6495326492693.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170615_180728_1003__-122.33751833311247_37.77080984983136.png  class: sea  prob: 0.952
+image: ./data/val/sea/sea__20170701_181015_1042__-122.43713294439645_37.81845730321225.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20171218_181723_1007__-122.5414841041387_37.89299699452966.png  class: sea  prob: 0.998
+image: ./data/val/sea/sea__20170505_181257_0e2f__-122.13440135290679_37.74732085488439.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170501_180553_1018__-122.3294970274404_37.73866875880347.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170604_180819_0f52__-122.53734721238897_37.82340911639117.png  class: sea  prob: 0.979
+image: ./data/val/sea/sea__20161116_180802_0e14__-122.49999218351591_37.88828552016498.png  class: sea  prob: 0.946
+image: ./data/val/sea/sea__20170919_181710_0e20__-122.48178591240826_37.798788328489415.png  class: ship  prob: 0.680
+image: ./data/val/sea/sea__20180713_180401_1035__-118.2288746601656_33.804180849181186.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20171127_181539_101e__-122.20804326122511_37.706982316936426.png  class: sea  prob: 0.981
+image: ./data/val/sea/sea__20170902_190520_0f53__-122.12717751285263_37.80277853398649.png  class: sea  prob: 0.972
+image: ./data/val/sea/sea__20170818_180846_1035__-122.10844538668623_37.79906913121184.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20161116_180804_0e14__-122.40539653041276_37.6954341030897.png  class: sea  prob: 0.995
+image: ./data/val/sea/sea__20170101_180916_0e30__-122.45429119849791_37.7981233925924.png  class: sea  prob: 0.992
+image: ./data/val/sea/sea__20161218_180845_0e26__-122.33789238667205_37.74031154325538.png  class: sea  prob: 0.950
+image: ./data/val/sea/sea__20170226_180943_0e26__-122.06326114230342_37.79095838810906.png  class: sea  prob: 0.976
+image: ./data/val/sea/sea__20161227_180931_0e30__-122.63773903987338_37.84366161077844.png  class: sea  prob: 0.964
+image: ./data/val/sea/sea__20170709_181334_0e0e__-122.27422173410207_37.63891683098823.png  class: sea  prob: 0.966
+image: ./data/val/sea/sea__20170501_181319_0e1f__-122.43977955796186_37.82906928237985.png  class: sea  prob: 0.976
+image: ./data/val/sea/sea__20160820_233143_0c53__-122.34800754551517_37.7594307122621.png  class: sea  prob: 0.923
+image: ./data/val/sea/sea__20170707_181426_0e14__-122.08540394527087_37.70828492889226.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180705_182235_0f4d__-122.3513489898735_37.68092630207896.png  class: sea  prob: 0.966
+image: ./data/val/sea/sea__20161018_193329_0c45__-122.35795190402878_37.76738080220403.png  class: sea  prob: 0.677
+image: ./data/val/sea/sea__20170902_190520_0f53__-122.06296177139576_37.787684317324.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170613_180813_1017__-122.34191753553408_37.747175060350244.png  class: sea  prob: 0.948
+image: ./data/val/sea/sea__20170226_180943_0e26__-122.0620112445235_37.77123716119738.png  class: sea  prob: 0.975
+image: ./data/val/sea/sea__20170731_181110_100c__-122.24657378000313_37.810659846631175.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170414_180529_0f28__-122.40460424474676_37.78165918033301.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170226_180944_0e26__-122.09392913005907_37.69293840037659.png  class: sea  prob: 0.993
+image: ./data/val/sea/sea__20170508_180612_1010__-122.35208859532074_37.748394106439314.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20171023_190147_0f2e__-122.44931218477075_37.74813135712905.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20161212_180856_0e30__-122.33760196306517_37.75761512696048.png  class: sea  prob: 0.897
+image: ./data/val/sea/sea__20170522_180636_0f42__-122.2037403662048_37.68607889405876.png  class: sea  prob: 0.987
+image: ./data/val/sea/sea__20180711_180503_1027__-118.20979291163744_33.691683155201275.png  class: sea  prob: 0.998
+image: ./data/val/sea/sea__20180210_181908_1006__-122.45785562565969_37.762664147694956.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170429_180518_1002__-122.32690947203491_37.738654011293825.png  class: sea  prob: 0.769
+image: ./data/val/sea/sea__20180708_180908_0f47__-118.15414095681703_33.736641365332424.png  class: sea  prob: 0.988
+image: ./data/val/sea/sea__20170222_231255_0c27__-122.3328438778973_37.7185703728908.png  class: sea  prob: 0.883
+image: ./data/val/sea/sea__20180712_180755_0f2d__-118.11277823822641_33.730960557721524.png  class: sea  prob: 0.932
+image: ./data/val/sea/sea__20170619_181346_0e30__-122.33171189240939_37.719537384501045.png  class: sea  prob: 0.720
+image: ./data/val/sea/sea__20180710_180333_1002__-118.16082893683522_33.749917148167086.png  class: sea  prob: 0.996
+image: ./data/val/sea/sea__20180714_180427_1029__-118.31064450245532_33.755451699965136.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170615_181510_0e3a__-122.3450920886114_37.77720642035072.png  class: sea  prob: 0.984
+image: ./data/val/sea/sea__20170818_180847_1035__-122.16548601911306_37.67188907056209.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170827_181130_1014__-122.27251874067336_37.681034206284515.png  class: sea  prob: 0.966
+image: ./data/val/sea/sea__20170619_180825_1032__-122.2512336067811_37.74403806984657.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170508_180611_1010__-122.33163316163117_37.785080384821164.png  class: sea  prob: 0.914
+image: ./data/val/sea/sea__20170613_180812_102e__-122.49647642715699_37.67257685412268.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170707_181135_100b__-122.47869729911623_37.82127139519534.png  class: ship  prob: 0.699
+image: ./data/val/sea/sea__20180706_180314_1024__-118.16052261697749_33.73439002676011.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20170829_175207_102c__-118.03263397253112_33.685065794164615.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20160622_170157_0c64__-122.485753590087_37.835957669247584.png  class: sea  prob: 0.986
+image: ./data/val/sea/sea__20170709_180807_1024__-122.047779329264_37.66437283602222.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170504_180547_1025__-122.34091784277985_37.844429444635495.png  class: sea  prob: 0.977
+image: ./data/val/sea/sea__20170419_180519_1009__-122.37087078626975_37.79037981412036.png  class: sea  prob: 0.892
+image: ./data/val/sea/sea__20170620_180742_102f__-122.33010767689555_37.73891558576711.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20160905_193458_0c37__-122.34588841807276_37.756417599310865.png  class: sea  prob: 0.921
+image: ./data/val/sea/sea__20171025_175648_0e26__-118.11583124705163_33.65403950297157.png  class: sea  prob: 0.853
+image: ./data/val/sea/sea__20170805_180925_1001__-122.1615560941348_37.68557019378132.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170910_181216_1010__-122.35214726919757_37.749476005732866.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170501_180617_1005__-122.47188796088886_37.84406213283574.png  class: sea  prob: 0.943
+image: ./data/val/sea/sea__20170712_181046_1035__-122.41646598872094_37.73320972564166.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170923_181240_0f42__-122.35084878472682_37.781158971093056.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20171207_181550_103c__-122.1365533018414_37.8111755851631.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20170616_180825_100e__-122.3477118253606_37.76207893307795.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170501_181320_0e1f__-122.33600963512579_37.729998918173784.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170328_181231_0e0f__-122.33371894647505_37.72728204448836.png  class: sea  prob: 0.783
+image: ./data/val/sea/sea__20170902_181214_1005__-122.42742145159532_37.813678634127726.png  class: sea  prob: 0.936
+image: ./data/val/sea/sea__20170719_180903_101d__-122.35378108314241_37.71430658731026.png  class: sea  prob: 0.967
+image: ./data/val/sea/sea__20170709_181333_0e0e__-122.36752494084675_37.72316898125568.png  class: sea  prob: 0.998
+image: ./data/val/sea/sea__20180711_182157_1048__-122.3476848507677_37.76902789354007.png  class: sea  prob: 0.599
+image: ./data/val/sea/sea__20170129_181027_0e1f__-122.3335299594139_37.71797938371536.png  class: sea  prob: 0.865
+image: ./data/val/sea/sea__20171129_181545_1022__-122.33830192070076_37.74020568524995.png  class: sea  prob: 0.772
+image: ./data/val/sea/sea__20170522_180634_0f42__-122.19790378077256_37.823425311097765.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170703_180946_1009__-122.33767981162372_37.70683543007344.png  class: sea  prob: 0.964
+image: ./data/val/sea/sea__20170419_180519_1009__-122.30054744803354_37.75764438634441.png  class: sea  prob: 0.962
+image: ./data/val/sea/sea__20161102_180659_0e26__-122.33989462905319_37.67967299745219.png  class: sea  prob: 0.967
+image: ./data/val/sea/sea__20170501_181320_0e1f__-122.51456066927888_37.76856263121167.png  class: sea  prob: 0.869
+image: ./data/val/sea/sea__20170712_181004_0f12__-122.08646491154475_37.68839229325371.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20171212_181756_0e26__-122.40023790468767_37.6979497114809.png  class: sea  prob: 0.978
+image: ./data/val/sea/sea__20170613_180813_1017__-122.4992951802847_37.70871410875618.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170504_180549_1025__-122.15363830450032_37.73258903548146.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20161006_004003_0c38__-122.46471851960996_37.73668346826086.png  class: sea  prob: 0.971
+image: ./data/val/sea/sea__20170906_190631_1_0f4a__-122.25012918915772_37.735378468629115.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20161022_180612_0e19__-122.12618892026703_37.730441929537086.png  class: sea  prob: 0.994
+image: ./data/val/sea/sea__20170910_181215_1010__-122.35014498945_37.77983016715753.png  class: ship  prob: 0.752
+image: ./data/val/sea/sea__20170721_180936_0f31__-122.58174348336024_37.85715788965597.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170505_181257_0e2f__-122.23794688868087_37.744710013041804.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170921_181406_1031__-122.33848135318848_37.765948183770156.png  class: sea  prob: 0.994
+image: ./data/val/sea/sea__20161006_003958_0c12__-122.41531011860283_37.70267624304593.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20160905_193458_0c37__-122.33756251259427_37.739119954394575.png  class: sea  prob: 0.748
+image: ./data/val/sea/sea__20180312_182016_1042__-122.33929434685817_37.7396434240547.png  class: sea  prob: 0.908
+image: ./data/val/sea/sea__20170905_181214_0f12__-122.1970477359889_37.71353258991616.png  class: sea  prob: 0.995
+image: ./data/val/sea/sea__20171021_181323_1003__-122.07241952267307_37.734249164791585.png  class: sea  prob: 0.929
+image: ./data/val/sea/sea__20170717_180817_1010__-122.32109741306287_37.78969793016367.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180712_211331_0f06__-118.16711762064074_33.72161164186578.png  class: sea  prob: 0.982
+image: ./data/val/sea/sea__20161102_202002_0c75__-122.17804250675646_37.75471754640761.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170501_180553_1018__-122.33594385273369_37.76022861282621.png  class: sea  prob: 0.983
+image: ./data/val/sea/sea__20161218_180844_0e26__-122.47984174489888_37.83790556670464.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20180710_182341_1011__-122.08261432972722_37.73854704083466.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20171018_175517_1005__-118.23268769451015_33.74459399219875.png  class: ship  prob: 0.794
+image: ./data/val/sea/sea__20170619_180826_1032__-122.34278454796389_37.71843693129164.png  class: sea  prob: 0.892
+image: ./data/val/sea/sea__20170717_180817_1010__-122.48158762934943_37.86611505238685.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20161018_192144_1_0c24__-122.53107256162552_37.83457855720337.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20171119_181613_0f52__-122.32814224256553_37.737876900828944.png  class: sea  prob: 0.759
+image: ./data/val/sea/sea__20170706_181011_1006__-122.2724984951341_37.83264326368706.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20171023_190146_0f2e__-122.2100803812871_37.73949724802415.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20170419_181315_0e0d__-122.42589907490463_37.693210285254885.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20171118_181532_1030__-122.3349943941654_37.72931720814629.png  class: sea  prob: 0.920
+image: ./data/val/sea/sea__20170712_181003_0f12__-122.13161197832906_37.78493861464402.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180707_182443_0f17__-122.33530911439104_37.75884602774158.png  class: sea  prob: 0.926
+image: ./data/val/sea/sea__20170822_181222_0f31__-122.27585854260244_37.816738019799764.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170902_181216_1005__-122.48806112679166_37.718968008636224.png  class: sea  prob: 0.988
+image: ./data/val/sea/sea__20170604_180820_0f52__-122.51524225537149_37.758074093141346.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170910_181216_1010__-122.47687591711161_37.77021301255064.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20180711_180503_1027__-118.21812809977303_33.73873218896573.png  class: sea  prob: 0.986
+image: ./data/val/sea/sea__20170712_180940_0f15__-122.30200855168509_37.77612086869213.png  class: sea  prob: 0.991
+image: ./data/val/sea/sea__20170901_181521_0e14__-122.45215935536157_37.712966070093046.png  class: sea  prob: 0.987
+image: ./data/val/sea/sea__20170609_180751_101b__-122.33466122609727_37.72850414359018.png  class: sea  prob: 0.958
+image: ./data/val/sea/sea__20161022_180612_0e19__-122.05294087231242_37.69715889815695.png  class: sea  prob: 0.996
+image: ./data/val/sea/sea__20170609_180756_103a__-122.33067470875649_37.74778773510194.png  class: sea  prob: 0.972
+image: ./data/val/sea/sea__20171127_185539_0f29__-122.22243114751392_37.81839832158083.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170901_181521_0e14__-122.572150913354_37.722899458090765.png  class: sea  prob: 0.966
+image: ./data/val/sea/sea__20180131_175841_1010__-118.2195919149232_33.736905015697715.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170226_180943_0e26__-122.20221064511391_37.819155382661435.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20161006_003958_0c12__-122.41744319465516_37.68667926929303.png  class: sea  prob: 0.992
+image: ./data/val/sea/sea__20161212_180855_0e30__-122.50293735357504_37.88156528743798.png  class: sea  prob: 0.963
+image: ./data/val/sea/sea__20170712_180941_0f15__-122.22208519386237_37.71483610781411.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20160622_170157_0c64__-122.34466653421043_37.78296341833453.png  class: sea  prob: 0.784
+image: ./data/val/sea/sea__20170211_181115_0e16__-122.42660223610721_37.80942949031537.png  class: sea  prob: 0.918
+image: ./data/val/sea/sea__20180708_180908_0f47__-118.18560114537759_33.72600798924472.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180712_211331_0f06__-118.14370605893323_33.73608912911218.png  class: sea  prob: 0.813
+image: ./data/val/sea/sea__20170730_181044_103d__-122.29846603385391_37.6786496844103.png  class: sea  prob: 0.993
+image: ./data/val/sea/sea__20170724_181036_1011__-122.32141243627227_37.71793729818083.png  class: sea  prob: 0.715
+image: ./data/val/sea/sea__20170314_155238_0c12__-122.4715822873945_37.681120715454306.png  class: sea  prob: 0.993
+image: ./data/val/sea/sea__20171022_175534_100e__-118.21671629205547_33.737366277333734.png  class: sea  prob: 0.829
+image: ./data/val/sea/sea__20170501_180553_1018__-122.33116225266564_37.78818722279999.png  class: sea  prob: 0.954
+image: ./data/val/sea/sea__20180712_211331_0f06__-118.14631332868933_33.73003149668605.png  class: sea  prob: 0.868
+image: ./data/val/sea/sea__20170501_180553_1018__-122.13414121169063_37.7024068602389.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170707_181425_0e14__-122.05516823794919_37.73614006839395.png  class: sea  prob: 0.934
+image: ./data/val/sea/sea__20170721_180937_0f31__-122.4844148251927_37.734283618031235.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170129_181027_0e1f__-122.37168169222907_37.74690485775517.png  class: sea  prob: 0.979
+image: ./data/val/sea/sea__20170905_181214_0f12__-122.30859432973303_37.78224352108593.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170522_180635_0f42__-122.34856501556398_37.758000708483756.png  class: sea  prob: 0.777
+image: ./data/val/sea/sea__20170129_181028_0e1f__-122.41813284692294_37.66372585064465.png  class: sea  prob: 0.530
+image: ./data/val/sea/sea__20170605_180824_1032__-122.48275698947108_37.79635905394773.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170719_180900_101d__-122.35694866706342_37.83205308611651.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170709_181334_0e0e__-122.18935032957172_37.61392026950369.png  class: sea  prob: 0.966
+image: ./data/val/sea/sea__20171025_175647_0e26__-118.14332763284955_33.73441517168705.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170101_180916_0e30__-122.472181318784_37.850742109913384.png  class: sea  prob: 0.996
+image: ./data/val/sea/sea__20170604_180819_0f52__-122.53925309163525_37.856782982719004.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20171129_181545_1022__-122.34004742946429_37.71233774111778.png  class: sea  prob: 0.990
+image: ./data/val/sea/sea__20170702_180943_103c__-122.30831003110046_37.713994503695176.png  class: sea  prob: 0.965
+image: ./data/val/sea/sea__20170515_180654_1007__-122.34345858565175_37.73077070699467.png  class: sea  prob: 0.711
+image: ./data/val/sea/sea__20170613_180812_102e__-122.49645593023325_37.67057581067081.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20171208_181656_0e2f__-122.05889392158738_37.751122417840904.png  class: sea  prob: 0.996
+image: ./data/val/sea/sea__20160820_233143_0c53__-122.33871292162644_37.78966292304172.png  class: sea  prob: 0.993
+image: ./data/val/sea/sea__20170708_180826_1021__-122.46550497353964_37.84500674368631.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170615_180727_1003__-122.28157427826083_37.7755924637655.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20161103_195523_0c27__-122.34831764039477_37.76678713050675.png  class: sea  prob: 0.718
+image: ./data/val/sea/sea__20171023_175305_1039__-118.12784300556406_33.70428196206071.png  class: sea  prob: 0.967
+image: ./data/val/sea/sea__20161018_192055_0d05__-122.28685147391981_37.648052185960495.png  class: sea  prob: 0.991
+image: ./data/val/sea/sea__20170508_180611_1010__-122.17283077847047_37.72729039331012.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180708_180909_0f47__-118.19355414825759_33.78821328548772.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170901_181520_0e14__-122.51320625522732_37.78291501175205.png  class: ship  prob: 0.500
+image: ./data/val/sea/sea__20180712_180429_101b__-118.15066335788352_33.696874603043355.png  class: sea  prob: 0.760
+image: ./data/val/sea/sea__20170504_180550_1025__-122.3211975135976_37.6743211606756.png  class: sea  prob: 0.944
+image: ./data/val/sea/sea__20170129_181026_0e1f__-122.37064585901672_37.804844596869714.png  class: sea  prob: 0.717
+image: ./data/val/sea/sea__20161218_180846_0e26__-122.38098418888359_37.66432089876209.png  class: sea  prob: 0.963
+image: ./data/val/sea/sea__20170909_181400_0f28__-122.3245035056439_37.726148019081435.png  class: sea  prob: 0.995
+image: ./data/val/sea/sea__20180705_213443_0f02__-122.34990812343001_37.7485172968277.png  class: sea  prob: 0.967
+image: ./data/val/sea/sea__20170909_181400_0f28__-122.17268258543704_37.72837092287952.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170707_174131_0c0b__-122.2515504017567_37.81396328974846.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170709_181333_0e0e__-122.27983498771106_37.69143527757834.png  class: sea  prob: 0.966
+image: ./data/val/sea/sea__20170314_155238_0c12__-122.42519619481152_37.784167937080014.png  class: sea  prob: 0.998
+image: ./data/val/sea/sea__20170615_181426_0e0d__-122.34832116144462_37.73920696656714.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20180705_182235_0f4d__-122.33029320161329_37.740998676103544.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20171127_181539_101e__-122.36377962246702_37.723256986220896.png  class: sea  prob: 0.606
+image: ./data/val/sea/sea__20170501_180554_1018__-122.18668864341592_37.68347489343083.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170430_181117_0e26__-122.17931149878993_37.69529409128506.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170830_181003_0f4e__-122.1124534573325_37.78590444259171.png  class: sea  prob: 0.849
+image: ./data/val/sea/sea__20170803_234846_0c54__-122.31288402791509_37.76047496934605.png  class: sea  prob: 0.949
+image: ./data/val/sea/sea__20170101_180917_0e30__-122.48528305244957_37.71214189990473.png  class: sea  prob: 0.974
+image: ./data/val/sea/sea__20180711_180503_1027__-118.21395108220523_33.73187415892373.png  class: sea  prob: 0.713
+image: ./data/val/sea/sea__20180210_181908_1006__-122.33198430763633_37.783919689328826.png  class: ship  prob: 0.540
+image: ./data/val/sea/sea__20170917_190615_0f3c__-122.28264334306215_37.728388348051354.png  class: sea  prob: 0.967
+image: ./data/val/sea/sea__20161212_180855_0e30__-122.5394959090726_37.88352558393175.png  class: sea  prob: 0.982
+image: ./data/val/sea/sea__20161116_180802_0e14__-122.2399947320085_37.83073454685968.png  class: sea  prob: 0.969
+image: ./data/val/sea/sea__20170828_175142_1022__-117.90567460958115_33.71060210526085.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170708_180811_100c__-122.01097475696292_37.65679639945837.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20170613_180813_1017__-122.34400119689425_37.72715043502993.png  class: ship  prob: 0.971
+image: ./data/val/sea/sea__20171107_181615_0f22__-122.32649601075819_37.727916985995165.png  class: sea  prob: 0.982
+image: ./data/val/sea/sea__20170702_180943_103c__-122.33214759020176_37.72029696017205.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170504_180550_1025__-122.22353629241415_37.66382214238154.png  class: sea  prob: 0.974
+image: ./data/val/sea/sea__20180712_180755_0f2d__-118.22513304529672_33.72348470942977.png  class: sea  prob: 0.982
+image: ./data/val/sea/sea__20170723_181447_0e0e__-122.56858727616165_37.89093632512815.png  class: sea  prob: 0.979
+image: ./data/val/sea/sea__20170211_181115_0e16__-122.29893289915448_37.76993766390587.png  class: sea  prob: 0.967
+image: ./data/val/sea/sea__20170707_181426_0e14__-122.12212884329361_37.71099763104849.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170427_180609_1041__-122.39764613116999_37.64812914533769.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170609_180756_103a__-122.42136701851793_37.80772745841087.png  class: sea  prob: 0.998
+image: ./data/val/sea/sea__20160820_233143_0c53__-122.36042556233372_37.79259487116029.png  class: sea  prob: 0.907
+image: ./data/val/sea/sea__20170430_181116_0e26__-122.1408602162825_37.765943943353086.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170618_180802_0f34__-122.1589150663445_37.66032356912042.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170708_180826_1021__-122.39595163484783_37.785752155709105.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170106_180852_0e30__-122.33754040846814_37.71102578191657.png  class: sea  prob: 0.975
+image: ./data/val/sea/sea__20170827_181130_1014__-122.39893093367422_37.750210589902096.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180706_180314_1024__-118.0678601071873_33.65995567777042.png  class: sea  prob: 0.962
+image: ./data/val/sea/sea__20170620_232624_0c79__-122.46457310236153_37.676465282704456.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20160905_193458_0c37__-122.49581757936237_37.62411826912237.png  class: ship  prob: 0.708
+image: ./data/val/sea/sea__20170919_181413_0f1b__-122.42423395846821_37.70171968662648.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170730_181043_103d__-122.33126426770414_37.75038686308762.png  class: sea  prob: 0.763
+image: ./data/val/sea/sea__20170905_181214_0f12__-122.35609416372331_37.75771761341011.png  class: sea  prob: 0.685
+image: ./data/val/sea/sea__20170501_181321_0e1f__-122.38471901366013_37.64865730866074.png  class: sea  prob: 0.983
+image: ./data/val/sea/sea__20161202_180735_0e30__-122.15391007538881_37.67875572992192.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170822_181222_0f31__-122.40265813776465_37.841405961935536.png  class: sea  prob: 0.971
+image: ./data/val/sea/sea__20170716_180815_103a__-122.33439406261999_37.8077278071898.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170717_180817_1010__-122.35157864049303_37.78340724901256.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20161227_180931_0e30__-122.56847437247026_37.80497826478755.png  class: sea  prob: 0.965
+image: ./data/val/sea/sea__20170724_181035_1011__-122.33938748691962_37.76746746889928.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20180714_182155_1051__-122.33370184133521_37.7177910785226.png  class: sea  prob: 0.709
+image: ./data/val/sea/sea__20180710_180333_1002__-118.16061465321872_33.73401038065334.png  class: sea  prob: 0.704
+image: ./data/val/sea/sea__20170919_181412_0f1b__-122.34744847860883_37.76491660654864.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180711_180350_1042__-118.1272370075018_33.66778880158038.png  class: ship  prob: 0.606
+image: ./data/val/sea/sea__20150718_184300_090b__-122.35324421973536_37.772113980272394.png  class: sea  prob: 0.986
+image: ./data/val/sea/sea__20180210_181908_1006__-122.41251957041197_37.81463274564727.png  class: sea  prob: 0.885
+image: ./data/val/sea/sea__20170902_181216_1005__-122.5449921908695_37.766331619548005.png  class: sea  prob: 0.927
+image: ./data/val/sea/sea__20170719_180901_101d__-122.32545306693116_37.73780746331749.png  class: sea  prob: 0.996
+image: ./data/val/sea/sea__20170830_181004_0f4e__-122.35676157751894_37.73176339146077.png  class: sea  prob: 0.998
+image: ./data/val/sea/sea__20170620_232624_1_0c79__-122.4855618922999_37.71611795859279.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20180711_180503_1027__-118.21589504345295_33.738835368252445.png  class: sea  prob: 0.971
+image: ./data/val/sea/sea__20180707_180452_102e__-118.23864312301872_33.68346995564557.png  class: sea  prob: 0.881
+image: ./data/val/sea/sea__20170419_181314_0e0d__-122.51068756909072_37.82386920693305.png  class: sea  prob: 0.978
+image: ./data/val/sea/sea__20170226_180944_0e26__-122.32915203580251_37.7353950234154.png  class: sea  prob: 0.928
+image: ./data/val/sea/sea__20170709_180806_1024__-122.0745431024927_37.741431195690076.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20170616_180825_100e__-122.34148376852475_37.75001177527754.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20171023_175305_1039__-118.22791567170337_33.72107617998688.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20161103_195401_0c24__-122.29274443920113_37.808107007960345.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180712_180428_101b__-118.19464573278503_33.78281868724851.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170414_180529_0f28__-122.2486414407537_37.75456688788033.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170222_231255_0c27__-122.3647162082261_37.70127884026424.png  class: sea  prob: 0.894
+image: ./data/val/sea/sea__20170106_180852_0e30__-122.4001696295736_37.69797640390218.png  class: sea  prob: 0.972
+image: ./data/val/sea/sea__20170717_180817_1010__-122.49403225538684_37.84183398930845.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20180205_181811_1030__-122.36627951838585_37.761450179792355.png  class: sea  prob: 0.831
+image: ./data/val/sea/sea__20171114_181405_1027__-122.2790686462568_37.689754140990686.png  class: sea  prob: 0.973
+image: ./data/val/sea/sea__20170706_181011_1006__-122.40832681976396_37.848843279497004.png  class: sea  prob: 0.836
+image: ./data/val/sea/sea__20170830_181003_0f4e__-122.10005234093857_37.77464331549984.png  class: sea  prob: 0.992
+image: ./data/val/sea/sea__20170707_174131_0c0b__-122.33702764638267_37.73800832995908.png  class: sea  prob: 0.787
+image: ./data/val/sea/sea__20180707_182444_0f17__-122.43051883974226_37.69426019743678.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170314_155238_0c12__-122.40460947440766_37.7895006096539.png  class: sea  prob: 0.996
+image: ./data/val/sea/sea__20170226_180945_0e26__-122.14205205731899_37.6744789501471.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170403_180412_100f__-122.27571156029728_37.671076231536304.png  class: sea  prob: 0.962
+image: ./data/val/sea/sea__20170314_155238_0c12__-122.35740877087_37.759293072874605.png  class: sea  prob: 0.936
+image: ./data/val/sea/sea__20170226_180943_0e26__-122.06752904400769_37.78482740465315.png  class: sea  prob: 0.996
+image: ./data/val/sea/sea__20170618_180801_0f34__-122.3384171841808_37.769327737974734.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20171107_181615_0f22__-122.44032738249221_37.74744008650234.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20161018_193330_0c45__-122.20046028532018_37.72220836810874.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20161218_180846_0e26__-122.48564865961798_37.713414363497776.png  class: sea  prob: 0.936
+image: ./data/val/sea/sea__20170619_181346_0e30__-122.34943785595401_37.73999727946061.png  class: sea  prob: 0.941
+image: ./data/val/sea/sea__20171212_181754_0e26__-122.21893661428301_37.83303027028024.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170827_181130_1014__-122.51622064685309_37.7124081021492.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170430_181116_0e26__-122.25776400095448_37.83333545241514.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180711_182156_1048__-122.34803963545875_37.73636626601002.png  class: sea  prob: 0.914
+image: ./data/val/sea/sea__20170515_180653_1007__-122.34976990174096_37.76820119798504.png  class: sea  prob: 0.857
+image: ./data/val/sea/sea__20170501_181320_0e1f__-122.3360474729729_37.760066960583195.png  class: sea  prob: 0.985
+image: ./data/val/sea/sea__20170830_181003_0f4e__-122.08543845241851_37.788482833332814.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170902_190520_0f53__-122.10210897923528_37.784852662633284.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20171118_185722_0f2d__-122.34509171943485_37.72702130096803.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20161102_180658_0e26__-122.34040514248915_37.748761931300486.png  class: sea  prob: 0.803
+image: ./data/val/sea/sea__20180706_180314_1024__-118.22376638803574_33.73897403989648.png  class: sea  prob: 0.994
+image: ./data/val/sea/sea__20170622_180819_1034__-122.32603124025987_37.70782396331996.png  class: sea  prob: 0.854
+image: ./data/val/sea/sea__20170501_181319_0e1f__-122.29578924029194_37.8391660228062.png  class: sea  prob: 0.991
+image: ./data/val/sea/sea__20161022_180611_0e19__-122.16938698985761_37.80086652498767.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20160905_193458_0c37__-122.340008531414_37.74740774072642.png  class: sea  prob: 0.723
+image: ./data/val/sea/sea__20170620_180742_102f__-122.34274654482738_37.73044226520767.png  class: sea  prob: 0.977
+image: ./data/val/sea/sea__20170617_181433_0e0f__-122.32651193205625_37.72991799807998.png  class: sea  prob: 0.969
+image: ./data/val/sea/sea__20171203_185451_0f2b__-122.3328807412968_37.748611424156486.png  class: sea  prob: 0.995
+image: ./data/val/sea/sea__20171118_181531_1030__-122.34943308708012_37.76776670974174.png  class: sea  prob: 0.973
+image: ./data/val/sea/sea__20170609_180756_103a__-122.32776284192086_37.738415526372165.png  class: sea  prob: 0.996
+image: ./data/val/sea/sea__20171210_181628_100a__-122.49003129623496_37.704672517048834.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170902_181216_1005__-122.58257984411509_37.71466266256829.png  class: sea  prob: 0.965
+image: ./data/val/sea/sea__20170101_180916_0e30__-122.32641146704644_37.80108488410796.png  class: sea  prob: 0.973
+image: ./data/val/sea/sea__20171217_181637_1032__-122.36073560247907_37.77242525237134.png  class: sea  prob: 0.719
+image: ./data/val/sea/sea__20170827_181129_1014__-122.46051156910171_37.772140150205836.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180708_180454_0f28__-118.10744321712961_33.665992646947196.png  class: sea  prob: 0.788
+image: ./data/val/sea/sea__20170730_191231_0f21__-122.27200380112893_37.81706576554629.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170821_175214_101d__-118.09033933530272_33.74133380713321.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180708_180453_0f28__-118.15445388207368_33.735826765748065.png  class: sea  prob: 0.941
+image: ./data/val/sea/sea__20180210_181908_1006__-122.4022891815318_37.8110661833466.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20161202_180734_0e30__-122.33973025117105_37.7672260360502.png  class: sea  prob: 0.994
+image: ./data/val/sea/sea__20170715_180932_101a__-122.10637692631006_37.63387116865436.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170822_181223_0f31__-122.29213736136002_37.71452041939661.png  class: sea  prob: 0.967
+image: ./data/val/sea/sea__20170822_181223_0f31__-122.33848370812615_37.73890881236083.png  class: sea  prob: 0.984
+image: ./data/val/sea/sea__20160905_193458_0c37__-122.46385183434099_37.63484747368108.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170419_181314_0e0d__-122.47884144617204_37.805616290470304.png  class: sea  prob: 0.980
+image: ./data/val/sea/sea__20170501_181319_0e1f__-122.37508002435852_37.7841561430067.png  class: sea  prob: 0.960
+image: ./data/val/sea/sea__20180205_181812_1030__-122.32238473959039_37.71956526159257.png  class: sea  prob: 0.846
+image: ./data/val/sea/sea__20170504_180549_1025__-122.34217755836472_37.75242215580927.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170106_180850_0e30__-122.14425549137398_37.79052002576141.png  class: sea  prob: 0.996
+image: ./data/val/sea/sea__20170723_180811_1005__-122.3422940084486_37.74696084645795.png  class: sea  prob: 0.822
+image: ./data/val/sea/sea__20170414_180529_0f28__-122.47864358230603_37.81921617460607.png  class: ship  prob: 0.883
+image: ./data/val/sea/sea__20170616_180825_100e__-122.35605384864218_37.76236816545125.png  class: sea  prob: 0.855
+image: ./data/val/sea/sea__20170519_181144_0e26__-122.1840907805863_37.75905879601299.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170314_155238_0c12__-122.45523340881503_37.75332342581616.png  class: sea  prob: 0.916
+image: ./data/val/sea/sea__20170910_181215_1010__-122.31719273803236_37.82523178893726.png  class: sea  prob: 0.678
+image: ./data/val/sea/sea__20170314_155240_0c12__-122.25070499415942_37.725539805083564.png  class: ship  prob: 0.533
+image: ./data/val/sea/sea__20170917_190708_0f44__-122.51762108611119_37.77985066939426.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170707_174131_1_0c0b__-122.25749714119202_37.73058506629582.png  class: sea  prob: 0.956
+image: ./data/val/sea/sea__20170505_181258_0e2f__-122.1377855013356_37.708030696820344.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170910_181215_1010__-122.35121532908504_37.79378831634977.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20171119_181613_0f52__-122.49530739373503_37.70453297977837.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20180709_182127_0e20__-122.3237919540068_37.72952387410005.png  class: sea  prob: 0.994
+image: ./data/val/sea/sea__20170429_180518_1002__-122.17270176749476_37.68378319192448.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170722_181118_101f__-122.48056446808523_37.76882327620446.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170419_180519_1009__-122.40688680606976_37.8114950104279.png  class: sea  prob: 0.883
+image: ./data/val/sea/sea__20170830_181003_0f4e__-122.36264878375152_37.835220600551764.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170902_181216_1005__-122.42258343300799_37.71707015891473.png  class: sea  prob: 0.995
+image: ./data/val/sea/sea__20161022_180611_0e19__-122.26046365262594_37.78143751316057.png  class: sea  prob: 0.966
+image: ./data/val/sea/sea__20170707_174131_0c0b__-122.3390377413175_37.7684930016889.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180209_181715_103e__-122.25648176401509_37.73679771655621.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170702_181120_103a__-122.35098029465155_37.75052412245564.png  class: sea  prob: 0.989
+image: ./data/val/sea/sea__20161103_195522_0c27__-122.48578751166343_37.73764252937086.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170504_180547_1025__-122.28052052504286_37.81049353481551.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170722_181118_101f__-122.39293225639383_37.76334805071066.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20171112_181257_1009__-122.12641479999563_37.78941568873169.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20171022_175534_100e__-118.25337666641448_33.710782792421654.png  class: sea  prob: 0.914
+image: ./data/val/sea/sea__20170501_181320_0e1f__-122.54132365266595_37.76469502432008.png  class: sea  prob: 0.960
+image: ./data/val/sea/sea__20170702_180943_103c__-122.33686893598907_37.75961191684693.png  class: sea  prob: 0.977
+image: ./data/val/sea/sea__20161212_180855_0e30__-122.4059168936673_37.87294991547966.png  class: sea  prob: 0.962
+image: ./data/val/sea/sea__20180205_181922_1031__-122.42667771298387_37.80848348426208.png  class: sea  prob: 0.996
+image: ./data/val/sea/sea__20170707_181426_0e14__-122.15270280905368_37.71608839108854.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180205_181812_1030__-122.40010353317001_37.697732710230554.png  class: sea  prob: 0.988
+image: ./data/val/sea/sea__20170723_181447_0e0e__-122.51630902075792_37.855663483139516.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170708_180826_1021__-122.42374112636251_37.78288998003843.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170611_180735_1008__-122.16536153523438_37.68300140459791.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170703_180944_1009__-122.39417340802179_37.86161483566269.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170819_175035_0f22__-118.18393344739283_33.73424892757211.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20171023_175304_1039__-118.21206107676302_33.72872722067327.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170716_180833_101b__-122.40700928865517_37.81322613595979.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170615_180727_1003__-122.07066711596391_37.762761462592096.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170708_180827_1021__-122.34310234660427_37.71714080417445.png  class: sea  prob: 0.843
+image: ./data/val/sea/sea__20171023_175305_1039__-118.19528360412191_33.71206211664979.png  class: sea  prob: 0.898
+image: ./data/val/sea/sea__20161103_195523_0c27__-122.35134984883098_37.74720030845059.png  class: sea  prob: 0.809
+image: ./data/val/sea/sea__20170723_180812_1005__-122.24189973304027_37.7143703194022.png  class: sea  prob: 0.991
+image: ./data/val/sea/sea__20170723_180812_1005__-122.14001168126084_37.65672620334604.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170504_180549_1025__-122.3347072976321_37.73096499650974.png  class: sea  prob: 0.828
+image: ./data/val/sea/sea__20170706_180954_1040__-122.29107300308581_37.811828350640674.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170703_180944_1009__-122.30434235919608_37.810609587434314.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20161116_180803_0e14__-122.44388637557398_37.79058484359662.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180712_180429_101b__-118.1231941603522_33.68037967501163.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170519_181145_0e26__-122.12836942863154_37.71577579814458.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170106_180851_0e30__-122.34625465171712_37.73027249632148.png  class: sea  prob: 0.989
+image: ./data/val/sea/sea__20180705_182236_0f4d__-122.3416374990331_37.751878352416476.png  class: sea  prob: 0.703
+image: ./data/val/sea/sea__20170730_181514_0e20__-122.31290232802994_37.658968634398896.png  class: sea  prob: 0.982
+image: ./data/val/sea/sea__20170505_181258_0e2f__-122.17844918671175_37.69017763862263.png  class: sea  prob: 0.998
+image: ./data/val/sea/sea__20170619_180825_1032__-122.34006910767155_37.771256791447136.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20171207_181550_103c__-122.21613451231367_37.82076304774197.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170901_181520_0e14__-122.37761667777681_37.798554455945.png  class: ship  prob: 0.526
+image: ./data/val/sea/sea__20170713_180939_1002__-122.3376090877832_37.73771416489413.png  class: sea  prob: 0.998
+image: ./data/val/sea/sea__20170519_181144_0e26__-122.23455703952428_37.74322792655009.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170923_181240_0f42__-122.33686293864658_37.767912957703956.png  class: sea  prob: 0.763
+image: ./data/val/sea/sea__20170921_181406_1031__-122.34971646048909_37.76652446449709.png  class: sea  prob: 0.942
+image: ./data/val/sea/sea__20171114_181404_1027__-122.10457147525985_37.76429479602058.png  class: sea  prob: 0.993
+image: ./data/val/sea/sea__20170706_180954_1040__-122.05762079012071_37.75484361449022.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180712_211331_0f06__-118.20307675566646_33.72997847747763.png  class: sea  prob: 0.845
+image: ./data/val/sea/sea__20170613_180813_1017__-122.33490508316835_37.72788361142818.png  class: sea  prob: 0.933
+image: ./data/val/sea/sea__20170731_181111_100c__-122.25263081147605_37.75069860094023.png  class: sea  prob: 0.912
+image: ./data/val/sea/sea__20180706_180914_1051__-118.14567407142576_33.72822468696302.png  class: sea  prob: 0.980
+image: ./data/val/sea/sea__20171213_181610_100c__-122.48526939813327_37.71411574158604.png  class: sea  prob: 0.956
+image: ./data/val/sea/sea__20170705_180816_103e__-122.2814447560679_37.71502356385433.png  class: sea  prob: 0.933
+image: ./data/val/sea/sea__20170719_180903_101d__-122.38654826500492_37.70737021211693.png  class: sea  prob: 0.962
+image: ./data/val/sea/sea__20180131_175841_1010__-118.34698740368296_33.74932477632559.png  class: sea  prob: 0.998
+image: ./data/val/sea/sea__20170712_181046_1035__-122.4700356624177_37.73111028996904.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170712_180940_0f15__-122.18625994548921_37.75380116323898.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20180708_180908_0f47__-118.1612986135659_33.73430156311303.png  class: sea  prob: 0.844
+image: ./data/val/sea/sea__20170609_180757_103a__-122.33540918749468_37.72861652073557.png  class: sea  prob: 0.993
+image: ./data/val/sea/sea__20161116_180803_0e14__-122.32164934889046_37.774045396522915.png  class: sea  prob: 0.923
+image: ./data/val/sea/sea__20171023_175305_1039__-118.20981145835196_33.72993972991807.png  class: sea  prob: 0.976
+image: ./data/val/sea/sea__20170724_181035_1011__-122.1712893036596_37.73425568615352.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170716_180833_101b__-122.6364287420785_37.853580981972016.png  class: sea  prob: 0.957
+image: ./data/val/sea/sea__20180705_213443_0f02__-122.33605159962718_37.75579476553653.png  class: sea  prob: 0.984
+image: ./data/val/sea/sea__20170905_181214_0f12__-122.3315596677088_37.78567483085522.png  class: sea  prob: 0.691
+image: ./data/val/sea/sea__20171023_190148_0f2e__-122.22026464025058_37.87202895511861.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180312_182016_1042__-122.3363846580964_37.752822310355455.png  class: sea  prob: 0.979
+image: ./data/val/sea/sea__20161022_180611_0e19__-122.07811501017659_37.796564427397136.png  class: sea  prob: 0.851
+image: ./data/val/sea/sea__20170712_180941_0f15__-122.32318237359226_37.717947472563274.png  class: sea  prob: 0.961
+image: ./data/val/sea/sea__20170620_232624_1_0c79__-122.42075053083227_37.7251460181053.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170505_181258_0e2f__-122.36028983062306_37.760904070318546.png  class: sea  prob: 0.963
+image: ./data/val/sea/sea__20170706_180955_1040__-122.03903530357431_37.70148080289207.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20171218_181723_1007__-122.57544362981595_37.861488649157856.png  class: sea  prob: 0.996
+image: ./data/val/sea/sea__20180708_180453_0f28__-118.14397443208644_33.73679009454487.png  class: sea  prob: 0.971
+image: ./data/val/sea/sea__20170501_180554_1018__-122.32033470412857_37.68313113166052.png  class: sea  prob: 0.962
+image: ./data/val/sea/sea__20170909_181400_0f28__-122.1698378912831_37.74227611140928.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170609_180751_101b__-122.34063750512246_37.74943921652722.png  class: sea  prob: 0.987
+image: ./data/val/sea/sea__20170901_181520_0e14__-122.3726815215772_37.77770804372903.png  class: sea  prob: 0.967
+image: ./data/val/sea/sea__20170723_181447_0e0e__-122.38747607950859_37.826050895049605.png  class: sea  prob: 0.911
+image: ./data/val/sea/sea__20170721_180937_0f31__-122.54679467184324_37.77236838469567.png  class: sea  prob: 0.991
+image: ./data/val/sea/sea__20171203_185451_0f2b__-122.44369468071307_37.70700473712044.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170501_180554_1018__-122.32694661851734_37.67056854724252.png  class: sea  prob: 0.963
+image: ./data/val/sea/sea__20170620_180742_102f__-122.33047706248283_37.716799385778074.png  class: sea  prob: 0.666
+image: ./data/val/sea/sea__20170705_180817_103e__-122.19850111070659_37.65757077068643.png  class: sea  prob: 0.982
+image: ./data/val/sea/sea__20170902_190520_0f53__-122.25017654535687_37.710421414467376.png  class: sea  prob: 0.922
+image: ./data/val/sea/sea__20170723_180812_1005__-122.34963651747655_37.71728518916467.png  class: sea  prob: 0.904
+image: ./data/val/sea/sea__20170717_180817_1010__-122.4503057154802_37.857672181363135.png  class: sea  prob: 0.966
+image: ./data/val/sea/sea__20161218_180844_0e26__-122.49323872906676_37.85315997654019.png  class: sea  prob: 0.900
+image: ./data/val/sea/sea__20180712_211331_0f06__-118.40409480499461_33.761755805272244.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170430_181116_0e26__-122.09743935074812_37.77662420695797.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170129_181027_0e1f__-122.34870094005304_37.78133639317295.png  class: sea  prob: 0.992
+image: ./data/val/sea/sea__20170419_181315_0e0d__-122.50775640608983_37.72619037431964.png  class: sea  prob: 0.983
+image: ./data/val/sea/sea__20170905_181214_0f12__-122.3504108590585_37.74943940887163.png  class: sea  prob: 0.736
+image: ./data/val/sea/sea__20180712_180429_101b__-118.15261990755589_33.69553062062659.png  class: sea  prob: 0.810
+image: ./data/val/sea/sea__20180709_182125_0e20__-122.35002919342593_37.750248487065086.png  class: sea  prob: 0.991
+image: ./data/val/sea/sea__20161202_180735_0e30__-122.33778854073893_37.694614133343194.png  class: sea  prob: 0.935
+image: ./data/val/sea/sea__20161116_180803_0e14__-122.33750935807309_37.73744320990945.png  class: sea  prob: 0.757
+image: ./data/val/sea/sea__20170621_181251_0e26__-122.33791302080623_37.76856780573772.png  class: sea  prob: 0.948
+image: ./data/val/sea/sea__20170106_180851_0e30__-122.35408833815782_37.784718918384876.png  class: sea  prob: 0.991
+image: ./data/val/sea/sea__20170830_181004_0f4e__-122.14034190617642_37.70769785377537.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170719_180901_101d__-122.33163121357718_37.78529668758239.png  class: sea  prob: 0.815
+image: ./data/val/sea/sea__20170709_181333_0e0e__-122.33918938210937_37.76676333587583.png  class: sea  prob: 0.993
+image: ./data/val/sea/sea__20180205_181811_1030__-122.34700136900732_37.76153421146316.png  class: sea  prob: 0.900
+image: ./data/val/sea/sea__20170705_180817_103e__-122.38864278427437_37.68026025439936.png  class: sea  prob: 0.973
+image: ./data/val/sea/sea__20170604_180819_0f52__-122.3490985782949_37.77095550256919.png  class: sea  prob: 0.719
+image: ./data/val/sea/sea__20180713_180403_1035__-118.132533160718_33.689195887491266.png  class: sea  prob: 0.982
+image: ./data/val/sea/sea__20170611_180650_1024__-122.24732557237103_37.80038982885411.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20150830_000652_1_0b07__-122.27654713066907_37.77410158935401.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170502_180545_1044__-122.34019186648356_37.822577852027266.png  class: sea  prob: 0.926
+image: ./data/val/sea/sea__20170501_181319_0e1f__-122.47877271918702_37.80569710434841.png  class: sea  prob: 0.973
+image: ./data/val/sea/sea__20170226_180945_0e26__-122.11545623454599_37.616553129668084.png  class: sea  prob: 0.990
+image: ./data/val/sea/sea__20171107_181615_0f22__-122.43676440664647_37.813128814958986.png  class: sea  prob: 0.932
+image: ./data/val/sea/sea__20170430_181117_0e26__-122.20416004478265_37.7232068181798.png  class: sea  prob: 0.998
+image: ./data/val/sea/sea__20170730_191231_0f21__-122.18152751077551_37.81547138479722.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20171117_185444_104c__-122.33043537744814_37.74789453329951.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20170712_180941_0f15__-122.43050922799225_37.699965539211135.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20161202_180735_0e30__-122.34711439969115_37.756424397409255.png  class: sea  prob: 0.929
+image: ./data/val/sea/sea__20170615_180728_1003__-122.34680693017529_37.74103726778872.png  class: sea  prob: 0.758
+image: ./data/val/sea/sea__20171127_181539_101e__-122.34789535829744_37.72952447798042.png  class: sea  prob: 0.927
+image: ./data/val/sea/sea__20170730_181513_0e20__-122.33935979989101_37.75143297678181.png  class: sea  prob: 0.967
+image: ./data/val/sea/sea__20170709_181333_0e0e__-122.3304774672016_37.74700247232872.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20170923_181240_0f42__-122.38115587480166_37.84402587496168.png  class: sea  prob: 0.991
+image: ./data/val/sea/sea__20161018_193330_0c45__-122.23175803087699_37.72741876294356.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20180712_211332_0f06__-118.20507857569963_33.70639345499712.png  class: sea  prob: 0.949
+image: ./data/val/sea/sea__20170504_180549_1025__-122.28877284175837_37.710417206766486.png  class: sea  prob: 0.971
+image: ./data/val/sea/sea__20180203_181746_1035__-122.12265256100378_37.7156522744092.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180305_184041_1054__-122.45577905781069_37.757868585604626.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170619_181346_0e30__-122.32323347580618_37.71981349249693.png  class: sea  prob: 0.848
+image: ./data/val/sea/sea__20171207_181551_103c__-122.33227218978708_37.748121268952815.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20180706_180914_1051__-118.21636296556413_33.70084464832889.png  class: sea  prob: 0.967
+image: ./data/val/sea/sea__20161116_180804_0e14__-122.43510331976242_37.686521828678195.png  class: sea  prob: 0.910
+image: ./data/val/sea/sea__20161103_195522_0c27__-122.47202178027077_37.748667907390434.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170619_180826_1032__-122.43484615084462_37.70247406172376.png  class: sea  prob: 0.997
+image: ./data/val/sea/sea__20170709_181333_0e0e__-122.16539336184846_37.671050191042916.png  class: sea  prob: 0.989
+image: ./data/val/sea/sea__20170917_190615_0f3c__-122.38337078114024_37.725280897582635.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180312_182016_1042__-122.3451863444688_37.758793165140816.png  class: sea  prob: 0.958
+image: ./data/val/sea/sea__20170617_180855_1031__-122.51769624707424_37.778769398052425.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170721_180937_0f31__-122.37899926016429_37.71065656886824.png  class: sea  prob: 0.603
+image: ./data/val/sea/sea__20161116_180803_0e14__-122.36025355281615_37.769069759228096.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20171127_181539_101e__-122.36414706522125_37.720095340263626.png  class: sea  prob: 0.990
+image: ./data/val/sea/sea__20180708_180908_0f47__-118.14359671524761_33.73517024333945.png  class: sea  prob: 0.933
+image: ./data/val/sea/sea__20170902_181216_1005__-122.44496114277695_37.683215698767.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170211_181115_0e16__-122.47900508276673_37.82597758349076.png  class: sea  prob: 0.984
+image: ./data/val/sea/sea__20170709_181332_0e0e__-122.16634847654159_37.75890758357923.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170706_180955_1040__-122.17720593944432_37.679515431096085.png  class: sea  prob: 0.936
+image: ./data/val/sea/sea__20170414_180529_0f28__-122.51318925079467_37.816660084321384.png  class: sea  prob: 0.963
+image: ./data/val/sea/sea__20170501_181319_0e1f__-122.4232531138847_37.797461786875935.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170617_180854_1031__-122.40984587781927_37.81653916307391.png  class: sea  prob: 0.998
+image: ./data/val/sea/sea__20170502_180545_1044__-122.31516189888048_37.82735608044364.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20180709_182127_0e20__-122.3407060968338_37.718668682154096.png  class: sea  prob: 0.778
+image: ./data/val/sea/sea__20170712_181003_0f12__-122.06784465822315_37.80851583605695.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20171129_181544_1022__-122.33987315019915_37.77030931824107.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170822_175101_1006__-118.17514860140908_33.77156143032865.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170101_180916_0e30__-122.47921359990308_37.82541068195876.png  class: sea  prob: 0.975
+image: ./data/val/sea/sea__20180708_182358_1032__-122.44759956385563_37.813558674142655.png  class: sea  prob: 0.979
+image: ./data/val/sea/sea__20170615_181425_0e0d__-122.25678817263315_37.73679964893167.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20161022_180611_0e19__-122.06925660085886_37.774755586498244.png  class: sea  prob: 0.999
+image: ./data/val/sea/sea__20170622_180819_1034__-122.32155279019929_37.724941336862365.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170707_174130_0c0b__-122.33946330297843_37.76660263566568.png  class: sea  prob: 0.949
+image: ./data/val/sea/sea__20170612_180826_1036__-122.4049351044148_37.8211111157105.png  class: sea  prob: 0.585
+image: ./data/val/sea/sea__20170501_180618_1005__-122.29455450430522_37.77545457593399.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170515_180653_1007__-122.44582401244435_37.804870731277774.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170618_180801_0f34__-122.35713795737061_37.759102320269555.png  class: sea  prob: 0.983
+image: ./data/val/sea/sea__20180708_180454_0f28__-118.12990701583655_33.68637904272287.png  class: ship  prob: 0.754
+image: ./data/val/sea/sea__20170706_181011_1006__-122.43919822115103_37.865325923311175.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170106_180852_0e30__-122.16187481882541_37.66026351874788.png  class: sea  prob: 0.915
+image: ./data/val/sea/sea__20161218_180845_0e26__-122.43237084444813_37.75481086257568.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20171129_181544_1022__-122.34507630940544_37.75968485267227.png  class: sea  prob: 0.819
+image: ./data/val/sea/sea__20171212_181756_0e26__-122.3358345908428_37.73053872169732.png  class: sea  prob: 0.968
+image: ./data/val/sea/sea__20170705_180815_103e__-122.23389241491539_37.81755410203232.png  class: sea  prob: 1.000
+image: ./data/val/sea/sea__20170717_180817_1010__-122.44371887495045_37.82654627166243.png  class: sea  prob: 0.900
+image: ./data/val/sea/sea__20170721_180825_100b__-122.34523145649668_37.726616484546696.png  class: sea  prob: 0.989
+image: ./data/val/ship/ship__20171127_181538_101e__-122.35285080613363_37.7859829726792.png  class: ship  prob: 0.995
+image: ./data/val/ship/ship__20180712_180429_101b__-118.12564883363834_33.66758682744614.png  class: sea  prob: 0.594
+image: ./data/val/ship/ship__20170910_181216_1010__-122.34098773990615_37.71761571465206.png  class: ship  prob: 0.995
+image: ./data/val/ship/ship__20171118_181531_1030__-122.33644310714187_37.76534185924881.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20171118_185722_0f2d__-122.33510401615905_37.728479602418275.png  class: ship  prob: 0.993
+image: ./data/val/ship/ship__20180705_213444_0f02__-122.32313152934792_37.72727580762388.png  class: ship  prob: 0.960
+image: ./data/val/ship/ship__20171127_181539_101e__-122.34120708472079_37.71975306433755.png  class: ship  prob: 0.988
+image: ./data/val/ship/ship__20180708_180453_0f28__-118.1602075693253_33.73504232642754.png  class: ship  prob: 0.994
+image: ./data/val/ship/ship__20170917_190615_0f3c__-122.34940186941583_37.76744206542644.png  class: ship  prob: 0.982
+image: ./data/val/ship/ship__20180707_180908_1043__-118.22435950358626_33.7328536081581.png  class: ship  prob: 0.994
+image: ./data/val/ship/ship__20161116_180803_0e14__-122.33766055265983_37.76632212379826.png  class: ship  prob: 0.996
+image: ./data/val/ship/ship__20180709_182125_0e20__-122.34189167502934_37.750095171861716.png  class: ship  prob: 0.871
+image: ./data/val/ship/ship__20170622_180819_1034__-122.34373100848143_37.75775757398701.png  class: ship  prob: 0.991
+image: ./data/val/ship/ship__20170619_180826_1032__-122.34196262251014_37.71900017685026.png  class: ship  prob: 0.998
+image: ./data/val/ship/ship__20171023_184815_0f21__-118.19505626473541_33.71201020510068.png  class: ship  prob: 0.953
+image: ./data/val/ship/ship__20171118_181531_1030__-122.34807281296018_37.76751583826101.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20180708_180454_0f28__-118.21978018976107_33.697564266770236.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170702_180943_103c__-122.33561199169439_37.75925332587687.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20171022_175534_100e__-118.16499076011308_33.727151109873056.png  class: ship  prob: 0.997
+image: ./data/val/ship/ship__20170618_180802_0f34__-122.33162556867539_37.71777932578817.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170730_191231_0f21__-122.33668753373186_37.757042157208836.png  class: ship  prob: 0.967
+image: ./data/val/ship/ship__20180209_184353_0f21__-122.34943264991506_37.7405921187298.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20171117_185444_104c__-122.33091744750324_37.74730240420565.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20180312_182016_1042__-122.33950343558382_37.73910380697799.png  class: ship  prob: 0.976
+image: ./data/val/ship/ship__20180708_180453_0f28__-118.21905414735417_33.72635865267826.png  class: ship  prob: 0.961
+image: ./data/val/ship/ship__20170909_181400_0f28__-122.32825244436512_37.73698522744506.png  class: ship  prob: 0.985
+image: ./data/val/ship/ship__20180705_182235_0f4d__-122.33246558217941_37.71900086396819.png  class: ship  prob: 0.995
+image: ./data/val/ship/ship__20180714_182155_1051__-122.34193815177993_37.71791845851837.png  class: ship  prob: 0.985
+image: ./data/val/ship/ship__20170615_181426_0e0d__-122.32926235929204_37.738261832150734.png  class: ship  prob: 0.548
+image: ./data/val/ship/ship__20170901_181520_0e14__-122.35176479998303_37.7815966425164.png  class: sea  prob: 0.993
+image: ./data/val/ship/ship__20170226_180944_0e26__-122.3235427331075_37.726980733711294.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20170709_181333_0e0e__-122.3400642707325_37.73729530506566.png  class: ship  prob: 0.994
+image: ./data/val/ship/ship__20170707_181135_100b__-122.3379531637956_37.73731050616929.png  class: ship  prob: 0.997
+image: ./data/val/ship/ship__20180707_180908_1043__-118.2195020409302_33.72597545173722.png  class: ship  prob: 0.998
+image: ./data/val/ship/ship__20171118_181532_1030__-122.34400966135502_37.75705610175418.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170609_180751_101b__-122.34317966086316_37.727659611082416.png  class: ship  prob: 0.956
+image: ./data/val/ship/ship__20170721_180937_0f31__-122.34977937165266_37.76711967700254.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20180210_181908_1006__-122.35609704801801_37.76131386622846.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20170708_180827_1021__-122.3400652308127_37.73718715261792.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20170721_180825_100b__-122.33284969739871_37.71792145705744.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20180712_180755_0f2d__-118.14319157389623_33.7363644522928.png  class: ship  prob: 0.987
+image: ./data/val/ship/ship__20180708_180454_0f28__-118.10924225682214_33.67758363810021.png  class: ship  prob: 0.529
+image: ./data/val/ship/ship__20170709_181333_0e0e__-122.34238015974394_37.71797500399526.png  class: ship  prob: 0.922
+image: ./data/val/ship/ship__20170609_180751_101b__-122.33795334886277_37.767865010196175.png  class: ship  prob: 0.985
+image: ./data/val/ship/ship__20170702_181120_103a__-122.33406672426707_37.749267076571314.png  class: ship  prob: 0.995
+image: ./data/val/ship/ship__20180205_181812_1030__-122.33525851672547_37.73023804026718.png  class: ship  prob: 0.978
+image: ./data/val/ship/ship__20170723_180811_1005__-122.34891582984933_37.73739860880833.png  class: ship  prob: 0.823
+image: ./data/val/ship/ship__20170721_180936_0f31__-122.33805721667187_37.76767631849289.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20171217_181637_1032__-122.33377734078427_37.728363954110335.png  class: ship  prob: 0.717
+image: ./data/val/ship/ship__20170522_180635_0f42__-122.33633731909474_37.75812175989443.png  class: ship  prob: 0.986
+image: ./data/val/ship/ship__20180131_175841_1010__-118.15357365643099_33.69665806917337.png  class: ship  prob: 0.966
+image: ./data/val/ship/ship__20160905_193458_0c37__-122.33852328874114_37.73828712719663.png  class: ship  prob: 0.996
+image: ./data/val/ship/ship__20170822_181223_0f31__-122.3458815140148_37.75720170286299.png  class: ship  prob: 0.998
+image: ./data/val/ship/ship__20170508_180611_1010__-122.3387403458132_37.76746383928563.png  class: ship  prob: 0.998
+image: ./data/val/ship/ship__20180712_180755_0f2d__-118.15166853152456_33.73579866677801.png  class: ship  prob: 0.964
+image: ./data/val/ship/ship__20180705_213443_0f02__-122.33172591264261_37.74828040920041.png  class: ship  prob: 0.745
+image: ./data/val/ship/ship__20180708_180908_0f47__-118.14474364290032_33.73618773660339.png  class: ship  prob: 0.954
+image: ./data/val/ship/ship__20170827_181129_1014__-122.33941096398635_37.76865733036569.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20171025_175647_0e26__-118.14347911930842_33.73362914920917.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20180705_213443_0f02__-122.33829130097207_37.768164340821855.png  class: ship  prob: 0.994
+image: ./data/val/ship/ship__20180706_180914_1051__-118.21606731107047_33.71202155994901.png  class: ship  prob: 0.985
+image: ./data/val/ship/ship__20180712_180429_101b__-118.21833048463843_33.702637990591164.png  class: ship  prob: 0.976
+image: ./data/val/ship/ship__20170730_191231_0f21__-122.34222573382337_37.75082710047983.png  class: ship  prob: 0.973
+image: ./data/val/ship/ship__20170719_180901_101d__-122.33919481036277_37.76998104459105.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20180712_211331_0f06__-118.14283073363218_33.736016066914175.png  class: ship  prob: 0.907
+image: ./data/val/ship/ship__20170707_174131_0c0b__-122.34742586055928_37.73647102751215.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170622_180819_1034__-122.33231134253296_37.74755366342522.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170328_181231_0e0f__-122.35296881171361_37.75680819640679.png  class: ship  prob: 0.995
+image: ./data/val/ship/ship__20170613_180813_1017__-122.32256994909217_37.717916915564196.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170724_181036_1011__-122.34065405863726_37.7475735901599.png  class: ship  prob: 0.944
+image: ./data/val/ship/ship__20170717_180817_1010__-122.3391585834468_37.770224195183694.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170615_180728_1003__-122.33751335586926_37.7599129740371.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20180708_180908_0f47__-118.1602079334969_33.73506937878848.png  class: ship  prob: 0.876
+image: ./data/val/ship/ship__20170501_181320_0e1f__-122.33654780764657_37.73073201434079.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20161116_180803_0e14__-122.33870218094695_37.73731471072428.png  class: ship  prob: 0.997
+image: ./data/val/ship/ship__20171213_181610_100c__-122.34241525126555_37.72170665596761.png  class: sea  prob: 0.686
+image: ./data/val/ship/ship__20180205_181812_1030__-122.32286914728564_37.718702780425694.png  class: ship  prob: 0.995
+image: ./data/val/ship/ship__20161102_180658_0e26__-122.3382521187369_37.73815040788379.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20180705_182235_0f4d__-122.32053495342223_37.70965814653878.png  class: ship  prob: 0.995
+image: ./data/val/ship/ship__20171212_181755_0e26__-122.33266963436137_37.74936733203823.png  class: ship  prob: 0.966
+image: ./data/val/ship/ship__20170702_180943_103c__-122.3332290637038_37.721168346437786.png  class: ship  prob: 0.994
+image: ./data/val/ship/ship__20171217_181637_1032__-122.35089797724429_37.74825235823534.png  class: ship  prob: 0.984
+image: ./data/val/ship/ship__20180705_182236_0f4d__-122.34239097094304_37.75139584987269.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20170618_180802_0f34__-122.3236466041282_37.71930211262915.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170604_180819_0f52__-122.339840050381_37.77020097559012.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20161011_185736_0c72__-122.35168603891846_37.78281297621249.png  class: ship  prob: 0.979
+image: ./data/val/ship/ship__20170909_181400_0f28__-122.34108913318198_37.71769740002228.png  class: ship  prob: 0.974
+image: ./data/val/ship/ship__20170717_180818_1010__-122.32357828249617_37.7193287601576.png  class: ship  prob: 0.981
+image: ./data/val/ship/ship__20170719_180901_101d__-122.3300199396251_37.748649275464146.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20180705_182236_0f4d__-122.33953638448827_37.769874802316046.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170712_180940_0f15__-122.33822486692323_37.76797469256424.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20170730_181043_103d__-122.33195163144038_37.749687737152065.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20161102_180658_0e26__-122.3412528345913_37.749172263316865.png  class: ship  prob: 0.998
+image: ./data/val/ship/ship__20171022_175534_100e__-118.2215443724113_33.73071704665499.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20180131_175841_1010__-118.2112386851259_33.73011512692281.png  class: sea  prob: 0.632
+image: ./data/val/ship/ship__20170522_180635_0f42__-122.3492190437419_37.74943283414725.png  class: ship  prob: 0.995
+image: ./data/val/ship/ship__20180205_184449_104a__-122.32314587629772_37.718217658219075.png  class: ship  prob: 0.912
+image: ./data/val/ship/ship__20171212_181755_0e26__-122.35002629223312_37.770041286507066.png  class: ship  prob: 0.998
+image: ./data/val/ship/ship__20180712_180428_101b__-118.14675833341012_33.729405079952606.png  class: ship  prob: 0.956
+image: ./data/val/ship/ship__20161102_202001_0c75__-122.33546468872845_37.756683756597916.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20180714_180427_1029__-118.22589617269283_33.72250313487135.png  class: ship  prob: 0.998
+image: ./data/val/ship/ship__20171207_181551_103c__-122.33142699267296_37.74744049268292.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20170615_181425_0e0d__-122.34225882891783_37.75093544276724.png  class: ship  prob: 0.972
+image: ./data/val/ship/ship__20170619_180825_1032__-122.33156123977024_37.7400865334179.png  class: ship  prob: 0.992
+image: ./data/val/ship/ship__20180711_182157_1048__-122.3486040190204_37.76908705675157.png  class: ship  prob: 0.998
+image: ./data/val/ship/ship__20170618_180801_0f34__-122.33591595773636_37.72905200850194.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170501_180617_1005__-122.40480506252185_37.816081172987026.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20170211_181116_0e16__-122.34839683992097_37.73834212222343.png  class: ship  prob: 0.997
+image: ./data/val/ship/ship__20180709_182127_0e20__-122.3242066077652_37.728850265219606.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20180706_180314_1024__-118.16449759261873_33.728995555872416.png  class: ship  prob: 0.995
+image: ./data/val/ship/ship__20170613_180813_1017__-122.32435112918907_37.72793175152951.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170719_180901_101d__-122.34397949191448_37.729610908864736.png  class: ship  prob: 0.923
+image: ./data/val/ship/ship__20170617_180854_1031__-122.35898567268862_37.793614536412555.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20160710_182140_0c78__-122.33831761096032_37.75756506843916.png  class: ship  prob: 0.992
+image: ./data/val/ship/ship__20180706_180914_1051__-118.22731560164715_33.72213731307771.png  class: ship  prob: 0.983
+image: ./data/val/ship/ship__20171212_181755_0e26__-122.34291347769646_37.75007383360081.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170703_180945_1009__-122.343937058349_37.71898414143061.png  class: ship  prob: 0.942
+image: ./data/val/ship/ship__20170419_180519_1009__-122.35212395588458_37.78338320950031.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170707_181135_100b__-122.34184248960575_37.747958784238286.png  class: ship  prob: 0.998
+image: ./data/val/ship/ship__20170505_181258_0e2f__-122.33614459969029_37.730134875729625.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20170818_180847_1035__-122.34799539294085_37.73752871841786.png  class: ship  prob: 0.953
+image: ./data/val/ship/ship__20170822_181223_0f31__-122.34774337323503_37.76624316667271.png  class: ship  prob: 0.986
+image: ./data/val/ship/ship__20160820_233143_0c53__-122.34848736520453_37.77073581030887.png  class: ship  prob: 0.609
+image: ./data/val/ship/ship__20180206_181845_0f34__-122.34587818956939_37.76144686447373.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20180707_182444_0f17__-122.32060425459107_37.709523348129174.png  class: ship  prob: 0.740
+image: ./data/val/ship/ship__20170609_180757_103a__-122.33442994861488_37.72771869282019.png  class: ship  prob: 0.956
+image: ./data/val/ship/ship__20170822_181223_0f31__-122.33888043741794_37.76703199623079.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20170903_181304_1041__-122.33802894106654_37.76702721606797.png  class: sea  prob: 0.926
+image: ./data/val/ship/ship__20180312_182016_1042__-122.34271012170575_37.74996454207846.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20180705_182236_0f4d__-122.35823748780594_37.79344822790265.png  class: ship  prob: 0.964
+image: ./data/val/ship/ship__20170619_181346_0e30__-122.34814310125861_37.740098284028186.png  class: ship  prob: 0.997
+image: ./data/val/ship/ship__20171217_181637_1032__-122.33811665447881_37.73806852894704.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20180708_180908_0f47__-118.21974820783494_33.69759163827636.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20180713_180403_1035__-118.13146308327627_33.68904335536601.png  class: sea  prob: 0.755
+image: ./data/val/ship/ship__20180203_181746_1035__-122.3238523014483_37.72663099646809.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20180708_180908_0f47__-118.22841937906449_33.72234278261551.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170621_181251_0e26__-122.33904279519368_37.767925204446534.png  class: ship  prob: 0.992
+image: ./data/val/ship/ship__20180206_181845_0f34__-122.34885999520644_37.73988593083626.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170719_180901_101d__-122.34551737673225_37.75987657850744.png  class: ship  prob: 0.914
+image: ./data/val/ship/ship__20171023_175305_1039__-118.22703351777623_33.720516781116096.png  class: ship  prob: 0.998
+image: ./data/val/ship/ship__20161218_180845_0e26__-122.35077598042146_37.750522997175615.png  class: ship  prob: 0.996
+image: ./data/val/ship/ship__20170830_181004_0f4e__-122.34726997279913_37.738714439896754.png  class: ship  prob: 0.953
+image: ./data/val/ship/ship__20170616_180825_100e__-122.34205451391247_37.75093430235835.png  class: ship  prob: 0.995
+image: ./data/val/ship/ship__20180713_180403_1035__-118.16429785193365_33.72859160251572.png  class: ship  prob: 0.998
+image: ./data/val/ship/ship__20171119_181613_0f52__-122.34016581020008_37.71817894771884.png  class: ship  prob: 0.958
+image: ./data/val/ship/ship__20170414_180530_0f28__-122.3382979580321_37.7368257320653.png  class: ship  prob: 0.991
+image: ./data/val/ship/ship__20170609_180756_103a__-122.34908354683306_37.74935096766827.png  class: ship  prob: 0.978
+image: ./data/val/ship/ship__20180712_211331_0f06__-118.202077984797_33.73033992834809.png  class: ship  prob: 0.858
+image: ./data/val/ship/ship__20180712_180755_0f2d__-118.20505286218336_33.73004037440087.png  class: ship  prob: 0.955
+image: ./data/val/ship/ship__20170619_181346_0e30__-122.33242741949667_37.71946031983231.png  class: ship  prob: 0.946
+image: ./data/val/ship/ship__20171212_181756_0e26__-122.34197035081759_37.72197456876908.png  class: ship  prob: 0.973
+image: ./data/val/ship/ship__20170508_180612_1010__-122.34320797160096_37.728308716869805.png  class: ship  prob: 0.988
+image: ./data/val/ship/ship__20170616_180825_100e__-122.33953301753296_37.770253333729265.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20161202_180735_0e30__-122.3391459838365_37.73718200246272.png  class: ship  prob: 0.959
+image: ./data/val/ship/ship__20170822_181223_0f31__-122.33453769316537_37.75751674600494.png  class: ship  prob: 0.998
+image: ./data/val/ship/ship__20180209_184353_0f21__-122.32506134542359_37.728449570059034.png  class: ship  prob: 0.995
+image: ./data/val/ship/ship__20171119_181613_0f52__-122.33806559292786_37.70937931753214.png  class: ship  prob: 0.863
+image: ./data/val/ship/ship__20171129_181545_1022__-122.32961142336484_37.7108728057609.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20170917_190615_0f3c__-122.33447197539547_37.72682662682025.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20180210_181908_1006__-122.35282451856958_37.78509053291386.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20170419_180520_1009__-122.33850981521253_37.7398012605276.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20180705_182235_0f4d__-122.33864576415738_37.73982906283797.png  class: ship  prob: 0.996
+image: ./data/val/ship/ship__20170921_181406_1031__-122.35187077749838_37.78116459717127.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170923_181241_0f42__-122.33247965400024_37.747770931971786.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20170717_180818_1010__-122.35628444006775_37.7593410157335.png  class: ship  prob: 0.991
+image: ./data/val/ship/ship__20180710_180333_1002__-118.22801895462972_33.72150804228225.png  class: ship  prob: 0.927
+image: ./data/val/ship/ship__20171129_181544_1022__-122.342773203759_37.7505327212711.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170617_181433_0e0f__-122.32525014183037_37.73015413754748.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170909_181730_0e0f__-122.33912491695538_37.73572175361677.png  class: ship  prob: 0.985
+image: ./data/val/ship/ship__20170618_180801_0f34__-122.34992481843103_37.76995960879467.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20171213_181610_100c__-122.33323827337007_37.72014089670815.png  class: ship  prob: 0.668
+image: ./data/val/ship/ship__20170919_181412_0f1b__-122.33471184477263_37.7570850995243.png  class: ship  prob: 0.997
+image: ./data/val/ship/ship__20170822_181223_0f31__-122.33262727017568_37.74650091608947.png  class: ship  prob: 0.990
+image: ./data/val/ship/ship__20170501_180610_100e__-122.3358820245197_37.759525241391806.png  class: ship  prob: 0.997
+image: ./data/val/ship/ship__20170622_180819_1034__-122.32199698355923_37.71729171288827.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170129_181027_0e1f__-122.35269566281684_37.7568878146103.png  class: ship  prob: 0.720
+image: ./data/val/ship/ship__20170910_181215_1010__-122.35000422761132_37.78034313695685.png  class: ship  prob: 0.967
+image: ./data/val/ship/ship__20180709_182127_0e20__-122.34115696827755_37.7177248186803.png  class: ship  prob: 0.998
+image: ./data/val/ship/ship__20170619_181346_0e30__-122.33663561156446_37.7590427773507.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20170703_180945_1009__-122.32507595039102_37.71933734373484.png  class: ship  prob: 0.601
+image: ./data/val/ship/ship__20170522_180635_0f42__-122.32893214438306_37.73712429623044.png  class: ship  prob: 0.847
+image: ./data/val/ship/ship__20170830_181003_0f4e__-122.33468859786528_37.75968074611797.png  class: ship  prob: 0.994
+image: ./data/val/ship/ship__20171212_181755_0e26__-122.33732803969346_37.73868600531012.png  class: ship  prob: 0.996
+image: ./data/val/ship/ship__20170709_181333_0e0e__-122.36013529353468_37.77093483120248.png  class: ship  prob: 0.995
+image: ./data/val/ship/ship__20170106_180851_0e30__-122.34968094303304_37.77058016750495.png  class: ship  prob: 0.996
+image: ./data/val/ship/ship__20180705_213444_0f02__-122.33402967925961_37.72679708946252.png  class: ship  prob: 0.973
+image: ./data/val/ship/ship__20180705_182236_0f4d__-122.34671030989746_37.75977504002937.png  class: ship  prob: 0.999
+image: ./data/val/ship/ship__20170515_180654_1007__-122.34392970462561_37.73139523823038.png  class: ship  prob: 0.974
+image: ./data/val/ship/ship__20170901_181520_0e14__-122.35121081280293_37.74752401629368.png  class: ship  prob: 0.806
+image: ./data/val/ship/ship__20161218_180845_0e26__-122.34128760531253_37.749091339441996.png  class: sea  prob: 0.883
+image: ./data/val/ship/ship__20170910_181216_1010__-122.35188051380415_37.74882559310978.png  class: ship  prob: 0.993
+image: ./data/val/ship/ship__20170724_181036_1011__-122.33857293542425_37.76713842794705.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170515_180653_1007__-122.35727137539101_37.75942752052446.png  class: ship  prob: 0.985
+image: ./data/val/ship/ship__20170609_180757_103a__-122.32675050227115_37.73740928946283.png  class: ship  prob: 0.993
+image: ./data/val/ship/ship__20170622_180819_1034__-122.32978378407111_37.73707506277014.png  class: ship  prob: 0.992
+image: ./data/val/ship/ship__20180711_182156_1048__-122.33297269876117_37.726980389905535.png  class: ship  prob: 0.998
+image: ./data/val/ship/ship__20170622_180819_1034__-122.33613878363441_37.75747169713343.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170909_181400_0f28__-122.33915896246666_37.73572194449093.png  class: ship  prob: 0.976
+image: ./data/val/ship/ship__20170504_180549_1025__-122.33004591866283_37.73821220943172.png  class: ship  prob: 1.000
+image: ./data/val/ship/ship__20170615_180728_1003__-122.32323691959114_37.71943495909626.png  class: ship  prob: 1.000
+
+Test Results:
+Total samples: 800
+True Positives: 193
+True Negatives: 583
+False Positives: 17
+False Negatives: 7
+Accuracy: 0.9700
+Precision: 0.9190
+Recall: 0.9650
+F1 Score: 0.9415
+Average time per image: 0.74ms
+Total inference time: 0.59s
+
+
+=== 第4步：检查分类结果 ===
+
+执行命令: python check_classification.py --weights_path weights/vgg13_best.pth --img_paths ./data/val --batch_size 64 --conf_thr 0.9 --cls_index class_index.json
+
+开始检查分类结果...
+图片: ./data/val/sea/sea__20180708_180908_0f47__-118.33059710066665_33.677833331038805.png
+预测类别: sea
+置信度: 0.9679
+
+图片: ./data/val/sea/sea__20180710_180333_1002__-118.02944306890663_33.68617467845348.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20170419_181315_0e0d__-122.4782836426212_37.70070035361353.png
+预测类别: sea
+置信度: 0.9991
+
+图片: ./data/val/sea/sea__20171210_181628_100a__-122.39671965906082_37.678571300624995.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170830_190816_104d__-122.25693269128443_37.70870662396175.png
+预测类别: sea
+置信度: 0.9640
+
+图片: ./data/val/sea/sea__20170328_181231_0e0f__-122.48083752760154_37.76874336105107.png
+预测类别: sea
+置信度: 0.9991
+
+图片: ./data/val/sea/sea__20170909_181400_0f28__-122.32829455214761_37.73609316580097.png
+预测类别: sea
+置信度: 0.9757
+
+图片: ./data/val/sea/sea__20170609_180756_103a__-122.33747868524297_37.73706448518304.png
+预测类别: sea
+置信度: 0.9880
+
+图片: ./data/val/sea/sea__20161006_004004_0c38__-122.35115763991095_37.7692093023039.png
+预测类别: sea
+置信度: 0.9518
+
+图片: ./data/val/sea/sea__20170707_174131_0c0b__-122.34631412652476_37.72737959937634.png
+预测类别: sea
+置信度: 0.9294
+
+图片: ./data/val/sea/sea__20170508_180612_1010__-122.39584980194846_37.7186937698805.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20161006_002711_1_0c1b__-122.31250467028002_37.76466384872186.png
+预测类别: sea
+置信度: 0.9665
+
+图片: ./data/val/sea/sea__20170724_181035_1011__-122.28400615724813_37.82717080051246.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170901_181520_0e14__-122.35963864537221_37.79296914588649.png
+预测类别: sea
+置信度: 0.9981
+
+图片: ./data/val/sea/sea__20170430_181117_0e26__-122.0379156769904_37.70385111295526.png
+预测类别: sea
+置信度: 0.9995
+
+图片: ./data/val/sea/sea__20170721_180825_100b__-122.34414301813885_37.75738131641715.png
+预测类别: sea
+置信度: 0.9996
+
+图片: ./data/val/sea/sea__20180209_181715_103e__-122.062299790021_37.66735533941145.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20170419_180520_1009__-122.19340145417618_37.67938395786231.png
+预测类别: sea
+置信度: 0.9968
+
+图片: ./data/val/sea/sea__20170505_181258_0e2f__-122.21169034793705_37.706465970127944.png
+预测类别: sea
+置信度: 0.9766
+
+图片: ./data/val/sea/sea__20180713_180403_1035__-118.15139576275439_33.734773089860845.png
+预测类别: sea
+置信度: 0.9946
+
+图片: ./data/val/sea/sea__20170501_180619_1005__-122.23634748660587_37.674964982942555.png
+预测类别: sea
+置信度: 0.9381
+
+图片: ./data/val/sea/sea__20180708_182358_1032__-122.33910465917585_37.76862857357101.png
+预测类别: sea
+置信度: 0.9988
+
+图片: ./data/val/sea/sea__20160905_193458_0c37__-122.46381277841687_37.64028234913973.png
+预测类别: sea
+置信度: 0.9995
+
+图片: ./data/val/sea/sea__20170719_180903_101d__-122.42316354000585_37.6949274801214.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20170617_180854_1031__-122.47157916689906_37.84433113894968.png
+预测类别: ship
+置信度: 0.9632
+
+图片: ./data/val/sea/sea__20170609_180757_103a__-122.34802042832878_37.73855635648978.png
+预测类别: sea
+置信度: 0.9991
+
+图片: ./data/val/sea/sea__20161022_180611_0e19__-122.16475986533197_37.80626862462419.png
+预测类别: sea
+置信度: 0.9874
+
+图片: ./data/val/sea/sea__20170723_181447_0e0e__-122.54581507094935_37.84891303958385.png
+预测类别: sea
+置信度: 0.9993
+
+图片: ./data/val/sea/sea__20170719_180900_101d__-122.46399848545515_37.87882573768487.png
+预测类别: sea
+置信度: 0.9916
+
+图片: ./data/val/sea/sea__20170821_175602_0e0e__-118.32531273789856_33.76568419793638.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20180210_181908_1006__-122.42684602030572_37.80875469570261.png
+预测类别: sea
+置信度: 0.9991
+
+图片: ./data/val/sea/sea__20170917_190615_0f3c__-122.42409613821076_37.7634774262539.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20180206_181844_0f34__-122.52777790390613_37.827291835076295.png
+预测类别: ship
+置信度: 0.6828
+
+图片: ./data/val/sea/sea__20170730_181514_0e20__-122.28516743555205_37.67827239169895.png
+预测类别: sea
+置信度: 0.9087
+
+图片: ./data/val/sea/sea__20170719_180901_101d__-122.35264367897956_37.75112813756855.png
+预测类别: sea
+置信度: 0.9069
+
+图片: ./data/val/sea/sea__20180708_180454_0f28__-118.22731521660256_33.722110261322406.png
+预测类别: sea
+置信度: 0.9970
+
+图片: ./data/val/sea/sea__20170328_181230_0e0f__-122.47866587608571_37.82089270670238.png
+预测类别: sea
+置信度: 0.9659
+
+图片: ./data/val/sea/sea__20171022_175534_100e__-118.21704970914001_33.70822408902945.png
+预测类别: sea
+置信度: 0.9157
+
+图片: ./data/val/sea/sea__20170502_180546_1044__-122.25682086658408_37.73693505174775.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170605_180824_1032__-122.4170477903312_37.82825594616288.png
+预测类别: sea
+置信度: 0.9649
+
+图片: ./data/val/sea/sea__20170427_180608_1041__-122.27061045970297_37.740374067144735.png
+预测类别: sea
+置信度: 0.9994
+
+图片: ./data/val/sea/sea__20161103_195522_0c27__-122.37504308803496_37.80067692996824.png
+预测类别: ship
+置信度: 0.5208
+
+图片: ./data/val/sea/sea__20170910_181215_1010__-122.25494454015018_37.80519713108007.png
+预测类别: sea
+置信度: 0.9884
+
+图片: ./data/val/sea/sea__20171129_181545_1022__-122.33437875980434_37.74864693313823.png
+预测类别: sea
+置信度: 0.8440
+
+图片: ./data/val/sea/sea__20170508_180612_1010__-122.42206174502493_37.72288112534968.png
+预测类别: sea
+置信度: 0.9958
+
+图片: ./data/val/sea/sea__20170501_181319_0e1f__-122.53538876644996_37.880210685313294.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170715_180931_101a__-122.19404806274876_37.73279113984119.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170905_181215_0f12__-122.25944612619553_37.70580217475798.png
+预测类别: sea
+置信度: 0.9542
+
+图片: ./data/val/sea/sea__20170101_180916_0e30__-122.31583398474844_37.79886079858637.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170615_181426_0e0d__-122.4384750460101_37.75373148445022.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20171203_185451_0f2b__-122.41015637175697_37.687373121594675.png
+预测类别: sea
+置信度: 0.9797
+
+图片: ./data/val/sea/sea__20180705_182236_0f4d__-122.33261834104384_37.75128683801146.png
+预测类别: sea
+置信度: 0.7993
+
+图片: ./data/val/sea/sea__20170703_180944_1009__-122.32882122041141_37.83227469668378.png
+预测类别: sea
+置信度: 0.9915
+
+图片: ./data/val/sea/sea__20170419_181314_0e0d__-122.45993190878904_37.77221861331352.png
+预测类别: sea
+置信度: 0.9974
+
+图片: ./data/val/sea/sea__20170707_181135_100b__-122.33788016568006_37.76843242458194.png
+预测类别: sea
+置信度: 0.7981
+
+图片: ./data/val/sea/sea__20170718_180714_102f__-122.21365198865877_37.64961493369818.png
+预测类别: sea
+置信度: 0.9877
+
+图片: ./data/val/sea/sea__20161103_195523_0c27__-122.44450877236157_37.68456556040708.png
+预测类别: sea
+置信度: 0.9974
+
+图片: ./data/val/sea/sea__20161102_202000_0c75__-122.31632536094651_37.82687613752323.png
+预测类别: sea
+置信度: 0.6000
+
+图片: ./data/val/sea/sea__20170430_181116_0e26__-122.24455728212082_37.77106172978549.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170730_181513_0e20__-122.34279745119264_37.75164147174362.png
+预测类别: sea
+置信度: 0.8259
+
+图片: ./data/val/sea/sea__20161103_195402_1_0c24__-122.1835914225617_37.86942799517098.png
+预测类别: sea
+置信度: 0.9950
+
+图片: ./data/val/sea/sea__20170403_180411_100f__-122.0817469318917_37.7260752833062.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170830_181004_0f4e__-122.27386968647853_37.748316713710416.png
+预测类别: sea
+置信度: 0.9975
+
+图片: ./data/val/sea/sea__20170613_180813_1017__-122.32691388848154_37.70807236158589.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170222_231255_0c27__-122.3815265638458_37.70961530760523.png
+预测类别: sea
+置信度: 0.9848
+
+图片: ./data/val/sea/sea__20171127_181539_101e__-122.19874999936656_37.71665369534413.png
+预测类别: sea
+置信度: 0.9989
+
+图片: ./data/val/sea/sea__20170909_181359_0f28__-122.30201592380763_37.77533677476695.png
+预测类别: sea
+置信度: 0.9771
+
+图片: ./data/val/sea/sea__20180709_182125_0e20__-122.34817335529014_37.740531082583885.png
+预测类别: sea
+置信度: 0.9392
+
+图片: ./data/val/sea/sea__20170717_180818_1010__-122.35396562080241_37.751838415769015.png
+预测类别: sea
+置信度: 0.8914
+
+图片: ./data/val/sea/sea__20170909_181401_0f28__-122.236975876142_37.62353954077655.png
+预测类别: sea
+置信度: 0.9963
+
+图片: ./data/val/sea/sea__20170716_180817_103a__-122.36791436875023_37.661277201750025.png
+预测类别: sea
+置信度: 0.8947
+
+图片: ./data/val/sea/sea__20161116_180804_0e14__-122.48298739296371_37.684929808845375.png
+预测类别: sea
+置信度: 0.9995
+
+图片: ./data/val/sea/sea__20180209_181715_103e__-122.21976402071296_37.73169331592152.png
+预测类别: sea
+置信度: 0.9977
+
+图片: ./data/val/sea/sea__20180708_180453_0f28__-118.06540883468756_33.73662725676796.png
+预测类别: sea
+置信度: 0.9962
+
+图片: ./data/val/sea/sea__20170708_180826_1021__-122.33579750385003_37.75755089227916.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20161218_180845_0e26__-122.47545417494631_37.793055002914755.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170619_180826_1032__-122.40782638332067_37.672300272887064.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20171217_181636_1032__-122.12556990129535_37.76569627819091.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20170605_180825_1032__-122.50167172162236_37.72992332772677.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20170709_180806_1024__-122.30120886253196_37.792312602393324.png
+预测类别: ship
+置信度: 0.7466
+
+图片: ./data/val/sea/sea__20161202_180734_0e30__-122.12619882266284_37.761455821205416.png
+预测类别: sea
+置信度: 0.9983
+
+图片: ./data/val/sea/sea__20170703_180945_1009__-122.33692927491354_37.72995001569902.png
+预测类别: sea
+置信度: 0.9592
+
+图片: ./data/val/sea/sea__20171207_181640_101b__-122.36155365243461_37.79216836197162.png
+预测类别: sea
+置信度: 0.5979
+
+图片: ./data/val/sea/sea__20170619_181346_0e30__-122.34514251553766_37.759901535462234.png
+预测类别: sea
+置信度: 0.9986
+
+图片: ./data/val/sea/sea__20170508_180611_1010__-122.23568048212545_37.77965700768495.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170504_180550_1025__-122.2636176093811_37.683196208831994.png
+预测类别: sea
+置信度: 0.9962
+
+图片: ./data/val/sea/sea__20170427_180608_1041__-122.25699379619586_37.73666574857436.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20160622_170157_0c64__-122.34994908648167_37.78274932761714.png
+预测类别: sea
+置信度: 0.9644
+
+图片: ./data/val/sea/sea__20180711_182156_1048__-122.33330511453052_37.72787457355804.png
+预测类别: sea
+置信度: 0.9989
+
+图片: ./data/val/sea/sea__20170919_181413_0f1b__-122.36131996829101_37.73219376997982.png
+预测类别: sea
+置信度: 0.9661
+
+图片: ./data/val/sea/sea__20170910_181216_1010__-122.42511841363877_37.77221615214605.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170501_181320_0e1f__-122.47884285683557_37.74718404926336.png
+预测类别: sea
+置信度: 0.9995
+
+图片: ./data/val/sea/sea__20170721_180936_0f31__-122.33856185728798_37.76838217426367.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170702_180943_103c__-122.37831171763855_37.7033252018865.png
+预测类别: sea
+置信度: 0.9629
+
+图片: ./data/val/sea/sea__20170501_180611_100e__-122.43868358199471_37.72160945742322.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170502_180546_1044__-122.34818544693388_37.739152137243494.png
+预测类别: sea
+置信度: 0.8818
+
+图片: ./data/val/sea/sea__20170721_180936_0f31__-122.39195373920572_37.79549277239497.png
+预测类别: sea
+置信度: 0.9868
+
+图片: ./data/val/sea/sea__20170712_180940_0f15__-122.33910730620694_37.76833115597761.png
+预测类别: sea
+置信度: 0.9955
+
+图片: ./data/val/sea/sea__20180709_182127_0e20__-122.33269139029335_37.727979258953425.png
+预测类别: sea
+置信度: 0.8024
+
+图片: ./data/val/sea/sea__20170717_180819_1010__-122.51393695772063_37.68162736325149.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170501_181321_0e1f__-122.56935492461373_37.69428111888604.png
+预测类别: sea
+置信度: 0.9917
+
+图片: ./data/val/sea/sea__20160704_204349_0d05__-122.29233586278269_37.76519340123061.png
+预测类别: sea
+置信度: 0.9960
+
+图片: ./data/val/sea/sea__20171207_181551_103c__-122.33439856876691_37.727421081235406.png
+预测类别: sea
+置信度: 0.9332
+
+图片: ./data/val/sea/sea__20170501_181321_0e1f__-122.61844159751526_37.690880889718834.png
+预测类别: sea
+置信度: 0.8980
+
+图片: ./data/val/sea/sea__20170716_180816_103a__-122.21168771515327_37.72598836793689.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20180708_180909_0f47__-118.22976104034689_33.72787581870198.png
+预测类别: sea
+置信度: 0.8034
+
+图片: ./data/val/sea/sea__20170730_181044_103d__-122.31136595432358_37.66696344150505.png
+预测类别: sea
+置信度: 0.9493
+
+图片: ./data/val/sea/sea__20180203_181746_1035__-122.09920411055788_37.720991426079586.png
+预测类别: sea
+置信度: 0.9973
+
+图片: ./data/val/sea/sea__20170129_181027_0e1f__-122.32641053028124_37.737353268295664.png
+预测类别: sea
+置信度: 0.7069
+
+图片: ./data/val/sea/sea__20170609_180757_103a__-122.44405741916891_37.69489263868699.png
+预测类别: sea
+置信度: 0.9996
+
+图片: ./data/val/sea/sea__20180714_180352_100e__-118.01511678073008_33.64308384436882.png
+预测类别: sea
+置信度: 0.9941
+
+图片: ./data/val/sea/sea__20170226_180945_0e26__-122.08245218963201_37.6495326492693.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170615_180728_1003__-122.33751833311247_37.77080984983136.png
+预测类别: sea
+置信度: 0.9523
+
+图片: ./data/val/sea/sea__20170701_181015_1042__-122.43713294439645_37.81845730321225.png
+预测类别: sea
+置信度: 0.9996
+
+图片: ./data/val/sea/sea__20171218_181723_1007__-122.5414841041387_37.89299699452966.png
+预测类别: sea
+置信度: 0.9985
+
+图片: ./data/val/sea/sea__20170505_181257_0e2f__-122.13440135290679_37.74732085488439.png
+预测类别: sea
+置信度: 0.9988
+
+图片: ./data/val/sea/sea__20170501_180553_1018__-122.3294970274404_37.73866875880347.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170604_180819_0f52__-122.53734721238897_37.82340911639117.png
+预测类别: sea
+置信度: 0.9787
+
+图片: ./data/val/sea/sea__20161116_180802_0e14__-122.49999218351591_37.88828552016498.png
+预测类别: sea
+置信度: 0.9458
+
+图片: ./data/val/sea/sea__20170919_181710_0e20__-122.48178591240826_37.798788328489415.png
+预测类别: ship
+置信度: 0.6801
+
+图片: ./data/val/sea/sea__20180713_180401_1035__-118.2288746601656_33.804180849181186.png
+预测类别: sea
+置信度: 0.9995
+
+图片: ./data/val/sea/sea__20171127_181539_101e__-122.20804326122511_37.706982316936426.png
+预测类别: sea
+置信度: 0.9813
+
+图片: ./data/val/sea/sea__20170902_190520_0f53__-122.12717751285263_37.80277853398649.png
+预测类别: sea
+置信度: 0.9720
+
+图片: ./data/val/sea/sea__20170818_180846_1035__-122.10844538668623_37.79906913121184.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20161116_180804_0e14__-122.40539653041276_37.6954341030897.png
+预测类别: sea
+置信度: 0.9947
+
+图片: ./data/val/sea/sea__20170101_180916_0e30__-122.45429119849791_37.7981233925924.png
+预测类别: sea
+置信度: 0.9916
+
+图片: ./data/val/sea/sea__20161218_180845_0e26__-122.33789238667205_37.74031154325538.png
+预测类别: sea
+置信度: 0.9501
+
+图片: ./data/val/sea/sea__20170226_180943_0e26__-122.06326114230342_37.79095838810906.png
+预测类别: sea
+置信度: 0.9762
+
+图片: ./data/val/sea/sea__20161227_180931_0e30__-122.63773903987338_37.84366161077844.png
+预测类别: sea
+置信度: 0.9640
+
+图片: ./data/val/sea/sea__20170709_181334_0e0e__-122.27422173410207_37.63891683098823.png
+预测类别: sea
+置信度: 0.9665
+
+图片: ./data/val/sea/sea__20170501_181319_0e1f__-122.43977955796186_37.82906928237985.png
+预测类别: sea
+置信度: 0.9760
+
+图片: ./data/val/sea/sea__20160820_233143_0c53__-122.34800754551517_37.7594307122621.png
+预测类别: sea
+置信度: 0.9229
+
+图片: ./data/val/sea/sea__20170707_181426_0e14__-122.08540394527087_37.70828492889226.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20180705_182235_0f4d__-122.3513489898735_37.68092630207896.png
+预测类别: sea
+置信度: 0.9659
+
+图片: ./data/val/sea/sea__20161018_193329_0c45__-122.35795190402878_37.76738080220403.png
+预测类别: sea
+置信度: 0.6773
+
+图片: ./data/val/sea/sea__20170902_190520_0f53__-122.06296177139576_37.787684317324.png
+预测类别: sea
+置信度: 0.9995
+
+图片: ./data/val/sea/sea__20170613_180813_1017__-122.34191753553408_37.747175060350244.png
+预测类别: sea
+置信度: 0.9481
+
+图片: ./data/val/sea/sea__20170226_180943_0e26__-122.0620112445235_37.77123716119738.png
+预测类别: sea
+置信度: 0.9746
+
+图片: ./data/val/sea/sea__20170731_181110_100c__-122.24657378000313_37.810659846631175.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170414_180529_0f28__-122.40460424474676_37.78165918033301.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170226_180944_0e26__-122.09392913005907_37.69293840037659.png
+预测类别: sea
+置信度: 0.9929
+
+图片: ./data/val/sea/sea__20170508_180612_1010__-122.35208859532074_37.748394106439314.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20171023_190147_0f2e__-122.44931218477075_37.74813135712905.png
+预测类别: sea
+置信度: 0.9992
+
+图片: ./data/val/sea/sea__20161212_180856_0e30__-122.33760196306517_37.75761512696048.png
+预测类别: sea
+置信度: 0.8966
+
+图片: ./data/val/sea/sea__20170522_180636_0f42__-122.2037403662048_37.68607889405876.png
+预测类别: sea
+置信度: 0.9875
+
+图片: ./data/val/sea/sea__20180711_180503_1027__-118.20979291163744_33.691683155201275.png
+预测类别: sea
+置信度: 0.9976
+
+图片: ./data/val/sea/sea__20180210_181908_1006__-122.45785562565969_37.762664147694956.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170429_180518_1002__-122.32690947203491_37.738654011293825.png
+预测类别: sea
+置信度: 0.7690
+
+图片: ./data/val/sea/sea__20180708_180908_0f47__-118.15414095681703_33.736641365332424.png
+预测类别: sea
+置信度: 0.9880
+
+图片: ./data/val/sea/sea__20170222_231255_0c27__-122.3328438778973_37.7185703728908.png
+预测类别: sea
+置信度: 0.8832
+
+图片: ./data/val/sea/sea__20180712_180755_0f2d__-118.11277823822641_33.730960557721524.png
+预测类别: sea
+置信度: 0.9323
+
+图片: ./data/val/sea/sea__20170619_181346_0e30__-122.33171189240939_37.719537384501045.png
+预测类别: sea
+置信度: 0.7198
+
+图片: ./data/val/sea/sea__20180710_180333_1002__-118.16082893683522_33.749917148167086.png
+预测类别: sea
+置信度: 0.9963
+
+图片: ./data/val/sea/sea__20180714_180427_1029__-118.31064450245532_33.755451699965136.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170615_181510_0e3a__-122.3450920886114_37.77720642035072.png
+预测类别: sea
+置信度: 0.9839
+
+图片: ./data/val/sea/sea__20170818_180847_1035__-122.16548601911306_37.67188907056209.png
+预测类别: sea
+置信度: 0.9990
+
+图片: ./data/val/sea/sea__20170827_181130_1014__-122.27251874067336_37.681034206284515.png
+预测类别: sea
+置信度: 0.9663
+
+图片: ./data/val/sea/sea__20170619_180825_1032__-122.2512336067811_37.74403806984657.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20170508_180611_1010__-122.33163316163117_37.785080384821164.png
+预测类别: sea
+置信度: 0.9136
+
+图片: ./data/val/sea/sea__20170613_180812_102e__-122.49647642715699_37.67257685412268.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170707_181135_100b__-122.47869729911623_37.82127139519534.png
+预测类别: ship
+置信度: 0.6990
+
+图片: ./data/val/sea/sea__20180706_180314_1024__-118.16052261697749_33.73439002676011.png
+预测类别: sea
+置信度: 0.9966
+
+图片: ./data/val/sea/sea__20170829_175207_102c__-118.03263397253112_33.685065794164615.png
+预测类别: sea
+置信度: 0.9973
+
+图片: ./data/val/sea/sea__20160622_170157_0c64__-122.485753590087_37.835957669247584.png
+预测类别: sea
+置信度: 0.9860
+
+图片: ./data/val/sea/sea__20170709_180807_1024__-122.047779329264_37.66437283602222.png
+预测类别: sea
+置信度: 0.9994
+
+图片: ./data/val/sea/sea__20170504_180547_1025__-122.34091784277985_37.844429444635495.png
+预测类别: sea
+置信度: 0.9767
+
+图片: ./data/val/sea/sea__20170419_180519_1009__-122.37087078626975_37.79037981412036.png
+预测类别: sea
+置信度: 0.8917
+
+图片: ./data/val/sea/sea__20170620_180742_102f__-122.33010767689555_37.73891558576711.png
+预测类别: sea
+置信度: 0.9993
+
+图片: ./data/val/sea/sea__20160905_193458_0c37__-122.34588841807276_37.756417599310865.png
+预测类别: sea
+置信度: 0.9212
+
+图片: ./data/val/sea/sea__20171025_175648_0e26__-118.11583124705163_33.65403950297157.png
+预测类别: sea
+置信度: 0.8526
+
+图片: ./data/val/sea/sea__20170805_180925_1001__-122.1615560941348_37.68557019378132.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170910_181216_1010__-122.35214726919757_37.749476005732866.png
+预测类别: sea
+置信度: 0.9987
+
+图片: ./data/val/sea/sea__20170501_180617_1005__-122.47188796088886_37.84406213283574.png
+预测类别: sea
+置信度: 0.9433
+
+图片: ./data/val/sea/sea__20170712_181046_1035__-122.41646598872094_37.73320972564166.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170923_181240_0f42__-122.35084878472682_37.781158971093056.png
+预测类别: sea
+置信度: 0.9990
+
+图片: ./data/val/sea/sea__20171207_181550_103c__-122.1365533018414_37.8111755851631.png
+预测类别: sea
+置信度: 0.9969
+
+图片: ./data/val/sea/sea__20170616_180825_100e__-122.3477118253606_37.76207893307795.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170501_181320_0e1f__-122.33600963512579_37.729998918173784.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170328_181231_0e0f__-122.33371894647505_37.72728204448836.png
+预测类别: sea
+置信度: 0.7829
+
+图片: ./data/val/sea/sea__20170902_181214_1005__-122.42742145159532_37.813678634127726.png
+预测类别: sea
+置信度: 0.9360
+
+图片: ./data/val/sea/sea__20170719_180903_101d__-122.35378108314241_37.71430658731026.png
+预测类别: sea
+置信度: 0.9665
+
+图片: ./data/val/sea/sea__20170709_181333_0e0e__-122.36752494084675_37.72316898125568.png
+预测类别: sea
+置信度: 0.9978
+
+图片: ./data/val/sea/sea__20180711_182157_1048__-122.3476848507677_37.76902789354007.png
+预测类别: sea
+置信度: 0.5995
+
+图片: ./data/val/sea/sea__20170129_181027_0e1f__-122.3335299594139_37.71797938371536.png
+预测类别: sea
+置信度: 0.8649
+
+图片: ./data/val/sea/sea__20171129_181545_1022__-122.33830192070076_37.74020568524995.png
+预测类别: sea
+置信度: 0.7720
+
+图片: ./data/val/sea/sea__20170522_180634_0f42__-122.19790378077256_37.823425311097765.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170703_180946_1009__-122.33767981162372_37.70683543007344.png
+预测类别: sea
+置信度: 0.9637
+
+图片: ./data/val/sea/sea__20170419_180519_1009__-122.30054744803354_37.75764438634441.png
+预测类别: sea
+置信度: 0.9622
+
+图片: ./data/val/sea/sea__20161102_180659_0e26__-122.33989462905319_37.67967299745219.png
+预测类别: sea
+置信度: 0.9665
+
+图片: ./data/val/sea/sea__20170501_181320_0e1f__-122.51456066927888_37.76856263121167.png
+预测类别: sea
+置信度: 0.8694
+
+图片: ./data/val/sea/sea__20170712_181004_0f12__-122.08646491154475_37.68839229325371.png
+预测类别: sea
+置信度: 0.9996
+
+图片: ./data/val/sea/sea__20171212_181756_0e26__-122.40023790468767_37.6979497114809.png
+预测类别: sea
+置信度: 0.9780
+
+图片: ./data/val/sea/sea__20170613_180813_1017__-122.4992951802847_37.70871410875618.png
+预测类别: sea
+置信度: 0.9993
+
+图片: ./data/val/sea/sea__20170504_180549_1025__-122.15363830450032_37.73258903548146.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20161006_004003_0c38__-122.46471851960996_37.73668346826086.png
+预测类别: sea
+置信度: 0.9707
+
+图片: ./data/val/sea/sea__20170906_190631_1_0f4a__-122.25012918915772_37.735378468629115.png
+预测类别: sea
+置信度: 0.9991
+
+图片: ./data/val/sea/sea__20161022_180612_0e19__-122.12618892026703_37.730441929537086.png
+预测类别: sea
+置信度: 0.9936
+
+图片: ./data/val/sea/sea__20170910_181215_1010__-122.35014498945_37.77983016715753.png
+预测类别: ship
+置信度: 0.7517
+
+图片: ./data/val/sea/sea__20170721_180936_0f31__-122.58174348336024_37.85715788965597.png
+预测类别: sea
+置信度: 0.9986
+
+图片: ./data/val/sea/sea__20170505_181257_0e2f__-122.23794688868087_37.744710013041804.png
+预测类别: sea
+置信度: 0.9990
+
+图片: ./data/val/sea/sea__20170921_181406_1031__-122.33848135318848_37.765948183770156.png
+预测类别: sea
+置信度: 0.9939
+
+图片: ./data/val/sea/sea__20161006_003958_0c12__-122.41531011860283_37.70267624304593.png
+预测类别: sea
+置信度: 0.9970
+
+图片: ./data/val/sea/sea__20160905_193458_0c37__-122.33756251259427_37.739119954394575.png
+预测类别: sea
+置信度: 0.7484
+
+图片: ./data/val/sea/sea__20180312_182016_1042__-122.33929434685817_37.7396434240547.png
+预测类别: sea
+置信度: 0.9082
+
+图片: ./data/val/sea/sea__20170905_181214_0f12__-122.1970477359889_37.71353258991616.png
+预测类别: sea
+置信度: 0.9946
+
+图片: ./data/val/sea/sea__20171021_181323_1003__-122.07241952267307_37.734249164791585.png
+预测类别: sea
+置信度: 0.9288
+
+图片: ./data/val/sea/sea__20170717_180817_1010__-122.32109741306287_37.78969793016367.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20180712_211331_0f06__-118.16711762064074_33.72161164186578.png
+预测类别: sea
+置信度: 0.9815
+
+图片: ./data/val/sea/sea__20161102_202002_0c75__-122.17804250675646_37.75471754640761.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170501_180553_1018__-122.33594385273369_37.76022861282621.png
+预测类别: sea
+置信度: 0.9826
+
+图片: ./data/val/sea/sea__20161218_180844_0e26__-122.47984174489888_37.83790556670464.png
+预测类别: sea
+置信度: 0.9975
+
+图片: ./data/val/sea/sea__20180710_182341_1011__-122.08261432972722_37.73854704083466.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20171018_175517_1005__-118.23268769451015_33.74459399219875.png
+预测类别: ship
+置信度: 0.7936
+
+图片: ./data/val/sea/sea__20170619_180826_1032__-122.34278454796389_37.71843693129164.png
+预测类别: sea
+置信度: 0.8925
+
+图片: ./data/val/sea/sea__20170717_180817_1010__-122.48158762934943_37.86611505238685.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20161018_192144_1_0c24__-122.53107256162552_37.83457855720337.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20171119_181613_0f52__-122.32814224256553_37.737876900828944.png
+预测类别: sea
+置信度: 0.7585
+
+图片: ./data/val/sea/sea__20170706_181011_1006__-122.2724984951341_37.83264326368706.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20171023_190146_0f2e__-122.2100803812871_37.73949724802415.png
+预测类别: sea
+置信度: 0.9970
+
+图片: ./data/val/sea/sea__20170419_181315_0e0d__-122.42589907490463_37.693210285254885.png
+预测类别: sea
+置信度: 0.9968
+
+图片: ./data/val/sea/sea__20171118_181532_1030__-122.3349943941654_37.72931720814629.png
+预测类别: sea
+置信度: 0.9198
+
+图片: ./data/val/sea/sea__20170712_181003_0f12__-122.13161197832906_37.78493861464402.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20180707_182443_0f17__-122.33530911439104_37.75884602774158.png
+预测类别: sea
+置信度: 0.9263
+
+图片: ./data/val/sea/sea__20170822_181222_0f31__-122.27585854260244_37.816738019799764.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170902_181216_1005__-122.48806112679166_37.718968008636224.png
+预测类别: sea
+置信度: 0.9883
+
+图片: ./data/val/sea/sea__20170604_180820_0f52__-122.51524225537149_37.758074093141346.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170910_181216_1010__-122.47687591711161_37.77021301255064.png
+预测类别: sea
+置信度: 0.9995
+
+图片: ./data/val/sea/sea__20180711_180503_1027__-118.21812809977303_33.73873218896573.png
+预测类别: sea
+置信度: 0.9863
+
+图片: ./data/val/sea/sea__20170712_180940_0f15__-122.30200855168509_37.77612086869213.png
+预测类别: sea
+置信度: 0.9906
+
+图片: ./data/val/sea/sea__20170901_181521_0e14__-122.45215935536157_37.712966070093046.png
+预测类别: sea
+置信度: 0.9874
+
+图片: ./data/val/sea/sea__20170609_180751_101b__-122.33466122609727_37.72850414359018.png
+预测类别: sea
+置信度: 0.9582
+
+图片: ./data/val/sea/sea__20161022_180612_0e19__-122.05294087231242_37.69715889815695.png
+预测类别: sea
+置信度: 0.9961
+
+图片: ./data/val/sea/sea__20170609_180756_103a__-122.33067470875649_37.74778773510194.png
+预测类别: sea
+置信度: 0.9716
+
+图片: ./data/val/sea/sea__20171127_185539_0f29__-122.22243114751392_37.81839832158083.png
+预测类别: sea
+置信度: 0.9991
+
+图片: ./data/val/sea/sea__20170901_181521_0e14__-122.572150913354_37.722899458090765.png
+预测类别: sea
+置信度: 0.9657
+
+图片: ./data/val/sea/sea__20180131_175841_1010__-118.2195919149232_33.736905015697715.png
+预测类别: sea
+置信度: 0.9994
+
+图片: ./data/val/sea/sea__20170226_180943_0e26__-122.20221064511391_37.819155382661435.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20161006_003958_0c12__-122.41744319465516_37.68667926929303.png
+预测类别: sea
+置信度: 0.9917
+
+图片: ./data/val/sea/sea__20161212_180855_0e30__-122.50293735357504_37.88156528743798.png
+预测类别: sea
+置信度: 0.9635
+
+图片: ./data/val/sea/sea__20170712_180941_0f15__-122.22208519386237_37.71483610781411.png
+预测类别: sea
+置信度: 0.9996
+
+图片: ./data/val/sea/sea__20160622_170157_0c64__-122.34466653421043_37.78296341833453.png
+预测类别: sea
+置信度: 0.7839
+
+图片: ./data/val/sea/sea__20170211_181115_0e16__-122.42660223610721_37.80942949031537.png
+预测类别: sea
+置信度: 0.9178
+
+图片: ./data/val/sea/sea__20180708_180908_0f47__-118.18560114537759_33.72600798924472.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20180712_211331_0f06__-118.14370605893323_33.73608912911218.png
+预测类别: sea
+置信度: 0.8128
+
+图片: ./data/val/sea/sea__20170730_181044_103d__-122.29846603385391_37.6786496844103.png
+预测类别: sea
+置信度: 0.9927
+
+图片: ./data/val/sea/sea__20170724_181036_1011__-122.32141243627227_37.71793729818083.png
+预测类别: sea
+置信度: 0.7151
+
+图片: ./data/val/sea/sea__20170314_155238_0c12__-122.4715822873945_37.681120715454306.png
+预测类别: sea
+置信度: 0.9926
+
+图片: ./data/val/sea/sea__20171022_175534_100e__-118.21671629205547_33.737366277333734.png
+预测类别: sea
+置信度: 0.8288
+
+图片: ./data/val/sea/sea__20170501_180553_1018__-122.33116225266564_37.78818722279999.png
+预测类别: sea
+置信度: 0.9542
+
+图片: ./data/val/sea/sea__20180712_211331_0f06__-118.14631332868933_33.73003149668605.png
+预测类别: sea
+置信度: 0.8679
+
+图片: ./data/val/sea/sea__20170501_180553_1018__-122.13414121169063_37.7024068602389.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170707_181425_0e14__-122.05516823794919_37.73614006839395.png
+预测类别: sea
+置信度: 0.9335
+
+图片: ./data/val/sea/sea__20170721_180937_0f31__-122.4844148251927_37.734283618031235.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170129_181027_0e1f__-122.37168169222907_37.74690485775517.png
+预测类别: sea
+置信度: 0.9795
+
+图片: ./data/val/sea/sea__20170905_181214_0f12__-122.30859432973303_37.78224352108593.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170522_180635_0f42__-122.34856501556398_37.758000708483756.png
+预测类别: sea
+置信度: 0.7770
+
+图片: ./data/val/sea/sea__20170129_181028_0e1f__-122.41813284692294_37.66372585064465.png
+预测类别: sea
+置信度: 0.5300
+
+图片: ./data/val/sea/sea__20170605_180824_1032__-122.48275698947108_37.79635905394773.png
+预测类别: sea
+置信度: 0.9994
+
+图片: ./data/val/sea/sea__20170719_180900_101d__-122.35694866706342_37.83205308611651.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170709_181334_0e0e__-122.18935032957172_37.61392026950369.png
+预测类别: sea
+置信度: 0.9664
+
+图片: ./data/val/sea/sea__20171025_175647_0e26__-118.14332763284955_33.73441517168705.png
+预测类别: sea
+置信度: 0.9995
+
+图片: ./data/val/sea/sea__20170101_180916_0e30__-122.472181318784_37.850742109913384.png
+预测类别: sea
+置信度: 0.9958
+
+图片: ./data/val/sea/sea__20170604_180819_0f52__-122.53925309163525_37.856782982719004.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20171129_181545_1022__-122.34004742946429_37.71233774111778.png
+预测类别: sea
+置信度: 0.9898
+
+图片: ./data/val/sea/sea__20170702_180943_103c__-122.30831003110046_37.713994503695176.png
+预测类别: sea
+置信度: 0.9655
+
+图片: ./data/val/sea/sea__20170515_180654_1007__-122.34345858565175_37.73077070699467.png
+预测类别: sea
+置信度: 0.7107
+
+图片: ./data/val/sea/sea__20170613_180812_102e__-122.49645593023325_37.67057581067081.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20171208_181656_0e2f__-122.05889392158738_37.751122417840904.png
+预测类别: sea
+置信度: 0.9955
+
+图片: ./data/val/sea/sea__20160820_233143_0c53__-122.33871292162644_37.78966292304172.png
+预测类别: sea
+置信度: 0.9926
+
+图片: ./data/val/sea/sea__20170708_180826_1021__-122.46550497353964_37.84500674368631.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170615_180727_1003__-122.28157427826083_37.7755924637655.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20161103_195523_0c27__-122.34831764039477_37.76678713050675.png
+预测类别: sea
+置信度: 0.7179
+
+图片: ./data/val/sea/sea__20171023_175305_1039__-118.12784300556406_33.70428196206071.png
+预测类别: sea
+置信度: 0.9669
+
+图片: ./data/val/sea/sea__20161018_192055_0d05__-122.28685147391981_37.648052185960495.png
+预测类别: sea
+置信度: 0.9908
+
+图片: ./data/val/sea/sea__20170508_180611_1010__-122.17283077847047_37.72729039331012.png
+预测类别: sea
+置信度: 0.9995
+
+图片: ./data/val/sea/sea__20180708_180909_0f47__-118.19355414825759_33.78821328548772.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170901_181520_0e14__-122.51320625522732_37.78291501175205.png
+预测类别: ship
+置信度: 0.5004
+
+图片: ./data/val/sea/sea__20180712_180429_101b__-118.15066335788352_33.696874603043355.png
+预测类别: sea
+置信度: 0.7601
+
+图片: ./data/val/sea/sea__20170504_180550_1025__-122.3211975135976_37.6743211606756.png
+预测类别: sea
+置信度: 0.9441
+
+图片: ./data/val/sea/sea__20170129_181026_0e1f__-122.37064585901672_37.804844596869714.png
+预测类别: sea
+置信度: 0.7173
+
+图片: ./data/val/sea/sea__20161218_180846_0e26__-122.38098418888359_37.66432089876209.png
+预测类别: sea
+置信度: 0.9630
+
+图片: ./data/val/sea/sea__20170909_181400_0f28__-122.3245035056439_37.726148019081435.png
+预测类别: sea
+置信度: 0.9955
+
+图片: ./data/val/sea/sea__20180705_213443_0f02__-122.34990812343001_37.7485172968277.png
+预测类别: sea
+置信度: 0.9666
+
+图片: ./data/val/sea/sea__20170909_181400_0f28__-122.17268258543704_37.72837092287952.png
+预测类别: sea
+置信度: 0.9995
+
+图片: ./data/val/sea/sea__20170707_174131_0c0b__-122.2515504017567_37.81396328974846.png
+预测类别: sea
+置信度: 0.9995
+
+图片: ./data/val/sea/sea__20170709_181333_0e0e__-122.27983498771106_37.69143527757834.png
+预测类别: sea
+置信度: 0.9663
+
+图片: ./data/val/sea/sea__20170314_155238_0c12__-122.42519619481152_37.784167937080014.png
+预测类别: sea
+置信度: 0.9978
+
+图片: ./data/val/sea/sea__20170615_181426_0e0d__-122.34832116144462_37.73920696656714.png
+预测类别: sea
+置信度: 0.9975
+
+图片: ./data/val/sea/sea__20180705_182235_0f4d__-122.33029320161329_37.740998676103544.png
+预测类别: sea
+置信度: 0.9994
+
+图片: ./data/val/sea/sea__20171127_181539_101e__-122.36377962246702_37.723256986220896.png
+预测类别: sea
+置信度: 0.6062
+
+图片: ./data/val/sea/sea__20170501_180554_1018__-122.18668864341592_37.68347489343083.png
+预测类别: sea
+置信度: 0.9988
+
+图片: ./data/val/sea/sea__20170430_181117_0e26__-122.17931149878993_37.69529409128506.png
+预测类别: sea
+置信度: 0.9996
+
+图片: ./data/val/sea/sea__20170830_181003_0f4e__-122.1124534573325_37.78590444259171.png
+预测类别: sea
+置信度: 0.8492
+
+图片: ./data/val/sea/sea__20170803_234846_0c54__-122.31288402791509_37.76047496934605.png
+预测类别: sea
+置信度: 0.9493
+
+图片: ./data/val/sea/sea__20170101_180917_0e30__-122.48528305244957_37.71214189990473.png
+预测类别: sea
+置信度: 0.9737
+
+图片: ./data/val/sea/sea__20180711_180503_1027__-118.21395108220523_33.73187415892373.png
+预测类别: sea
+置信度: 0.7127
+
+图片: ./data/val/sea/sea__20180210_181908_1006__-122.33198430763633_37.783919689328826.png
+预测类别: ship
+置信度: 0.5398
+
+图片: ./data/val/sea/sea__20170917_190615_0f3c__-122.28264334306215_37.728388348051354.png
+预测类别: sea
+置信度: 0.9666
+
+图片: ./data/val/sea/sea__20161212_180855_0e30__-122.5394959090726_37.88352558393175.png
+预测类别: sea
+置信度: 0.9821
+
+图片: ./data/val/sea/sea__20161116_180802_0e14__-122.2399947320085_37.83073454685968.png
+预测类别: sea
+置信度: 0.9692
+
+图片: ./data/val/sea/sea__20170828_175142_1022__-117.90567460958115_33.71060210526085.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170708_180811_100c__-122.01097475696292_37.65679639945837.png
+预测类别: sea
+置信度: 0.9970
+
+图片: ./data/val/sea/sea__20170613_180813_1017__-122.34400119689425_37.72715043502993.png
+预测类别: ship
+置信度: 0.9706
+
+图片: ./data/val/sea/sea__20171107_181615_0f22__-122.32649601075819_37.727916985995165.png
+预测类别: sea
+置信度: 0.9818
+
+图片: ./data/val/sea/sea__20170702_180943_103c__-122.33214759020176_37.72029696017205.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20170504_180550_1025__-122.22353629241415_37.66382214238154.png
+预测类别: sea
+置信度: 0.9742
+
+图片: ./data/val/sea/sea__20180712_180755_0f2d__-118.22513304529672_33.72348470942977.png
+预测类别: sea
+置信度: 0.9824
+
+图片: ./data/val/sea/sea__20170723_181447_0e0e__-122.56858727616165_37.89093632512815.png
+预测类别: sea
+置信度: 0.9794
+
+图片: ./data/val/sea/sea__20170211_181115_0e16__-122.29893289915448_37.76993766390587.png
+预测类别: sea
+置信度: 0.9666
+
+图片: ./data/val/sea/sea__20170707_181426_0e14__-122.12212884329361_37.71099763104849.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20170427_180609_1041__-122.39764613116999_37.64812914533769.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170609_180756_103a__-122.42136701851793_37.80772745841087.png
+预测类别: sea
+置信度: 0.9978
+
+图片: ./data/val/sea/sea__20160820_233143_0c53__-122.36042556233372_37.79259487116029.png
+预测类别: sea
+置信度: 0.9069
+
+图片: ./data/val/sea/sea__20170430_181116_0e26__-122.1408602162825_37.765943943353086.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170618_180802_0f34__-122.1589150663445_37.66032356912042.png
+预测类别: sea
+置信度: 0.9994
+
+图片: ./data/val/sea/sea__20170708_180826_1021__-122.39595163484783_37.785752155709105.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170106_180852_0e30__-122.33754040846814_37.71102578191657.png
+预测类别: sea
+置信度: 0.9755
+
+图片: ./data/val/sea/sea__20170827_181130_1014__-122.39893093367422_37.750210589902096.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20180706_180314_1024__-118.0678601071873_33.65995567777042.png
+预测类别: sea
+置信度: 0.9624
+
+图片: ./data/val/sea/sea__20170620_232624_0c79__-122.46457310236153_37.676465282704456.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20160905_193458_0c37__-122.49581757936237_37.62411826912237.png
+预测类别: ship
+置信度: 0.7083
+
+图片: ./data/val/sea/sea__20170919_181413_0f1b__-122.42423395846821_37.70171968662648.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170730_181043_103d__-122.33126426770414_37.75038686308762.png
+预测类别: sea
+置信度: 0.7635
+
+图片: ./data/val/sea/sea__20170905_181214_0f12__-122.35609416372331_37.75771761341011.png
+预测类别: sea
+置信度: 0.6851
+
+图片: ./data/val/sea/sea__20170501_181321_0e1f__-122.38471901366013_37.64865730866074.png
+预测类别: sea
+置信度: 0.9829
+
+图片: ./data/val/sea/sea__20161202_180735_0e30__-122.15391007538881_37.67875572992192.png
+预测类别: sea
+置信度: 0.9995
+
+图片: ./data/val/sea/sea__20170822_181222_0f31__-122.40265813776465_37.841405961935536.png
+预测类别: sea
+置信度: 0.9709
+
+图片: ./data/val/sea/sea__20170716_180815_103a__-122.33439406261999_37.8077278071898.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170717_180817_1010__-122.35157864049303_37.78340724901256.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20161227_180931_0e30__-122.56847437247026_37.80497826478755.png
+预测类别: sea
+置信度: 0.9652
+
+图片: ./data/val/sea/sea__20170724_181035_1011__-122.33938748691962_37.76746746889928.png
+预测类别: sea
+置信度: 0.9991
+
+图片: ./data/val/sea/sea__20180714_182155_1051__-122.33370184133521_37.7177910785226.png
+预测类别: sea
+置信度: 0.7091
+
+图片: ./data/val/sea/sea__20180710_180333_1002__-118.16061465321872_33.73401038065334.png
+预测类别: sea
+置信度: 0.7037
+
+图片: ./data/val/sea/sea__20170919_181412_0f1b__-122.34744847860883_37.76491660654864.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20180711_180350_1042__-118.1272370075018_33.66778880158038.png
+预测类别: ship
+置信度: 0.6058
+
+图片: ./data/val/sea/sea__20150718_184300_090b__-122.35324421973536_37.772113980272394.png
+预测类别: sea
+置信度: 0.9857
+
+图片: ./data/val/sea/sea__20180210_181908_1006__-122.41251957041197_37.81463274564727.png
+预测类别: sea
+置信度: 0.8850
+
+图片: ./data/val/sea/sea__20170902_181216_1005__-122.5449921908695_37.766331619548005.png
+预测类别: sea
+置信度: 0.9273
+
+图片: ./data/val/sea/sea__20170719_180901_101d__-122.32545306693116_37.73780746331749.png
+预测类别: sea
+置信度: 0.9960
+
+图片: ./data/val/sea/sea__20170830_181004_0f4e__-122.35676157751894_37.73176339146077.png
+预测类别: sea
+置信度: 0.9981
+
+图片: ./data/val/sea/sea__20170620_232624_1_0c79__-122.4855618922999_37.71611795859279.png
+预测类别: sea
+置信度: 0.9993
+
+图片: ./data/val/sea/sea__20180711_180503_1027__-118.21589504345295_33.738835368252445.png
+预测类别: sea
+置信度: 0.9711
+
+图片: ./data/val/sea/sea__20180707_180452_102e__-118.23864312301872_33.68346995564557.png
+预测类别: sea
+置信度: 0.8812
+
+图片: ./data/val/sea/sea__20170419_181314_0e0d__-122.51068756909072_37.82386920693305.png
+预测类别: sea
+置信度: 0.9777
+
+图片: ./data/val/sea/sea__20170226_180944_0e26__-122.32915203580251_37.7353950234154.png
+预测类别: sea
+置信度: 0.9281
+
+图片: ./data/val/sea/sea__20170709_180806_1024__-122.0745431024927_37.741431195690076.png
+预测类别: sea
+置信度: 0.9966
+
+图片: ./data/val/sea/sea__20170616_180825_100e__-122.34148376852475_37.75001177527754.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20171023_175305_1039__-118.22791567170337_33.72107617998688.png
+预测类别: sea
+置信度: 0.9986
+
+图片: ./data/val/sea/sea__20161103_195401_0c24__-122.29274443920113_37.808107007960345.png
+预测类别: sea
+置信度: 0.9995
+
+图片: ./data/val/sea/sea__20180712_180428_101b__-118.19464573278503_33.78281868724851.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20170414_180529_0f28__-122.2486414407537_37.75456688788033.png
+预测类别: sea
+置信度: 0.9994
+
+图片: ./data/val/sea/sea__20170222_231255_0c27__-122.3647162082261_37.70127884026424.png
+预测类别: sea
+置信度: 0.8945
+
+图片: ./data/val/sea/sea__20170106_180852_0e30__-122.4001696295736_37.69797640390218.png
+预测类别: sea
+置信度: 0.9720
+
+图片: ./data/val/sea/sea__20170717_180817_1010__-122.49403225538684_37.84183398930845.png
+预测类别: sea
+置信度: 0.9987
+
+图片: ./data/val/sea/sea__20180205_181811_1030__-122.36627951838585_37.761450179792355.png
+预测类别: sea
+置信度: 0.8311
+
+图片: ./data/val/sea/sea__20171114_181405_1027__-122.2790686462568_37.689754140990686.png
+预测类别: sea
+置信度: 0.9730
+
+图片: ./data/val/sea/sea__20170706_181011_1006__-122.40832681976396_37.848843279497004.png
+预测类别: sea
+置信度: 0.8361
+
+图片: ./data/val/sea/sea__20170830_181003_0f4e__-122.10005234093857_37.77464331549984.png
+预测类别: sea
+置信度: 0.9918
+
+图片: ./data/val/sea/sea__20170707_174131_0c0b__-122.33702764638267_37.73800832995908.png
+预测类别: sea
+置信度: 0.7870
+
+图片: ./data/val/sea/sea__20180707_182444_0f17__-122.43051883974226_37.69426019743678.png
+预测类别: sea
+置信度: 0.9987
+
+图片: ./data/val/sea/sea__20170314_155238_0c12__-122.40460947440766_37.7895006096539.png
+预测类别: sea
+置信度: 0.9964
+
+图片: ./data/val/sea/sea__20170226_180945_0e26__-122.14205205731899_37.6744789501471.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20170403_180412_100f__-122.27571156029728_37.671076231536304.png
+预测类别: sea
+置信度: 0.9624
+
+图片: ./data/val/sea/sea__20170314_155238_0c12__-122.35740877087_37.759293072874605.png
+预测类别: sea
+置信度: 0.9359
+
+图片: ./data/val/sea/sea__20170226_180943_0e26__-122.06752904400769_37.78482740465315.png
+预测类别: sea
+置信度: 0.9961
+
+图片: ./data/val/sea/sea__20170618_180801_0f34__-122.3384171841808_37.769327737974734.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20171107_181615_0f22__-122.44032738249221_37.74744008650234.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20161018_193330_0c45__-122.20046028532018_37.72220836810874.png
+预测类别: sea
+置信度: 0.9990
+
+图片: ./data/val/sea/sea__20161218_180846_0e26__-122.48564865961798_37.713414363497776.png
+预测类别: sea
+置信度: 0.9364
+
+图片: ./data/val/sea/sea__20170619_181346_0e30__-122.34943785595401_37.73999727946061.png
+预测类别: sea
+置信度: 0.9407
+
+图片: ./data/val/sea/sea__20171212_181754_0e26__-122.21893661428301_37.83303027028024.png
+预测类别: sea
+置信度: 0.9993
+
+图片: ./data/val/sea/sea__20170827_181130_1014__-122.51622064685309_37.7124081021492.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170430_181116_0e26__-122.25776400095448_37.83333545241514.png
+预测类别: sea
+置信度: 0.9996
+
+图片: ./data/val/sea/sea__20180711_182156_1048__-122.34803963545875_37.73636626601002.png
+预测类别: sea
+置信度: 0.9142
+
+图片: ./data/val/sea/sea__20170515_180653_1007__-122.34976990174096_37.76820119798504.png
+预测类别: sea
+置信度: 0.8569
+
+图片: ./data/val/sea/sea__20170501_181320_0e1f__-122.3360474729729_37.760066960583195.png
+预测类别: sea
+置信度: 0.9850
+
+图片: ./data/val/sea/sea__20170830_181003_0f4e__-122.08543845241851_37.788482833332814.png
+预测类别: sea
+置信度: 0.9993
+
+图片: ./data/val/sea/sea__20170902_190520_0f53__-122.10210897923528_37.784852662633284.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20171118_185722_0f2d__-122.34509171943485_37.72702130096803.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20161102_180658_0e26__-122.34040514248915_37.748761931300486.png
+预测类别: sea
+置信度: 0.8033
+
+图片: ./data/val/sea/sea__20180706_180314_1024__-118.22376638803574_33.73897403989648.png
+预测类别: sea
+置信度: 0.9936
+
+图片: ./data/val/sea/sea__20170622_180819_1034__-122.32603124025987_37.70782396331996.png
+预测类别: sea
+置信度: 0.8538
+
+图片: ./data/val/sea/sea__20170501_181319_0e1f__-122.29578924029194_37.8391660228062.png
+预测类别: sea
+置信度: 0.9912
+
+图片: ./data/val/sea/sea__20161022_180611_0e19__-122.16938698985761_37.80086652498767.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20160905_193458_0c37__-122.340008531414_37.74740774072642.png
+预测类别: sea
+置信度: 0.7232
+
+图片: ./data/val/sea/sea__20170620_180742_102f__-122.34274654482738_37.73044226520767.png
+预测类别: sea
+置信度: 0.9774
+
+图片: ./data/val/sea/sea__20170617_181433_0e0f__-122.32651193205625_37.72991799807998.png
+预测类别: sea
+置信度: 0.9686
+
+图片: ./data/val/sea/sea__20171203_185451_0f2b__-122.3328807412968_37.748611424156486.png
+预测类别: sea
+置信度: 0.9952
+
+图片: ./data/val/sea/sea__20171118_181531_1030__-122.34943308708012_37.76776670974174.png
+预测类别: sea
+置信度: 0.9733
+
+图片: ./data/val/sea/sea__20170609_180756_103a__-122.32776284192086_37.738415526372165.png
+预测类别: sea
+置信度: 0.9965
+
+图片: ./data/val/sea/sea__20171210_181628_100a__-122.49003129623496_37.704672517048834.png
+预测类别: sea
+置信度: 0.9996
+
+图片: ./data/val/sea/sea__20170902_181216_1005__-122.58257984411509_37.71466266256829.png
+预测类别: sea
+置信度: 0.9654
+
+图片: ./data/val/sea/sea__20170101_180916_0e30__-122.32641146704644_37.80108488410796.png
+预测类别: sea
+置信度: 0.9732
+
+图片: ./data/val/sea/sea__20171217_181637_1032__-122.36073560247907_37.77242525237134.png
+预测类别: sea
+置信度: 0.7186
+
+图片: ./data/val/sea/sea__20170827_181129_1014__-122.46051156910171_37.772140150205836.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20180708_180454_0f28__-118.10744321712961_33.665992646947196.png
+预测类别: sea
+置信度: 0.7877
+
+图片: ./data/val/sea/sea__20170730_191231_0f21__-122.27200380112893_37.81706576554629.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170821_175214_101d__-118.09033933530272_33.74133380713321.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20180708_180453_0f28__-118.15445388207368_33.735826765748065.png
+预测类别: sea
+置信度: 0.9410
+
+图片: ./data/val/sea/sea__20180210_181908_1006__-122.4022891815318_37.8110661833466.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20161202_180734_0e30__-122.33973025117105_37.7672260360502.png
+预测类别: sea
+置信度: 0.9936
+
+图片: ./data/val/sea/sea__20170715_180932_101a__-122.10637692631006_37.63387116865436.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170822_181223_0f31__-122.29213736136002_37.71452041939661.png
+预测类别: sea
+置信度: 0.9667
+
+图片: ./data/val/sea/sea__20170822_181223_0f31__-122.33848370812615_37.73890881236083.png
+预测类别: sea
+置信度: 0.9836
+
+图片: ./data/val/sea/sea__20160905_193458_0c37__-122.46385183434099_37.63484747368108.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20170419_181314_0e0d__-122.47884144617204_37.805616290470304.png
+预测类别: sea
+置信度: 0.9798
+
+图片: ./data/val/sea/sea__20170501_181319_0e1f__-122.37508002435852_37.7841561430067.png
+预测类别: sea
+置信度: 0.9597
+
+图片: ./data/val/sea/sea__20180205_181812_1030__-122.32238473959039_37.71956526159257.png
+预测类别: sea
+置信度: 0.8457
+
+图片: ./data/val/sea/sea__20170504_180549_1025__-122.34217755836472_37.75242215580927.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170106_180850_0e30__-122.14425549137398_37.79052002576141.png
+预测类别: sea
+置信度: 0.9964
+
+图片: ./data/val/sea/sea__20170723_180811_1005__-122.3422940084486_37.74696084645795.png
+预测类别: sea
+置信度: 0.8216
+
+图片: ./data/val/sea/sea__20170414_180529_0f28__-122.47864358230603_37.81921617460607.png
+预测类别: ship
+置信度: 0.8832
+
+图片: ./data/val/sea/sea__20170616_180825_100e__-122.35605384864218_37.76236816545125.png
+预测类别: sea
+置信度: 0.8554
+
+图片: ./data/val/sea/sea__20170519_181144_0e26__-122.1840907805863_37.75905879601299.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170314_155238_0c12__-122.45523340881503_37.75332342581616.png
+预测类别: sea
+置信度: 0.9165
+
+图片: ./data/val/sea/sea__20170910_181215_1010__-122.31719273803236_37.82523178893726.png
+预测类别: sea
+置信度: 0.6785
+
+图片: ./data/val/sea/sea__20170314_155240_0c12__-122.25070499415942_37.725539805083564.png
+预测类别: ship
+置信度: 0.5331
+
+图片: ./data/val/sea/sea__20170917_190708_0f44__-122.51762108611119_37.77985066939426.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170707_174131_1_0c0b__-122.25749714119202_37.73058506629582.png
+预测类别: sea
+置信度: 0.9563
+
+图片: ./data/val/sea/sea__20170505_181258_0e2f__-122.1377855013356_37.708030696820344.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170910_181215_1010__-122.35121532908504_37.79378831634977.png
+预测类别: sea
+置信度: 0.9994
+
+图片: ./data/val/sea/sea__20171119_181613_0f52__-122.49530739373503_37.70453297977837.png
+预测类别: sea
+置信度: 0.9993
+
+图片: ./data/val/sea/sea__20180709_182127_0e20__-122.3237919540068_37.72952387410005.png
+预测类别: sea
+置信度: 0.9941
+
+图片: ./data/val/sea/sea__20170429_180518_1002__-122.17270176749476_37.68378319192448.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20170722_181118_101f__-122.48056446808523_37.76882327620446.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170419_180519_1009__-122.40688680606976_37.8114950104279.png
+预测类别: sea
+置信度: 0.8830
+
+图片: ./data/val/sea/sea__20170830_181003_0f4e__-122.36264878375152_37.835220600551764.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170902_181216_1005__-122.42258343300799_37.71707015891473.png
+预测类别: sea
+置信度: 0.9948
+
+图片: ./data/val/sea/sea__20161022_180611_0e19__-122.26046365262594_37.78143751316057.png
+预测类别: sea
+置信度: 0.9657
+
+图片: ./data/val/sea/sea__20170707_174131_0c0b__-122.3390377413175_37.7684930016889.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20180209_181715_103e__-122.25648176401509_37.73679771655621.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170702_181120_103a__-122.35098029465155_37.75052412245564.png
+预测类别: sea
+置信度: 0.9891
+
+图片: ./data/val/sea/sea__20161103_195522_0c27__-122.48578751166343_37.73764252937086.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170504_180547_1025__-122.28052052504286_37.81049353481551.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170722_181118_101f__-122.39293225639383_37.76334805071066.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20171112_181257_1009__-122.12641479999563_37.78941568873169.png
+预测类别: sea
+置信度: 0.9972
+
+图片: ./data/val/sea/sea__20171022_175534_100e__-118.25337666641448_33.710782792421654.png
+预测类别: sea
+置信度: 0.9137
+
+图片: ./data/val/sea/sea__20170501_181320_0e1f__-122.54132365266595_37.76469502432008.png
+预测类别: sea
+置信度: 0.9596
+
+图片: ./data/val/sea/sea__20170702_180943_103c__-122.33686893598907_37.75961191684693.png
+预测类别: sea
+置信度: 0.9772
+
+图片: ./data/val/sea/sea__20161212_180855_0e30__-122.4059168936673_37.87294991547966.png
+预测类别: sea
+置信度: 0.9620
+
+图片: ./data/val/sea/sea__20180205_181922_1031__-122.42667771298387_37.80848348426208.png
+预测类别: sea
+置信度: 0.9960
+
+图片: ./data/val/sea/sea__20170707_181426_0e14__-122.15270280905368_37.71608839108854.png
+预测类别: sea
+置信度: 0.9995
+
+图片: ./data/val/sea/sea__20180205_181812_1030__-122.40010353317001_37.697732710230554.png
+预测类别: sea
+置信度: 0.9877
+
+图片: ./data/val/sea/sea__20170723_181447_0e0e__-122.51630902075792_37.855663483139516.png
+预测类别: sea
+置信度: 0.9991
+
+图片: ./data/val/sea/sea__20170708_180826_1021__-122.42374112636251_37.78288998003843.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170611_180735_1008__-122.16536153523438_37.68300140459791.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20170703_180944_1009__-122.39417340802179_37.86161483566269.png
+预测类别: sea
+置信度: 0.9988
+
+图片: ./data/val/sea/sea__20170819_175035_0f22__-118.18393344739283_33.73424892757211.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20171023_175304_1039__-118.21206107676302_33.72872722067327.png
+预测类别: sea
+置信度: 0.9993
+
+图片: ./data/val/sea/sea__20170716_180833_101b__-122.40700928865517_37.81322613595979.png
+预测类别: sea
+置信度: 0.9994
+
+图片: ./data/val/sea/sea__20170615_180727_1003__-122.07066711596391_37.762761462592096.png
+预测类别: sea
+置信度: 0.9995
+
+图片: ./data/val/sea/sea__20170708_180827_1021__-122.34310234660427_37.71714080417445.png
+预测类别: sea
+置信度: 0.8426
+
+图片: ./data/val/sea/sea__20171023_175305_1039__-118.19528360412191_33.71206211664979.png
+预测类别: sea
+置信度: 0.8979
+
+图片: ./data/val/sea/sea__20161103_195523_0c27__-122.35134984883098_37.74720030845059.png
+预测类别: sea
+置信度: 0.8088
+
+图片: ./data/val/sea/sea__20170723_180812_1005__-122.24189973304027_37.7143703194022.png
+预测类别: sea
+置信度: 0.9909
+
+图片: ./data/val/sea/sea__20170723_180812_1005__-122.14001168126084_37.65672620334604.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170504_180549_1025__-122.3347072976321_37.73096499650974.png
+预测类别: sea
+置信度: 0.8279
+
+图片: ./data/val/sea/sea__20170706_180954_1040__-122.29107300308581_37.811828350640674.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170703_180944_1009__-122.30434235919608_37.810609587434314.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20161116_180803_0e14__-122.44388637557398_37.79058484359662.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20180712_180429_101b__-118.1231941603522_33.68037967501163.png
+预测类别: sea
+置信度: 0.9993
+
+图片: ./data/val/sea/sea__20170519_181145_0e26__-122.12836942863154_37.71577579814458.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170106_180851_0e30__-122.34625465171712_37.73027249632148.png
+预测类别: sea
+置信度: 0.9892
+
+图片: ./data/val/sea/sea__20180705_182236_0f4d__-122.3416374990331_37.751878352416476.png
+预测类别: sea
+置信度: 0.7033
+
+图片: ./data/val/sea/sea__20170730_181514_0e20__-122.31290232802994_37.658968634398896.png
+预测类别: sea
+置信度: 0.9823
+
+图片: ./data/val/sea/sea__20170505_181258_0e2f__-122.17844918671175_37.69017763862263.png
+预测类别: sea
+置信度: 0.9978
+
+图片: ./data/val/sea/sea__20170619_180825_1032__-122.34006910767155_37.771256791447136.png
+预测类别: sea
+置信度: 0.9993
+
+图片: ./data/val/sea/sea__20171207_181550_103c__-122.21613451231367_37.82076304774197.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170901_181520_0e14__-122.37761667777681_37.798554455945.png
+预测类别: ship
+置信度: 0.5264
+
+图片: ./data/val/sea/sea__20170713_180939_1002__-122.3376090877832_37.73771416489413.png
+预测类别: sea
+置信度: 0.9982
+
+图片: ./data/val/sea/sea__20170519_181144_0e26__-122.23455703952428_37.74322792655009.png
+预测类别: sea
+置信度: 0.9995
+
+图片: ./data/val/sea/sea__20170923_181240_0f42__-122.33686293864658_37.767912957703956.png
+预测类别: sea
+置信度: 0.7625
+
+图片: ./data/val/sea/sea__20170921_181406_1031__-122.34971646048909_37.76652446449709.png
+预测类别: sea
+置信度: 0.9418
+
+图片: ./data/val/sea/sea__20171114_181404_1027__-122.10457147525985_37.76429479602058.png
+预测类别: sea
+置信度: 0.9934
+
+图片: ./data/val/sea/sea__20170706_180954_1040__-122.05762079012071_37.75484361449022.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20180712_211331_0f06__-118.20307675566646_33.72997847747763.png
+预测类别: sea
+置信度: 0.8450
+
+图片: ./data/val/sea/sea__20170613_180813_1017__-122.33490508316835_37.72788361142818.png
+预测类别: sea
+置信度: 0.9327
+
+图片: ./data/val/sea/sea__20170731_181111_100c__-122.25263081147605_37.75069860094023.png
+预测类别: sea
+置信度: 0.9119
+
+图片: ./data/val/sea/sea__20180706_180914_1051__-118.14567407142576_33.72822468696302.png
+预测类别: sea
+置信度: 0.9800
+
+图片: ./data/val/sea/sea__20171213_181610_100c__-122.48526939813327_37.71411574158604.png
+预测类别: sea
+置信度: 0.9564
+
+图片: ./data/val/sea/sea__20170705_180816_103e__-122.2814447560679_37.71502356385433.png
+预测类别: sea
+置信度: 0.9329
+
+图片: ./data/val/sea/sea__20170719_180903_101d__-122.38654826500492_37.70737021211693.png
+预测类别: sea
+置信度: 0.9621
+
+图片: ./data/val/sea/sea__20180131_175841_1010__-118.34698740368296_33.74932477632559.png
+预测类别: sea
+置信度: 0.9980
+
+图片: ./data/val/sea/sea__20170712_181046_1035__-122.4700356624177_37.73111028996904.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170712_180940_0f15__-122.18625994548921_37.75380116323898.png
+预测类别: sea
+置信度: 0.9993
+
+图片: ./data/val/sea/sea__20180708_180908_0f47__-118.1612986135659_33.73430156311303.png
+预测类别: sea
+置信度: 0.8442
+
+图片: ./data/val/sea/sea__20170609_180757_103a__-122.33540918749468_37.72861652073557.png
+预测类别: sea
+置信度: 0.9932
+
+图片: ./data/val/sea/sea__20161116_180803_0e14__-122.32164934889046_37.774045396522915.png
+预测类别: sea
+置信度: 0.9228
+
+图片: ./data/val/sea/sea__20171023_175305_1039__-118.20981145835196_33.72993972991807.png
+预测类别: sea
+置信度: 0.9763
+
+图片: ./data/val/sea/sea__20170724_181035_1011__-122.1712893036596_37.73425568615352.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20170716_180833_101b__-122.6364287420785_37.853580981972016.png
+预测类别: sea
+置信度: 0.9571
+
+图片: ./data/val/sea/sea__20180705_213443_0f02__-122.33605159962718_37.75579476553653.png
+预测类别: sea
+置信度: 0.9839
+
+图片: ./data/val/sea/sea__20170905_181214_0f12__-122.3315596677088_37.78567483085522.png
+预测类别: sea
+置信度: 0.6913
+
+图片: ./data/val/sea/sea__20171023_190148_0f2e__-122.22026464025058_37.87202895511861.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20180312_182016_1042__-122.3363846580964_37.752822310355455.png
+预测类别: sea
+置信度: 0.9793
+
+图片: ./data/val/sea/sea__20161022_180611_0e19__-122.07811501017659_37.796564427397136.png
+预测类别: sea
+置信度: 0.8505
+
+图片: ./data/val/sea/sea__20170712_180941_0f15__-122.32318237359226_37.717947472563274.png
+预测类别: sea
+置信度: 0.9606
+
+图片: ./data/val/sea/sea__20170620_232624_1_0c79__-122.42075053083227_37.7251460181053.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170505_181258_0e2f__-122.36028983062306_37.760904070318546.png
+预测类别: sea
+置信度: 0.9628
+
+图片: ./data/val/sea/sea__20170706_180955_1040__-122.03903530357431_37.70148080289207.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20171218_181723_1007__-122.57544362981595_37.861488649157856.png
+预测类别: sea
+置信度: 0.9956
+
+图片: ./data/val/sea/sea__20180708_180453_0f28__-118.14397443208644_33.73679009454487.png
+预测类别: sea
+置信度: 0.9706
+
+图片: ./data/val/sea/sea__20170501_180554_1018__-122.32033470412857_37.68313113166052.png
+预测类别: sea
+置信度: 0.9619
+
+图片: ./data/val/sea/sea__20170909_181400_0f28__-122.1698378912831_37.74227611140928.png
+预测类别: sea
+置信度: 0.9994
+
+图片: ./data/val/sea/sea__20170609_180751_101b__-122.34063750512246_37.74943921652722.png
+预测类别: sea
+置信度: 0.9866
+
+图片: ./data/val/sea/sea__20170901_181520_0e14__-122.3726815215772_37.77770804372903.png
+预测类别: sea
+置信度: 0.9666
+
+图片: ./data/val/sea/sea__20170723_181447_0e0e__-122.38747607950859_37.826050895049605.png
+预测类别: sea
+置信度: 0.9113
+
+图片: ./data/val/sea/sea__20170721_180937_0f31__-122.54679467184324_37.77236838469567.png
+预测类别: sea
+置信度: 0.9909
+
+图片: ./data/val/sea/sea__20171203_185451_0f2b__-122.44369468071307_37.70700473712044.png
+预测类别: sea
+置信度: 0.9987
+
+图片: ./data/val/sea/sea__20170501_180554_1018__-122.32694661851734_37.67056854724252.png
+预测类别: sea
+置信度: 0.9634
+
+图片: ./data/val/sea/sea__20170620_180742_102f__-122.33047706248283_37.716799385778074.png
+预测类别: sea
+置信度: 0.6658
+
+图片: ./data/val/sea/sea__20170705_180817_103e__-122.19850111070659_37.65757077068643.png
+预测类别: sea
+置信度: 0.9819
+
+图片: ./data/val/sea/sea__20170902_190520_0f53__-122.25017654535687_37.710421414467376.png
+预测类别: sea
+置信度: 0.9220
+
+图片: ./data/val/sea/sea__20170723_180812_1005__-122.34963651747655_37.71728518916467.png
+预测类别: sea
+置信度: 0.9039
+
+图片: ./data/val/sea/sea__20170717_180817_1010__-122.4503057154802_37.857672181363135.png
+预测类别: sea
+置信度: 0.9662
+
+图片: ./data/val/sea/sea__20161218_180844_0e26__-122.49323872906676_37.85315997654019.png
+预测类别: sea
+置信度: 0.9000
+
+图片: ./data/val/sea/sea__20180712_211331_0f06__-118.40409480499461_33.761755805272244.png
+预测类别: sea
+置信度: 0.9987
+
+图片: ./data/val/sea/sea__20170430_181116_0e26__-122.09743935074812_37.77662420695797.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170129_181027_0e1f__-122.34870094005304_37.78133639317295.png
+预测类别: sea
+置信度: 0.9920
+
+图片: ./data/val/sea/sea__20170419_181315_0e0d__-122.50775640608983_37.72619037431964.png
+预测类别: sea
+置信度: 0.9830
+
+图片: ./data/val/sea/sea__20170905_181214_0f12__-122.3504108590585_37.74943940887163.png
+预测类别: sea
+置信度: 0.7365
+
+图片: ./data/val/sea/sea__20180712_180429_101b__-118.15261990755589_33.69553062062659.png
+预测类别: sea
+置信度: 0.8103
+
+图片: ./data/val/sea/sea__20180709_182125_0e20__-122.35002919342593_37.750248487065086.png
+预测类别: sea
+置信度: 0.9911
+
+图片: ./data/val/sea/sea__20161202_180735_0e30__-122.33778854073893_37.694614133343194.png
+预测类别: sea
+置信度: 0.9350
+
+图片: ./data/val/sea/sea__20161116_180803_0e14__-122.33750935807309_37.73744320990945.png
+预测类别: sea
+置信度: 0.7572
+
+图片: ./data/val/sea/sea__20170621_181251_0e26__-122.33791302080623_37.76856780573772.png
+预测类别: sea
+置信度: 0.9476
+
+图片: ./data/val/sea/sea__20170106_180851_0e30__-122.35408833815782_37.784718918384876.png
+预测类别: sea
+置信度: 0.9910
+
+图片: ./data/val/sea/sea__20170830_181004_0f4e__-122.14034190617642_37.70769785377537.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170719_180901_101d__-122.33163121357718_37.78529668758239.png
+预测类别: sea
+置信度: 0.8149
+
+图片: ./data/val/sea/sea__20170709_181333_0e0e__-122.33918938210937_37.76676333587583.png
+预测类别: sea
+置信度: 0.9928
+
+图片: ./data/val/sea/sea__20180205_181811_1030__-122.34700136900732_37.76153421146316.png
+预测类别: sea
+置信度: 0.9003
+
+图片: ./data/val/sea/sea__20170705_180817_103e__-122.38864278427437_37.68026025439936.png
+预测类别: sea
+置信度: 0.9731
+
+图片: ./data/val/sea/sea__20170604_180819_0f52__-122.3490985782949_37.77095550256919.png
+预测类别: sea
+置信度: 0.7187
+
+图片: ./data/val/sea/sea__20180713_180403_1035__-118.132533160718_33.689195887491266.png
+预测类别: sea
+置信度: 0.9818
+
+图片: ./data/val/sea/sea__20170611_180650_1024__-122.24732557237103_37.80038982885411.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20150830_000652_1_0b07__-122.27654713066907_37.77410158935401.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170502_180545_1044__-122.34019186648356_37.822577852027266.png
+预测类别: sea
+置信度: 0.9255
+
+图片: ./data/val/sea/sea__20170501_181319_0e1f__-122.47877271918702_37.80569710434841.png
+预测类别: sea
+置信度: 0.9733
+
+图片: ./data/val/sea/sea__20170226_180945_0e26__-122.11545623454599_37.616553129668084.png
+预测类别: sea
+置信度: 0.9905
+
+图片: ./data/val/sea/sea__20171107_181615_0f22__-122.43676440664647_37.813128814958986.png
+预测类别: sea
+置信度: 0.9322
+
+图片: ./data/val/sea/sea__20170430_181117_0e26__-122.20416004478265_37.7232068181798.png
+预测类别: sea
+置信度: 0.9977
+
+图片: ./data/val/sea/sea__20170730_191231_0f21__-122.18152751077551_37.81547138479722.png
+预测类别: sea
+置信度: 0.9993
+
+图片: ./data/val/sea/sea__20171117_185444_104c__-122.33043537744814_37.74789453329951.png
+预测类别: sea
+置信度: 0.9972
+
+图片: ./data/val/sea/sea__20170712_180941_0f15__-122.43050922799225_37.699965539211135.png
+预测类别: sea
+置信度: 0.9994
+
+图片: ./data/val/sea/sea__20161202_180735_0e30__-122.34711439969115_37.756424397409255.png
+预测类别: sea
+置信度: 0.9292
+
+图片: ./data/val/sea/sea__20170615_180728_1003__-122.34680693017529_37.74103726778872.png
+预测类别: sea
+置信度: 0.7576
+
+图片: ./data/val/sea/sea__20171127_181539_101e__-122.34789535829744_37.72952447798042.png
+预测类别: sea
+置信度: 0.9271
+
+图片: ./data/val/sea/sea__20170730_181513_0e20__-122.33935979989101_37.75143297678181.png
+预测类别: sea
+置信度: 0.9665
+
+图片: ./data/val/sea/sea__20170709_181333_0e0e__-122.3304774672016_37.74700247232872.png
+预测类别: sea
+置信度: 0.9966
+
+图片: ./data/val/sea/sea__20170923_181240_0f42__-122.38115587480166_37.84402587496168.png
+预测类别: sea
+置信度: 0.9913
+
+图片: ./data/val/sea/sea__20161018_193330_0c45__-122.23175803087699_37.72741876294356.png
+预测类别: sea
+置信度: 0.9994
+
+图片: ./data/val/sea/sea__20180712_211332_0f06__-118.20507857569963_33.70639345499712.png
+预测类别: sea
+置信度: 0.9491
+
+图片: ./data/val/sea/sea__20170504_180549_1025__-122.28877284175837_37.710417206766486.png
+预测类别: sea
+置信度: 0.9712
+
+图片: ./data/val/sea/sea__20180203_181746_1035__-122.12265256100378_37.7156522744092.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20180305_184041_1054__-122.45577905781069_37.757868585604626.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20170619_181346_0e30__-122.32323347580618_37.71981349249693.png
+预测类别: sea
+置信度: 0.8476
+
+图片: ./data/val/sea/sea__20171207_181551_103c__-122.33227218978708_37.748121268952815.png
+预测类别: sea
+置信度: 0.9973
+
+图片: ./data/val/sea/sea__20180706_180914_1051__-118.21636296556413_33.70084464832889.png
+预测类别: sea
+置信度: 0.9666
+
+图片: ./data/val/sea/sea__20161116_180804_0e14__-122.43510331976242_37.686521828678195.png
+预测类别: sea
+置信度: 0.9100
+
+图片: ./data/val/sea/sea__20161103_195522_0c27__-122.47202178027077_37.748667907390434.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170619_180826_1032__-122.43484615084462_37.70247406172376.png
+预测类别: sea
+置信度: 0.9972
+
+图片: ./data/val/sea/sea__20170709_181333_0e0e__-122.16539336184846_37.671050191042916.png
+预测类别: sea
+置信度: 0.9891
+
+图片: ./data/val/sea/sea__20170917_190615_0f3c__-122.38337078114024_37.725280897582635.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20180312_182016_1042__-122.3451863444688_37.758793165140816.png
+预测类别: sea
+置信度: 0.9580
+
+图片: ./data/val/sea/sea__20170617_180855_1031__-122.51769624707424_37.778769398052425.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170721_180937_0f31__-122.37899926016429_37.71065656886824.png
+预测类别: sea
+置信度: 0.6028
+
+图片: ./data/val/sea/sea__20161116_180803_0e14__-122.36025355281615_37.769069759228096.png
+预测类别: sea
+置信度: 0.9986
+
+图片: ./data/val/sea/sea__20171127_181539_101e__-122.36414706522125_37.720095340263626.png
+预测类别: sea
+置信度: 0.9898
+
+图片: ./data/val/sea/sea__20180708_180908_0f47__-118.14359671524761_33.73517024333945.png
+预测类别: sea
+置信度: 0.9332
+
+图片: ./data/val/sea/sea__20170902_181216_1005__-122.44496114277695_37.683215698767.png
+预测类别: sea
+置信度: 0.9992
+
+图片: ./data/val/sea/sea__20170211_181115_0e16__-122.47900508276673_37.82597758349076.png
+预测类别: sea
+置信度: 0.9844
+
+图片: ./data/val/sea/sea__20170709_181332_0e0e__-122.16634847654159_37.75890758357923.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20170706_180955_1040__-122.17720593944432_37.679515431096085.png
+预测类别: sea
+置信度: 0.9359
+
+图片: ./data/val/sea/sea__20170414_180529_0f28__-122.51318925079467_37.816660084321384.png
+预测类别: sea
+置信度: 0.9629
+
+图片: ./data/val/sea/sea__20170501_181319_0e1f__-122.4232531138847_37.797461786875935.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170617_180854_1031__-122.40984587781927_37.81653916307391.png
+预测类别: sea
+置信度: 0.9978
+
+图片: ./data/val/sea/sea__20170502_180545_1044__-122.31516189888048_37.82735608044364.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20180709_182127_0e20__-122.3407060968338_37.718668682154096.png
+预测类别: sea
+置信度: 0.7777
+
+图片: ./data/val/sea/sea__20170712_181003_0f12__-122.06784465822315_37.80851583605695.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20171129_181544_1022__-122.33987315019915_37.77030931824107.png
+预测类别: sea
+置信度: 0.9996
+
+图片: ./data/val/sea/sea__20170822_175101_1006__-118.17514860140908_33.77156143032865.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20170101_180916_0e30__-122.47921359990308_37.82541068195876.png
+预测类别: sea
+置信度: 0.9748
+
+图片: ./data/val/sea/sea__20180708_182358_1032__-122.44759956385563_37.813558674142655.png
+预测类别: sea
+置信度: 0.9793
+
+图片: ./data/val/sea/sea__20170615_181425_0e0d__-122.25678817263315_37.73679964893167.png
+预测类别: sea
+置信度: 0.9994
+
+图片: ./data/val/sea/sea__20161022_180611_0e19__-122.06925660085886_37.774755586498244.png
+预测类别: sea
+置信度: 0.9993
+
+图片: ./data/val/sea/sea__20170622_180819_1034__-122.32155279019929_37.724941336862365.png
+预测类别: sea
+置信度: 1.0000
+
+图片: ./data/val/sea/sea__20170707_174130_0c0b__-122.33946330297843_37.76660263566568.png
+预测类别: sea
+置信度: 0.9489
+
+图片: ./data/val/sea/sea__20170612_180826_1036__-122.4049351044148_37.8211111157105.png
+预测类别: sea
+置信度: 0.5855
+
+图片: ./data/val/sea/sea__20170501_180618_1005__-122.29455450430522_37.77545457593399.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170515_180653_1007__-122.44582401244435_37.804870731277774.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170618_180801_0f34__-122.35713795737061_37.759102320269555.png
+预测类别: sea
+置信度: 0.9829
+
+图片: ./data/val/sea/sea__20180708_180454_0f28__-118.12990701583655_33.68637904272287.png
+预测类别: ship
+置信度: 0.7544
+
+图片: ./data/val/sea/sea__20170706_181011_1006__-122.43919822115103_37.865325923311175.png
+预测类别: sea
+置信度: 0.9997
+
+图片: ./data/val/sea/sea__20170106_180852_0e30__-122.16187481882541_37.66026351874788.png
+预测类别: sea
+置信度: 0.9152
+
+图片: ./data/val/sea/sea__20161218_180845_0e26__-122.43237084444813_37.75481086257568.png
+预测类别: sea
+置信度: 0.9999
+
+图片: ./data/val/sea/sea__20171129_181544_1022__-122.34507630940544_37.75968485267227.png
+预测类别: sea
+置信度: 0.8192
+
+图片: ./data/val/sea/sea__20171212_181756_0e26__-122.3358345908428_37.73053872169732.png
+预测类别: sea
+置信度: 0.9679
+
+图片: ./data/val/sea/sea__20170705_180815_103e__-122.23389241491539_37.81755410203232.png
+预测类别: sea
+置信度: 0.9998
+
+图片: ./data/val/sea/sea__20170717_180817_1010__-122.44371887495045_37.82654627166243.png
+预测类别: sea
+置信度: 0.8999
+
+图片: ./data/val/sea/sea__20170721_180825_100b__-122.34523145649668_37.726616484546696.png
+预测类别: sea
+置信度: 0.9892
+
+图片: ./data/val/ship/ship__20171127_181538_101e__-122.35285080613363_37.7859829726792.png
+预测类别: ship
+置信度: 0.9949
+
+图片: ./data/val/ship/ship__20180712_180429_101b__-118.12564883363834_33.66758682744614.png
+预测类别: sea
+置信度: 0.5943
+
+图片: ./data/val/ship/ship__20170910_181216_1010__-122.34098773990615_37.71761571465206.png
+预测类别: ship
+置信度: 0.9947
+
+图片: ./data/val/ship/ship__20171118_181531_1030__-122.33644310714187_37.76534185924881.png
+预测类别: ship
+置信度: 0.9998
+
+图片: ./data/val/ship/ship__20171118_185722_0f2d__-122.33510401615905_37.728479602418275.png
+预测类别: ship
+置信度: 0.9930
+
+图片: ./data/val/ship/ship__20180705_213444_0f02__-122.32313152934792_37.72727580762388.png
+预测类别: ship
+置信度: 0.9601
+
+图片: ./data/val/ship/ship__20171127_181539_101e__-122.34120708472079_37.71975306433755.png
+预测类别: ship
+置信度: 0.9878
+
+图片: ./data/val/ship/ship__20180708_180453_0f28__-118.1602075693253_33.73504232642754.png
+预测类别: ship
+置信度: 0.9941
+
+图片: ./data/val/ship/ship__20170917_190615_0f3c__-122.34940186941583_37.76744206542644.png
+预测类别: ship
+置信度: 0.9823
+
+图片: ./data/val/ship/ship__20180707_180908_1043__-118.22435950358626_33.7328536081581.png
+预测类别: ship
+置信度: 0.9940
+
+图片: ./data/val/ship/ship__20161116_180803_0e14__-122.33766055265983_37.76632212379826.png
+预测类别: ship
+置信度: 0.9962
+
+图片: ./data/val/ship/ship__20180709_182125_0e20__-122.34189167502934_37.750095171861716.png
+预测类别: ship
+置信度: 0.8708
+
+图片: ./data/val/ship/ship__20170622_180819_1034__-122.34373100848143_37.75775757398701.png
+预测类别: ship
+置信度: 0.9914
+
+图片: ./data/val/ship/ship__20170619_180826_1032__-122.34196262251014_37.71900017685026.png
+预测类别: ship
+置信度: 0.9976
+
+图片: ./data/val/ship/ship__20171023_184815_0f21__-118.19505626473541_33.71201020510068.png
+预测类别: ship
+置信度: 0.9531
+
+图片: ./data/val/ship/ship__20171118_181531_1030__-122.34807281296018_37.76751583826101.png
+预测类别: ship
+置信度: 0.9995
+
+图片: ./data/val/ship/ship__20180708_180454_0f28__-118.21978018976107_33.697564266770236.png
+预测类别: ship
+置信度: 0.9997
+
+图片: ./data/val/ship/ship__20170702_180943_103c__-122.33561199169439_37.75925332587687.png
+预测类别: ship
+置信度: 0.9990
+
+图片: ./data/val/ship/ship__20171022_175534_100e__-118.16499076011308_33.727151109873056.png
+预测类别: ship
+置信度: 0.9973
+
+图片: ./data/val/ship/ship__20170618_180802_0f34__-122.33162556867539_37.71777932578817.png
+预测类别: ship
+置信度: 1.0000
+
+图片: ./data/val/ship/ship__20170730_191231_0f21__-122.33668753373186_37.757042157208836.png
+预测类别: ship
+置信度: 0.9672
+
+图片: ./data/val/ship/ship__20180209_184353_0f21__-122.34943264991506_37.7405921187298.png
+预测类别: ship
+置信度: 0.9998
+
+图片: ./data/val/ship/ship__20171117_185444_104c__-122.33091744750324_37.74730240420565.png
+预测类别: ship
+置信度: 0.9995
+
+图片: ./data/val/ship/ship__20180312_182016_1042__-122.33950343558382_37.73910380697799.png
+预测类别: ship
+置信度: 0.9756
+
+图片: ./data/val/ship/ship__20180708_180453_0f28__-118.21905414735417_33.72635865267826.png
+预测类别: ship
+置信度: 0.9611
+
+图片: ./data/val/ship/ship__20170909_181400_0f28__-122.32825244436512_37.73698522744506.png
+预测类别: ship
+置信度: 0.9849
+
+图片: ./data/val/ship/ship__20180705_182235_0f4d__-122.33246558217941_37.71900086396819.png
+预测类别: ship
+置信度: 0.9947
+
+图片: ./data/val/ship/ship__20180714_182155_1051__-122.34193815177993_37.71791845851837.png
+预测类别: ship
+置信度: 0.9847
+
+图片: ./data/val/ship/ship__20170615_181426_0e0d__-122.32926235929204_37.738261832150734.png
+预测类别: ship
+置信度: 0.5484
+
+图片: ./data/val/ship/ship__20170901_181520_0e14__-122.35176479998303_37.7815966425164.png
+预测类别: sea
+置信度: 0.9935
+
+图片: ./data/val/ship/ship__20170226_180944_0e26__-122.3235427331075_37.726980733711294.png
+预测类别: ship
+置信度: 0.9988
+
+图片: ./data/val/ship/ship__20170709_181333_0e0e__-122.3400642707325_37.73729530506566.png
+预测类别: ship
+置信度: 0.9942
+
+图片: ./data/val/ship/ship__20170707_181135_100b__-122.3379531637956_37.73731050616929.png
+预测类别: ship
+置信度: 0.9973
+
+图片: ./data/val/ship/ship__20180707_180908_1043__-118.2195020409302_33.72597545173722.png
+预测类别: ship
+置信度: 0.9977
+
+图片: ./data/val/ship/ship__20171118_181532_1030__-122.34400966135502_37.75705610175418.png
+预测类别: ship
+置信度: 0.9998
+
+图片: ./data/val/ship/ship__20170609_180751_101b__-122.34317966086316_37.727659611082416.png
+预测类别: ship
+置信度: 0.9560
+
+图片: ./data/val/ship/ship__20170721_180937_0f31__-122.34977937165266_37.76711967700254.png
+预测类别: ship
+置信度: 0.9998
+
+图片: ./data/val/ship/ship__20180210_181908_1006__-122.35609704801801_37.76131386622846.png
+预测类别: ship
+置信度: 0.9988
+
+图片: ./data/val/ship/ship__20170708_180827_1021__-122.3400652308127_37.73718715261792.png
+预测类别: ship
+置信度: 0.9988
+
+图片: ./data/val/ship/ship__20170721_180825_100b__-122.33284969739871_37.71792145705744.png
+预测类别: ship
+置信度: 0.9998
+
+图片: ./data/val/ship/ship__20180712_180755_0f2d__-118.14319157389623_33.7363644522928.png
+预测类别: ship
+置信度: 0.9869
+
+图片: ./data/val/ship/ship__20180708_180454_0f28__-118.10924225682214_33.67758363810021.png
+预测类别: ship
+置信度: 0.5294
+
+图片: ./data/val/ship/ship__20170709_181333_0e0e__-122.34238015974394_37.71797500399526.png
+预测类别: ship
+置信度: 0.9220
+
+图片: ./data/val/ship/ship__20170609_180751_101b__-122.33795334886277_37.767865010196175.png
+预测类别: ship
+置信度: 0.9847
+
+图片: ./data/val/ship/ship__20170702_181120_103a__-122.33406672426707_37.749267076571314.png
+预测类别: ship
+置信度: 0.9955
+
+图片: ./data/val/ship/ship__20180205_181812_1030__-122.33525851672547_37.73023804026718.png
+预测类别: ship
+置信度: 0.9777
+
+图片: ./data/val/ship/ship__20170723_180811_1005__-122.34891582984933_37.73739860880833.png
+预测类别: ship
+置信度: 0.8231
+
+图片: ./data/val/ship/ship__20170721_180936_0f31__-122.33805721667187_37.76767631849289.png
+预测类别: ship
+置信度: 0.9998
+
+图片: ./data/val/ship/ship__20171217_181637_1032__-122.33377734078427_37.728363954110335.png
+预测类别: ship
+置信度: 0.7170
+
+图片: ./data/val/ship/ship__20170522_180635_0f42__-122.33633731909474_37.75812175989443.png
+预测类别: ship
+置信度: 0.9862
+
+图片: ./data/val/ship/ship__20180131_175841_1010__-118.15357365643099_33.69665806917337.png
+预测类别: ship
+置信度: 0.9656
+
+图片: ./data/val/ship/ship__20160905_193458_0c37__-122.33852328874114_37.73828712719663.png
+预测类别: ship
+置信度: 0.9961
+
+图片: ./data/val/ship/ship__20170822_181223_0f31__-122.3458815140148_37.75720170286299.png
+预测类别: ship
+置信度: 0.9983
+
+图片: ./data/val/ship/ship__20170508_180611_1010__-122.3387403458132_37.76746383928563.png
+预测类别: ship
+置信度: 0.9982
+
+图片: ./data/val/ship/ship__20180712_180755_0f2d__-118.15166853152456_33.73579866677801.png
+预测类别: ship
+置信度: 0.9642
+
+图片: ./data/val/ship/ship__20180705_213443_0f02__-122.33172591264261_37.74828040920041.png
+预测类别: ship
+置信度: 0.7446
+
+图片: ./data/val/ship/ship__20180708_180908_0f47__-118.14474364290032_33.73618773660339.png
+预测类别: ship
+置信度: 0.9537
+
+图片: ./data/val/ship/ship__20170827_181129_1014__-122.33941096398635_37.76865733036569.png
+预测类别: ship
+置信度: 0.9996
+
+图片: ./data/val/ship/ship__20171025_175647_0e26__-118.14347911930842_33.73362914920917.png
+预测类别: ship
+置信度: 0.9987
+
+图片: ./data/val/ship/ship__20180705_213443_0f02__-122.33829130097207_37.768164340821855.png
+预测类别: ship
+置信度: 0.9943
+
+图片: ./data/val/ship/ship__20180706_180914_1051__-118.21606731107047_33.71202155994901.png
+预测类别: ship
+置信度: 0.9847
+
+图片: ./data/val/ship/ship__20180712_180429_101b__-118.21833048463843_33.702637990591164.png
+预测类别: ship
+置信度: 0.9764
+
+图片: ./data/val/ship/ship__20170730_191231_0f21__-122.34222573382337_37.75082710047983.png
+预测类别: ship
+置信度: 0.9727
+
+图片: ./data/val/ship/ship__20170719_180901_101d__-122.33919481036277_37.76998104459105.png
+预测类别: ship
+置信度: 1.0000
+
+图片: ./data/val/ship/ship__20180712_211331_0f06__-118.14283073363218_33.736016066914175.png
+预测类别: ship
+置信度: 0.9067
+
+图片: ./data/val/ship/ship__20170707_174131_0c0b__-122.34742586055928_37.73647102751215.png
+预测类别: ship
+置信度: 0.9999
+
+图片: ./data/val/ship/ship__20170622_180819_1034__-122.33231134253296_37.74755366342522.png
+预测类别: ship
+置信度: 0.9995
+
+图片: ./data/val/ship/ship__20170328_181231_0e0f__-122.35296881171361_37.75680819640679.png
+预测类别: ship
+置信度: 0.9955
+
+图片: ./data/val/ship/ship__20170613_180813_1017__-122.32256994909217_37.717916915564196.png
+预测类别: ship
+置信度: 0.9999
+
+图片: ./data/val/ship/ship__20170724_181036_1011__-122.34065405863726_37.7475735901599.png
+预测类别: ship
+置信度: 0.9436
+
+图片: ./data/val/ship/ship__20170717_180817_1010__-122.3391585834468_37.770224195183694.png
+预测类别: ship
+置信度: 0.9999
+
+图片: ./data/val/ship/ship__20170615_180728_1003__-122.33751335586926_37.7599129740371.png
+预测类别: ship
+置信度: 1.0000
+
+图片: ./data/val/ship/ship__20180708_180908_0f47__-118.1602079334969_33.73506937878848.png
+预测类别: ship
+置信度: 0.8757
+
+图片: ./data/val/ship/ship__20170501_181320_0e1f__-122.33654780764657_37.73073201434079.png
+预测类别: ship
+置信度: 0.9997
+
+图片: ./data/val/ship/ship__20161116_180803_0e14__-122.33870218094695_37.73731471072428.png
+预测类别: ship
+置信度: 0.9973
+
+图片: ./data/val/ship/ship__20171213_181610_100c__-122.34241525126555_37.72170665596761.png
+预测类别: sea
+置信度: 0.6855
+
+图片: ./data/val/ship/ship__20180205_181812_1030__-122.32286914728564_37.718702780425694.png
+预测类别: ship
+置信度: 0.9953
+
+图片: ./data/val/ship/ship__20161102_180658_0e26__-122.3382521187369_37.73815040788379.png
+预测类别: ship
+置信度: 0.9998
+
+图片: ./data/val/ship/ship__20180705_182235_0f4d__-122.32053495342223_37.70965814653878.png
+预测类别: ship
+置信度: 0.9952
+
+图片: ./data/val/ship/ship__20171212_181755_0e26__-122.33266963436137_37.74936733203823.png
+预测类别: ship
+置信度: 0.9657
+
+图片: ./data/val/ship/ship__20170702_180943_103c__-122.3332290637038_37.721168346437786.png
+预测类别: ship
+置信度: 0.9943
+
+图片: ./data/val/ship/ship__20171217_181637_1032__-122.35089797724429_37.74825235823534.png
+预测类别: ship
+置信度: 0.9843
+
+图片: ./data/val/ship/ship__20180705_182236_0f4d__-122.34239097094304_37.75139584987269.png
+预测类别: ship
+置信度: 0.9987
+
+图片: ./data/val/ship/ship__20170618_180802_0f34__-122.3236466041282_37.71930211262915.png
+预测类别: ship
+置信度: 1.0000
+
+图片: ./data/val/ship/ship__20170604_180819_0f52__-122.339840050381_37.77020097559012.png
+预测类别: ship
+置信度: 0.9993
+
+图片: ./data/val/ship/ship__20161011_185736_0c72__-122.35168603891846_37.78281297621249.png
+预测类别: ship
+置信度: 0.9787
+
+图片: ./data/val/ship/ship__20170909_181400_0f28__-122.34108913318198_37.71769740002228.png
+预测类别: ship
+置信度: 0.9740
+
+图片: ./data/val/ship/ship__20170717_180818_1010__-122.32357828249617_37.7193287601576.png
+预测类别: ship
+置信度: 0.9808
+
+图片: ./data/val/ship/ship__20170719_180901_101d__-122.3300199396251_37.748649275464146.png
+预测类别: ship
+置信度: 0.9986
+
+图片: ./data/val/ship/ship__20180705_182236_0f4d__-122.33953638448827_37.769874802316046.png
+预测类别: ship
+置信度: 0.9998
+
+图片: ./data/val/ship/ship__20170712_180940_0f15__-122.33822486692323_37.76797469256424.png
+预测类别: ship
+置信度: 0.9995
+
+图片: ./data/val/ship/ship__20170730_181043_103d__-122.33195163144038_37.749687737152065.png
+预测类别: ship
+置信度: 0.9998
+
+图片: ./data/val/ship/ship__20161102_180658_0e26__-122.3412528345913_37.749172263316865.png
+预测类别: ship
+置信度: 0.9983
+
+图片: ./data/val/ship/ship__20171022_175534_100e__-118.2215443724113_33.73071704665499.png
+预测类别: ship
+置信度: 0.9998
+
+图片: ./data/val/ship/ship__20180131_175841_1010__-118.2112386851259_33.73011512692281.png
+预测类别: sea
+置信度: 0.6322
+
+图片: ./data/val/ship/ship__20170522_180635_0f42__-122.3492190437419_37.74943283414725.png
+预测类别: ship
+置信度: 0.9949
+
+图片: ./data/val/ship/ship__20180205_184449_104a__-122.32314587629772_37.718217658219075.png
+预测类别: ship
+置信度: 0.9121
+
+图片: ./data/val/ship/ship__20171212_181755_0e26__-122.35002629223312_37.770041286507066.png
+预测类别: ship
+置信度: 0.9982
+
+图片: ./data/val/ship/ship__20180712_180428_101b__-118.14675833341012_33.729405079952606.png
+预测类别: ship
+置信度: 0.9564
+
+图片: ./data/val/ship/ship__20161102_202001_0c75__-122.33546468872845_37.756683756597916.png
+预测类别: ship
+置信度: 0.9996
+
+图片: ./data/val/ship/ship__20180714_180427_1029__-118.22589617269283_33.72250313487135.png
+预测类别: ship
+置信度: 0.9984
+
+图片: ./data/val/ship/ship__20171207_181551_103c__-122.33142699267296_37.74744049268292.png
+预测类别: ship
+置信度: 0.9993
+
+图片: ./data/val/ship/ship__20170615_181425_0e0d__-122.34225882891783_37.75093544276724.png
+预测类别: ship
+置信度: 0.9719
+
+图片: ./data/val/ship/ship__20170619_180825_1032__-122.33156123977024_37.7400865334179.png
+预测类别: ship
+置信度: 0.9918
+
+图片: ./data/val/ship/ship__20180711_182157_1048__-122.3486040190204_37.76908705675157.png
+预测类别: ship
+置信度: 0.9982
+
+图片: ./data/val/ship/ship__20170618_180801_0f34__-122.33591595773636_37.72905200850194.png
+预测类别: ship
+置信度: 0.9995
+
+图片: ./data/val/ship/ship__20170501_180617_1005__-122.40480506252185_37.816081172987026.png
+预测类别: ship
+置信度: 0.9989
+
+图片: ./data/val/ship/ship__20170211_181116_0e16__-122.34839683992097_37.73834212222343.png
+预测类别: ship
+置信度: 0.9974
+
+图片: ./data/val/ship/ship__20180709_182127_0e20__-122.3242066077652_37.728850265219606.png
+预测类别: ship
+置信度: 0.9991
+
+图片: ./data/val/ship/ship__20180706_180314_1024__-118.16449759261873_33.728995555872416.png
+预测类别: ship
+置信度: 0.9953
+
+图片: ./data/val/ship/ship__20170613_180813_1017__-122.32435112918907_37.72793175152951.png
+预测类别: ship
+置信度: 1.0000
+
+图片: ./data/val/ship/ship__20170719_180901_101d__-122.34397949191448_37.729610908864736.png
+预测类别: ship
+置信度: 0.9234
+
+图片: ./data/val/ship/ship__20170617_180854_1031__-122.35898567268862_37.793614536412555.png
+预测类别: ship
+置信度: 0.9999
+
+图片: ./data/val/ship/ship__20160710_182140_0c78__-122.33831761096032_37.75756506843916.png
+预测类别: ship
+置信度: 0.9924
+
+图片: ./data/val/ship/ship__20180706_180914_1051__-118.22731560164715_33.72213731307771.png
+预测类别: ship
+置信度: 0.9825
+
+图片: ./data/val/ship/ship__20171212_181755_0e26__-122.34291347769646_37.75007383360081.png
+预测类别: ship
+置信度: 0.9999
+
+图片: ./data/val/ship/ship__20170703_180945_1009__-122.343937058349_37.71898414143061.png
+预测类别: ship
+置信度: 0.9415
+
+图片: ./data/val/ship/ship__20170419_180519_1009__-122.35212395588458_37.78338320950031.png
+预测类别: ship
+置信度: 1.0000
+
+图片: ./data/val/ship/ship__20170707_181135_100b__-122.34184248960575_37.747958784238286.png
+预测类别: ship
+置信度: 0.9981
+
+图片: ./data/val/ship/ship__20170505_181258_0e2f__-122.33614459969029_37.730134875729625.png
+预测类别: ship
+置信度: 0.9992
+
+图片: ./data/val/ship/ship__20170818_180847_1035__-122.34799539294085_37.73752871841786.png
+预测类别: ship
+置信度: 0.9534
+
+图片: ./data/val/ship/ship__20170822_181223_0f31__-122.34774337323503_37.76624316667271.png
+预测类别: ship
+置信度: 0.9859
+
+图片: ./data/val/ship/ship__20160820_233143_0c53__-122.34848736520453_37.77073581030887.png
+预测类别: ship
+置信度: 0.6093
+
+图片: ./data/val/ship/ship__20180206_181845_0f34__-122.34587818956939_37.76144686447373.png
+预测类别: ship
+置信度: 0.9997
+
+图片: ./data/val/ship/ship__20180707_182444_0f17__-122.32060425459107_37.709523348129174.png
+预测类别: ship
+置信度: 0.7401
+
+图片: ./data/val/ship/ship__20170609_180757_103a__-122.33442994861488_37.72771869282019.png
+预测类别: ship
+置信度: 0.9561
+
+图片: ./data/val/ship/ship__20170822_181223_0f31__-122.33888043741794_37.76703199623079.png
+预测类别: ship
+置信度: 0.9993
+
+图片: ./data/val/ship/ship__20170903_181304_1041__-122.33802894106654_37.76702721606797.png
+预测类别: sea
+置信度: 0.9263
+
+图片: ./data/val/ship/ship__20180312_182016_1042__-122.34271012170575_37.74996454207846.png
+预测类别: ship
+置信度: 0.9997
+
+图片: ./data/val/ship/ship__20180705_182236_0f4d__-122.35823748780594_37.79344822790265.png
+预测类别: ship
+置信度: 0.9640
+
+图片: ./data/val/ship/ship__20170619_181346_0e30__-122.34814310125861_37.740098284028186.png
+预测类别: ship
+置信度: 0.9971
+
+图片: ./data/val/ship/ship__20171217_181637_1032__-122.33811665447881_37.73806852894704.png
+预测类别: ship
+置信度: 0.9993
+
+图片: ./data/val/ship/ship__20180708_180908_0f47__-118.21974820783494_33.69759163827636.png
+预测类别: ship
+置信度: 0.9998
+
+图片: ./data/val/ship/ship__20180713_180403_1035__-118.13146308327627_33.68904335536601.png
+预测类别: sea
+置信度: 0.7553
+
+图片: ./data/val/ship/ship__20180203_181746_1035__-122.3238523014483_37.72663099646809.png
+预测类别: ship
+置信度: 0.9996
+
+图片: ./data/val/ship/ship__20180708_180908_0f47__-118.22841937906449_33.72234278261551.png
+预测类别: ship
+置信度: 0.9997
+
+图片: ./data/val/ship/ship__20170621_181251_0e26__-122.33904279519368_37.767925204446534.png
+预测类别: ship
+置信度: 0.9921
+
+图片: ./data/val/ship/ship__20180206_181845_0f34__-122.34885999520644_37.73988593083626.png
+预测类别: ship
+置信度: 0.9998
+
+图片: ./data/val/ship/ship__20170719_180901_101d__-122.34551737673225_37.75987657850744.png
+预测类别: ship
+置信度: 0.9140
+
+图片: ./data/val/ship/ship__20171023_175305_1039__-118.22703351777623_33.720516781116096.png
+预测类别: ship
+置信度: 0.9975
+
+图片: ./data/val/ship/ship__20161218_180845_0e26__-122.35077598042146_37.750522997175615.png
+预测类别: ship
+置信度: 0.9956
+
+图片: ./data/val/ship/ship__20170830_181004_0f4e__-122.34726997279913_37.738714439896754.png
+预测类别: ship
+置信度: 0.9534
+
+图片: ./data/val/ship/ship__20170616_180825_100e__-122.34205451391247_37.75093430235835.png
+预测类别: ship
+置信度: 0.9952
+
+图片: ./data/val/ship/ship__20180713_180403_1035__-118.16429785193365_33.72859160251572.png
+预测类别: ship
+置信度: 0.9975
+
+图片: ./data/val/ship/ship__20171119_181613_0f52__-122.34016581020008_37.71817894771884.png
+预测类别: ship
+置信度: 0.9583
+
+图片: ./data/val/ship/ship__20170414_180530_0f28__-122.3382979580321_37.7368257320653.png
+预测类别: ship
+置信度: 0.9910
+
+图片: ./data/val/ship/ship__20170609_180756_103a__-122.34908354683306_37.74935096766827.png
+预测类别: ship
+置信度: 0.9783
+
+图片: ./data/val/ship/ship__20180712_211331_0f06__-118.202077984797_33.73033992834809.png
+预测类别: ship
+置信度: 0.8579
+
+图片: ./data/val/ship/ship__20180712_180755_0f2d__-118.20505286218336_33.73004037440087.png
+预测类别: ship
+置信度: 0.9554
+
+图片: ./data/val/ship/ship__20170619_181346_0e30__-122.33242741949667_37.71946031983231.png
+预测类别: ship
+置信度: 0.9463
+
+图片: ./data/val/ship/ship__20171212_181756_0e26__-122.34197035081759_37.72197456876908.png
+预测类别: ship
+置信度: 0.9726
+
+图片: ./data/val/ship/ship__20170508_180612_1010__-122.34320797160096_37.728308716869805.png
+预测类别: ship
+置信度: 0.9881
+
+图片: ./data/val/ship/ship__20170616_180825_100e__-122.33953301753296_37.770253333729265.png
+预测类别: ship
+置信度: 0.9999
+
+图片: ./data/val/ship/ship__20161202_180735_0e30__-122.3391459838365_37.73718200246272.png
+预测类别: ship
+置信度: 0.9590
+
+图片: ./data/val/ship/ship__20170822_181223_0f31__-122.33453769316537_37.75751674600494.png
+预测类别: ship
+置信度: 0.9979
+
+图片: ./data/val/ship/ship__20180209_184353_0f21__-122.32506134542359_37.728449570059034.png
+预测类别: ship
+置信度: 0.9952
+
+图片: ./data/val/ship/ship__20171119_181613_0f52__-122.33806559292786_37.70937931753214.png
+预测类别: ship
+置信度: 0.8634
+
+图片: ./data/val/ship/ship__20171129_181545_1022__-122.32961142336484_37.7108728057609.png
+预测类别: ship
+置信度: 0.9988
+
+图片: ./data/val/ship/ship__20170917_190615_0f3c__-122.33447197539547_37.72682662682025.png
+预测类别: ship
+置信度: 1.0000
+
+图片: ./data/val/ship/ship__20180210_181908_1006__-122.35282451856958_37.78509053291386.png
+预测类别: ship
+置信度: 0.9986
+
+图片: ./data/val/ship/ship__20170419_180520_1009__-122.33850981521253_37.7398012605276.png
+预测类别: ship
+置信度: 0.9999
+
+图片: ./data/val/ship/ship__20180705_182235_0f4d__-122.33864576415738_37.73982906283797.png
+预测类别: ship
+置信度: 0.9959
+
+图片: ./data/val/ship/ship__20170921_181406_1031__-122.35187077749838_37.78116459717127.png
+预测类别: ship
+置信度: 0.9996
+
+图片: ./data/val/ship/ship__20170923_181241_0f42__-122.33247965400024_37.747770931971786.png
+预测类别: ship
+置信度: 0.9986
+
+图片: ./data/val/ship/ship__20170717_180818_1010__-122.35628444006775_37.7593410157335.png
+预测类别: ship
+置信度: 0.9914
+
+图片: ./data/val/ship/ship__20180710_180333_1002__-118.22801895462972_33.72150804228225.png
+预测类别: ship
+置信度: 0.9267
+
+图片: ./data/val/ship/ship__20171129_181544_1022__-122.342773203759_37.7505327212711.png
+预测类别: ship
+置信度: 0.9998
+
+图片: ./data/val/ship/ship__20170617_181433_0e0f__-122.32525014183037_37.73015413754748.png
+预测类别: ship
+置信度: 0.9999
+
+图片: ./data/val/ship/ship__20170909_181730_0e0f__-122.33912491695538_37.73572175361677.png
+预测类别: ship
+置信度: 0.9845
+
+图片: ./data/val/ship/ship__20170618_180801_0f34__-122.34992481843103_37.76995960879467.png
+预测类别: ship
+置信度: 0.9999
+
+图片: ./data/val/ship/ship__20171213_181610_100c__-122.33323827337007_37.72014089670815.png
+预测类别: ship
+置信度: 0.6679
+
+图片: ./data/val/ship/ship__20170919_181412_0f1b__-122.33471184477263_37.7570850995243.png
+预测类别: ship
+置信度: 0.9969
+
+图片: ./data/val/ship/ship__20170822_181223_0f31__-122.33262727017568_37.74650091608947.png
+预测类别: ship
+置信度: 0.9897
+
+图片: ./data/val/ship/ship__20170501_180610_100e__-122.3358820245197_37.759525241391806.png
+预测类别: ship
+置信度: 0.9969
+
+图片: ./data/val/ship/ship__20170622_180819_1034__-122.32199698355923_37.71729171288827.png
+预测类别: ship
+置信度: 1.0000
+
+图片: ./data/val/ship/ship__20170129_181027_0e1f__-122.35269566281684_37.7568878146103.png
+预测类别: ship
+置信度: 0.7200
+
+图片: ./data/val/ship/ship__20170910_181215_1010__-122.35000422761132_37.78034313695685.png
+预测类别: ship
+置信度: 0.9666
+
+图片: ./data/val/ship/ship__20180709_182127_0e20__-122.34115696827755_37.7177248186803.png
+预测类别: ship
+置信度: 0.9985
+
+图片: ./data/val/ship/ship__20170619_181346_0e30__-122.33663561156446_37.7590427773507.png
+预测类别: ship
+置信度: 0.9993
+
+图片: ./data/val/ship/ship__20170703_180945_1009__-122.32507595039102_37.71933734373484.png
+预测类别: ship
+置信度: 0.6007
+
+图片: ./data/val/ship/ship__20170522_180635_0f42__-122.32893214438306_37.73712429623044.png
+预测类别: ship
+置信度: 0.8470
+
+图片: ./data/val/ship/ship__20170830_181003_0f4e__-122.33468859786528_37.75968074611797.png
+预测类别: ship
+置信度: 0.9942
+
+图片: ./data/val/ship/ship__20171212_181755_0e26__-122.33732803969346_37.73868600531012.png
+预测类别: ship
+置信度: 0.9962
+
+图片: ./data/val/ship/ship__20170709_181333_0e0e__-122.36013529353468_37.77093483120248.png
+预测类别: ship
+置信度: 0.9951
+
+图片: ./data/val/ship/ship__20170106_180851_0e30__-122.34968094303304_37.77058016750495.png
+预测类别: ship
+置信度: 0.9963
+
+图片: ./data/val/ship/ship__20180705_213444_0f02__-122.33402967925961_37.72679708946252.png
+预测类别: ship
+置信度: 0.9731
+
+图片: ./data/val/ship/ship__20180705_182236_0f4d__-122.34671030989746_37.75977504002937.png
+预测类别: ship
+置信度: 0.9988
+
+图片: ./data/val/ship/ship__20170515_180654_1007__-122.34392970462561_37.73139523823038.png
+预测类别: ship
+置信度: 0.9745
+
+图片: ./data/val/ship/ship__20170901_181520_0e14__-122.35121081280293_37.74752401629368.png
+预测类别: ship
+置信度: 0.8058
+
+图片: ./data/val/ship/ship__20161218_180845_0e26__-122.34128760531253_37.749091339441996.png
+预测类别: sea
+置信度: 0.8830
+
+图片: ./data/val/ship/ship__20170910_181216_1010__-122.35188051380415_37.74882559310978.png
+预测类别: ship
+置信度: 0.9925
+
+图片: ./data/val/ship/ship__20170724_181036_1011__-122.33857293542425_37.76713842794705.png
+预测类别: ship
+置信度: 0.9998
+
+图片: ./data/val/ship/ship__20170515_180653_1007__-122.35727137539101_37.75942752052446.png
+预测类别: ship
+置信度: 0.9853
+
+图片: ./data/val/ship/ship__20170609_180757_103a__-122.32675050227115_37.73740928946283.png
+预测类别: ship
+置信度: 0.9928
+
+图片: ./data/val/ship/ship__20170622_180819_1034__-122.32978378407111_37.73707506277014.png
+预测类别: ship
+置信度: 0.9919
+
+图片: ./data/val/ship/ship__20180711_182156_1048__-122.33297269876117_37.726980389905535.png
+预测类别: ship
+置信度: 0.9981
+
+图片: ./data/val/ship/ship__20170622_180819_1034__-122.33613878363441_37.75747169713343.png
+预测类别: ship
+置信度: 0.9996
+
+图片: ./data/val/ship/ship__20170909_181400_0f28__-122.33915896246666_37.73572194449093.png
+预测类别: ship
+置信度: 0.9759
+
+图片: ./data/val/ship/ship__20170504_180549_1025__-122.33004591866283_37.73821220943172.png
+预测类别: ship
+置信度: 1.0000
+
+图片: ./data/val/ship/ship__20170615_180728_1003__-122.32323691959114_37.71943495909626.png
+预测类别: ship
+置信度: 0.9999
+
+
+保存低置信度预测结果到 'low_confidence_predictions' 目录...
+
+分类错误的图片:
+./data/val/sea/sea__20160905_193458_0c37__-122.49581757936237_37.62411826912237.png
+./data/val/sea/sea__20161103_195522_0c27__-122.37504308803496_37.80067692996824.png
+./data/val/sea/sea__20170314_155240_0c12__-122.25070499415942_37.725539805083564.png
+./data/val/sea/sea__20170414_180529_0f28__-122.47864358230603_37.81921617460607.png
+./data/val/sea/sea__20170613_180813_1017__-122.34400119689425_37.72715043502993.png
+./data/val/sea/sea__20170617_180854_1031__-122.47157916689906_37.84433113894968.png
+./data/val/sea/sea__20170707_181135_100b__-122.47869729911623_37.82127139519534.png
+./data/val/sea/sea__20170709_180806_1024__-122.30120886253196_37.792312602393324.png
+./data/val/sea/sea__20170901_181520_0e14__-122.37761667777681_37.798554455945.png
+./data/val/sea/sea__20170901_181520_0e14__-122.51320625522732_37.78291501175205.png
+./data/val/sea/sea__20170910_181215_1010__-122.35014498945_37.77983016715753.png
+./data/val/sea/sea__20170919_181710_0e20__-122.48178591240826_37.798788328489415.png
+./data/val/sea/sea__20171018_175517_1005__-118.23268769451015_33.74459399219875.png
+./data/val/sea/sea__20180206_181844_0f34__-122.52777790390613_37.827291835076295.png
+./data/val/sea/sea__20180210_181908_1006__-122.33198430763633_37.783919689328826.png
+./data/val/sea/sea__20180708_180454_0f28__-118.12990701583655_33.68637904272287.png
+./data/val/sea/sea__20180711_180350_1042__-118.1272370075018_33.66778880158038.png
+./data/val/ship/ship__20161218_180845_0e26__-122.34128760531253_37.749091339441996.png
+./data/val/ship/ship__20170901_181520_0e14__-122.35176479998303_37.7815966425164.png
+./data/val/ship/ship__20170903_181304_1041__-122.33802894106654_37.76702721606797.png
+./data/val/ship/ship__20171213_181610_100c__-122.34241525126555_37.72170665596761.png
+./data/val/ship/ship__20180131_175841_1010__-118.2112386851259_33.73011512692281.png
+./data/val/ship/ship__20180712_180429_101b__-118.12564883363834_33.66758682744614.png
+./data/val/ship/ship__20180713_180403_1035__-118.13146308327627_33.68904335536601.png
+
+统计信息:
+总样本数: 800
+低置信度样本数: 123
+分类错误样本数: 24
+
+
+=== 第5步：绘制训练曲线 ===
+
+执行命令: python draw_plots.py --json_path training_statistics.json --save_dir plots
+
+Plots have been saved to plots
+
+
+=== 所有步骤已完成 ===
+
+结果文件位置：
+- 模型权重：weights/vgg13_best.pth
+- 训练曲线：plots/
+- 分类结果：low_confidence_predictions/
