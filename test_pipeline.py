@@ -4,6 +4,7 @@ import unittest
 from pathlib import Path
 import json
 import torch
+import random
 from PIL import Image
 import numpy as np
 import subprocess
@@ -28,8 +29,8 @@ class TestShipClassificationPipeline(unittest.TestCase):
         os.makedirs("weights", exist_ok=True)
         os.makedirs("plots", exist_ok=True)
         
-        # 创建测试图片
-        cls._create_test_images()
+        # 从实际数据集中复制测试图片
+        cls._copy_test_images()
         
         # 创建类别索引文件
         cls._create_class_index()
@@ -54,25 +55,34 @@ class TestShipClassificationPipeline(unittest.TestCase):
         print("测试环境清理完成！")
 
     @classmethod
-    def _create_test_images(cls):
-        """创建测试用的图片"""
-        print("创建测试图片...")
-        # 创建测试图片
-        for i in range(10):
-            # 创建非船只图片（蓝色为主）
-            img_sea = Image.fromarray(
-                np.random.randint(0, 100, (224, 224, 3), dtype=np.uint8)
-            )
-            img_sea.save(os.path.join(cls.sea_dir, f"sea_{i}.jpg"))
-            
-            # 创建船只图片（灰色为主）
-            img_ship = Image.fromarray(
-                np.random.randint(100, 255, (224, 224, 3), dtype=np.uint8)
-            )
-            img_ship.save(os.path.join(cls.ship_dir, f"ship_{i}.jpg"))
+    def _copy_test_images(cls):
+        """从实际数据集中复制测试图片"""
+        print("复制测试图片...")
+        # 从实际数据集中随机选择图片
+        real_sea_dir = "data/sea"
+        real_ship_dir = "data/ship"
         
-        print(f"创建完成：sea目录 {10}张图片")
-        print(f"         ship目录 {10}张图片")
+        # 获取所有图片列表
+        sea_images = [f for f in os.listdir(real_sea_dir) if f.endswith('.png')]
+        ship_images = [f for f in os.listdir(real_ship_dir) if f.endswith('.png')]
+        
+        # 随机选择5张图片
+        selected_sea = random.sample(sea_images, 5)
+        selected_ship = random.sample(ship_images, 5)
+        
+        # 复制选中的图片
+        for img in selected_sea:
+            src = os.path.join(real_sea_dir, img)
+            dst = os.path.join(cls.sea_dir, img)
+            shutil.copy2(src, dst)
+        
+        for img in selected_ship:
+            src = os.path.join(real_ship_dir, img)
+            dst = os.path.join(cls.ship_dir, img)
+            shutil.copy2(src, dst)
+        
+        print(f"创建完成：sea目录 {len(selected_sea)}张图片")
+        print(f"         ship目录 {len(selected_ship)}张图片")
 
     @classmethod
     def _create_class_index(cls):
