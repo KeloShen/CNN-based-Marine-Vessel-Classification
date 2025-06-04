@@ -37,21 +37,21 @@ def main():
 
     # 3. 测试模型
     print("\n=== 第3步：测试模型 ===")
-    cmd = f"python test.py --weights_path weights/vgg13_best.pth --dataset_root {args.data_root}"
+    cmd = f"python test.py --weights_path weights/vgg13_best.pth --img_paths {args.data_root}/val/*/*.* --batch_size 32 --cls_index class_index.json"
     if run_command(cmd) != 0:
         print("模型测试失败！")
         return
 
     # 4. 检查分类结果
     print("\n=== 第4步：检查分类结果 ===")
-    cmd = f"python check_classification.py --weights_path weights/vgg13_best.pth --dataset_root {args.data_root} --conf_thr 0.9"
+    cmd = f"python check_classification.py --weights_path weights/vgg13_best.pth --img_paths {args.data_root}/val/*/*.* --batch_size 32 --conf_thr 0.9 --cls_index class_index.json"
     if run_command(cmd) != 0:
         print("分类结果检查失败！")
         return
 
     # 5. 绘制训练曲线
     print("\n=== 第5步：绘制训练曲线 ===")
-    cmd = "python draw_plots.py"
+    cmd = "python draw_plots.py --json_path training_statistics.json --save_dir plots"
     if run_command(cmd) != 0:
         print("训练曲线绘制失败！")
         return
