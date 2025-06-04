@@ -10,45 +10,99 @@
 - 其他依赖见requirements.txt
 
 ## 项目结构
-
 ```
-.
-├── data/               # 数据集目录
-│   ├── train/         # 训练集
-│   │   ├── sea/      # 非船类图像
-│   │   └── ship/     # 船类图像
-│   └── val/          # 验证集
-│       ├── sea/      # 非船类图像
-│       └── ship/     # 船类图像
+├── data/               # 原始数据集目录
+│   ├── sea/           # 非船类图像
+│   └── ship/          # 船类图像
 ├── model.py           # VGG13网络模型定义
-├── train.py          # 训练脚本
-├── test.py           # 测试脚本
-├── draw_plots.py     # 绘制训练曲线脚本
-├── requirements.txt   # 项目依赖
-└── README.md         # 项目说明
+├── train.py           # 训练脚本
+├── test.py            # 测试脚本
+├── split_dataset.py   # 数据集划分脚本
+├── draw_plots.py      # 绘制训练曲线脚本
+├── check_classification.py  # 分类结果检查脚本
+├── run_all.py         # 一键运行所有流程的脚本
+├── ship_classification.ipynb  # Colab notebook文件
+├── requirements.txt    # 项目依赖
+└── README.md          # 项目说明
+
+注：运行split_dataset.py后，data目录结构将变为：
+data/
+├── train/            # 训练集（由split_dataset.py生成）
+│   ├── sea/         # 非船类图像
+│   └── ship/        # 船类图像
+└── val/             # 验证集（由split_dataset.py生成）
+    ├── sea/         # 非船类图像
+    └── ship/        # 船类图像
 ```
 
 ## 使用方法
 
-1. 安装依赖：
+### 方法一：使用Google Colab（推荐）
+
+1. 点击下面的链接在Colab中打开notebook：
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/你的用户名/仓库名/blob/main/ship_classification.ipynb)
+
+2. 在Colab中运行notebook：
+   - 点击"代码执行程序"→"更改运行时类型"，选择"GPU"
+   - 按顺序运行所有单元格
+   - notebook中包含了完整的数据准备、训练和评估流程
+
+### 方法二：本地运行
+
+1. 克隆仓库：
+```bash
+git clone https://github.com/你的用户名/仓库名.git
+cd 仓库名
+```
+
+2. 安装依赖：
 ```bash
 pip install -r requirements.txt
 ```
 
+3. 准备数据：
+   - 将海面图片数据放入 `data/sea/` 目录
+   - 将舰船图片数据放入 `data/ship/` 目录
+
+4. 运行完整流程：
+```bash
+python run_all.py --data_root ./data/ --epochs 100 --batch_size 64 --lr 0.0001
+```
+
+或者分步运行：
+
+1. 划分数据集：
+```bash
+python split_dataset.py --dataset_root ./data/ --train_ratio 0.8
+```
+
 2. 训练模型：
 ```bash
-python train.py --dataset_root ./data --epochs 50 --batch_size 16 --lr 0.001
+python train.py --dataset_root ./data/ --epochs 100 --batch_size 64 --lr 0.0001
 ```
 
 3. 测试模型：
 ```bash
-python test.py --weights_path weights/vgg13_best.pth
+python test.py --weights_path weights/vgg13_best.pth --dataset_root ./data/
 ```
 
-4. 绘制训练曲线：
+4. 检查分类结果：
 ```bash
-python draw_plots.py --json_path training_statistics.json --save_dir plots
+python check_classification.py --weights_path weights/vgg13_best.pth --dataset_root ./data/ --conf_thr 0.9
 ```
+
+5. 绘制训练曲线：
+```bash
+python draw_plots.py
+```
+
+## 输出结果
+
+运行完成后，将生成以下文件：
+
+- `weights/vgg13_best.pth`：训练好的模型权重
+- `plots/`：训练过程的损失和准确率曲线
+- `low_confidence_predictions/`：低置信度和错误分类的样本
 
 ## 参数说明
 
