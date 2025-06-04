@@ -37,14 +37,15 @@ def main():
 
     # 3. 测试模型
     print("\n=== 第3步：测试模型 ===")
-    cmd = f"python test.py --weights_path weights/vgg13_best.pth --img_paths {args.data_root}/val/*/*.* --batch_size 32 --cls_index class_index.json"
+    val_dir = os.path.join(args.data_root, "val")
+    cmd = f"python test.py --weights_path weights/vgg13_best.pth --img_paths {val_dir} --batch_size {args.batch_size} --cls_index class_index.json"
     if run_command(cmd) != 0:
         print("模型测试失败！")
         return
 
     # 4. 检查分类结果
     print("\n=== 第4步：检查分类结果 ===")
-    cmd = f"python check_classification.py --weights_path weights/vgg13_best.pth --img_paths {args.data_root}/val/*/*.* --batch_size 32 --conf_thr 0.9 --cls_index class_index.json"
+    cmd = f"python check_classification.py --weights_path weights/vgg13_best.pth --img_paths {val_dir} --batch_size {args.batch_size} --conf_thr 0.9 --cls_index class_index.json"
     if run_command(cmd) != 0:
         print("分类结果检查失败！")
         return
