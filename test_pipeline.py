@@ -17,6 +17,8 @@ class TestShipClassificationPipeline(unittest.TestCase):
         # 创建测试数据目录
         cls.test_root = "test_data"
         cls.data_dir = os.path.join(cls.test_root, "data")
+        
+        # 创建原始数据目录
         cls.sea_dir = os.path.join(cls.data_dir, "sea")
         cls.ship_dir = os.path.join(cls.data_dir, "ship")
         
@@ -24,6 +26,7 @@ class TestShipClassificationPipeline(unittest.TestCase):
         os.makedirs(cls.sea_dir, exist_ok=True)
         os.makedirs(cls.ship_dir, exist_ok=True)
         os.makedirs("weights", exist_ok=True)
+        os.makedirs("plots", exist_ok=True)
         
         # 创建测试图片
         cls._create_test_images()
@@ -54,7 +57,7 @@ class TestShipClassificationPipeline(unittest.TestCase):
     def _create_test_images(cls):
         """创建测试用的图片"""
         print("创建测试图片...")
-        # 创建一些随机图片用于测试
+        # 创建测试图片
         for i in range(10):
             # 创建非船只图片（蓝色为主）
             img_sea = Image.fromarray(
@@ -67,7 +70,9 @@ class TestShipClassificationPipeline(unittest.TestCase):
                 np.random.randint(100, 255, (224, 224, 3), dtype=np.uint8)
             )
             img_ship.save(os.path.join(cls.ship_dir, f"ship_{i}.jpg"))
-        print(f"创建完成：sea {10}张, ship {10}张")
+        
+        print(f"创建完成：sea目录 {10}张图片")
+        print(f"         ship目录 {10}张图片")
 
     @classmethod
     def _create_class_index(cls):
