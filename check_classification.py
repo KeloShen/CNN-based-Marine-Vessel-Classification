@@ -23,8 +23,13 @@ def main(args):
     ])
 
     # 获取测试集图片路径
-    test_paths = args.img_paths
-    img_path_list = glob(test_paths, recursive=True)
+    val_dir = args.img_paths
+    img_path_list = []
+    for class_name in ['sea', 'ship']:
+        pattern = os.path.join(val_dir, class_name, '*.png')
+        img_path_list.extend(glob(pattern))
+    
+    assert len(img_path_list) > 0, f"找不到任何图片文件在 {val_dir} 目录下"
 
     # 加载类别信息
     json_path = args.cls_index
@@ -34,7 +39,7 @@ def main(args):
     class_indict_reverse = {v: k for k, v in class_indict.items()}
     
     # 获取真实标签
-    ground_truths = [int(class_indict_reverse[x.split('/')[-2]])
+    ground_truths = [int(class_indict_reverse[Path(x).parent.name])
                      for x in img_path_list]
 
     # 加载VGG13模型

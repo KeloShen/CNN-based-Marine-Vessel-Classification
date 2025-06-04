@@ -134,14 +134,16 @@ class TestShipClassificationPipeline(unittest.TestCase):
     def test_3_test_model(self):
         """测试模型评估"""
         print("\n=== 测试模型评估 ===")
-        cmd = f"python test.py --weights_path weights/vgg13_best.pth --img_paths {self.data_dir}/val/*/*.* --batch_size 2 --cls_index class_index.json"
+        val_dir = os.path.join(self.data_dir, "val")
+        cmd = f'python test.py --weights_path weights/vgg13_best.pth --img_paths {val_dir} --batch_size 2 --cls_index class_index.json'
         self.assertEqual(self._run_command(cmd), 0)
         print("模型评估测试完成！")
 
     def test_4_check_classification(self):
         """测试分类结果检查"""
         print("\n=== 测试分类结果检查 ===")
-        cmd = f"python check_classification.py --weights_path weights/vgg13_best.pth --img_paths {self.data_dir}/val/*/*.* --batch_size 2 --conf_thr 0.9 --cls_index class_index.json"
+        val_dir = os.path.join(self.data_dir, "val")
+        cmd = f'python check_classification.py --weights_path weights/vgg13_best.pth --img_paths {val_dir} --batch_size 2 --conf_thr 0.9 --cls_index class_index.json'
         self.assertEqual(self._run_command(cmd), 0)
         
         # 验证是否生成了低置信度预测结果目录
