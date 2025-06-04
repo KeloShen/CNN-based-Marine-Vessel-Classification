@@ -17,6 +17,7 @@
 ├── model.py           # VGG13网络模型定义
 ├── train.py           # 训练脚本
 ├── test.py            # 测试脚本
+├── test_pipeline.py   # 完整流程测试脚本
 ├── split_dataset.py   # 数据集划分脚本
 ├── draw_plots.py      # 绘制训练曲线脚本
 ├── check_classification.py  # 分类结果检查脚本
@@ -95,6 +96,28 @@ python check_classification.py --weights_path weights/vgg13_best.pth --dataset_r
 ```bash
 python draw_plots.py
 ```
+
+### 方法三：运行测试流程
+
+为了验证整个项目的正确性，我们提供了完整的测试流程：
+
+```bash
+python test_pipeline.py --data_root ./data/ --test_weights_dir ./test_weights/ --test_plots_dir ./test_plots/
+```
+
+测试流程包括：
+1. 数据集划分测试（验证8:2的训练验证比例）
+2. 模型训练测试（使用小规模数据集快速验证）
+3. 模型评估测试（验证准确率计算）
+4. 分类结果检查测试（验证低置信度样本识别）
+5. 训练曲线绘制测试
+
+测试参数说明：
+- `--data_root`: 测试数据集根目录
+- `--test_weights_dir`: 测试权重保存目录
+- `--test_plots_dir`: 测试图表保存目录
+- `--test_batch_size`: 测试批次大小（默认8）
+- `--test_epochs`: 测试训练轮数（默认2）
 
 ## 输出结果
 
