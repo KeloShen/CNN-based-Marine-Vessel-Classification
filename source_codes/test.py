@@ -10,6 +10,10 @@ from glob import glob
 from pathlib import Path
 
 def main(args):
+    # 获取当前脚本所在目录和项目根目录
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    root_dir = os.path.dirname(current_dir)
+    
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     # 数据预处理
@@ -130,7 +134,8 @@ def parse_args():
                         help='path pattern to test images')
     parser.add_argument('--cls_index', type=str, default='class_index.json',
                         help='path to class index json file')
-    parser.add_argument('--weights_path', type=str, default='weights/vgg13_best.pth',
+    parser.add_argument('--weights_path', type=str, 
+                        default=os.path.join('weights', 'vgg13_best.pth'),
                         help='path to model weights')
     parser.add_argument('--batch_size', type=int, default=16,
                         help='batch size for testing')

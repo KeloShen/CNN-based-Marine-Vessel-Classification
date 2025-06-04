@@ -15,8 +15,12 @@ class TestShipClassificationPipeline(unittest.TestCase):
     def setUpClass(cls):
         """设置测试环境"""
         print("\n=== 设置测试环境 ===")
+        # 获取当前脚本所在目录和项目根目录
+        cls.current_dir = os.path.dirname(os.path.abspath(__file__))
+        cls.root_dir = os.path.dirname(cls.current_dir)
+        
         # 创建测试数据目录
-        cls.test_root = "test_data"
+        cls.test_root = os.path.join(cls.root_dir, "test_data")
         cls.data_dir = os.path.join(cls.test_root, "data")
         
         # 创建原始数据目录
@@ -26,8 +30,8 @@ class TestShipClassificationPipeline(unittest.TestCase):
         # 创建必要的目录
         os.makedirs(cls.sea_dir, exist_ok=True)
         os.makedirs(cls.ship_dir, exist_ok=True)
-        os.makedirs("weights", exist_ok=True)
-        os.makedirs("plots", exist_ok=True)
+        os.makedirs(os.path.join(cls.root_dir, "weights"), exist_ok=True)
+        os.makedirs(os.path.join(cls.root_dir, "plots"), exist_ok=True)
         
         # 从实际数据集中复制测试图片
         cls._copy_test_images()
@@ -42,16 +46,16 @@ class TestShipClassificationPipeline(unittest.TestCase):
         print("\n=== 清理测试环境 ===")
         if os.path.exists(cls.test_root):
             shutil.rmtree(cls.test_root)
-        if os.path.exists("weights"):
-            shutil.rmtree("weights")
-        if os.path.exists("plots"):
-            shutil.rmtree("plots")
-        if os.path.exists("low_confidence_predictions"):
-            shutil.rmtree("low_confidence_predictions")
-        if os.path.exists("training_statistics.json"):
-            os.remove("training_statistics.json")
-        if os.path.exists("class_index.json"):
-            os.remove("class_index.json")
+        if os.path.exists(os.path.join(cls.root_dir, "weights")):
+            shutil.rmtree(os.path.join(cls.root_dir, "weights"))
+        if os.path.exists(os.path.join(cls.root_dir, "plots")):
+            shutil.rmtree(os.path.join(cls.root_dir, "plots"))
+        if os.path.exists(os.path.join(cls.root_dir, "low_confidence_predictions")):
+            shutil.rmtree(os.path.join(cls.root_dir, "low_confidence_predictions"))
+        if os.path.exists(os.path.join(cls.root_dir, "training_statistics.json")):
+            os.remove(os.path.join(cls.root_dir, "training_statistics.json"))
+        if os.path.exists(os.path.join(cls.root_dir, "class_index.json")):
+            os.remove(os.path.join(cls.root_dir, "class_index.json"))
         print("测试环境清理完成！")
 
     @classmethod
@@ -59,8 +63,8 @@ class TestShipClassificationPipeline(unittest.TestCase):
         """从实际数据集中复制测试图片"""
         print("复制测试图片...")
         # 从实际数据集中随机选择图片
-        real_sea_dir = "data/sea"
-        real_ship_dir = "data/ship"
+        real_sea_dir = os.path.join(cls.root_dir, "data", "sea")
+        real_ship_dir = os.path.join(cls.root_dir, "data", "ship")
         
         # 获取所有图片列表
         sea_images = [f for f in os.listdir(real_sea_dir) if f.endswith('.png')]
@@ -92,7 +96,7 @@ class TestShipClassificationPipeline(unittest.TestCase):
             "0": "sea",
             "1": "ship"
         }
-        with open("class_index.json", "w") as f:
+        with open(os.path.join(cls.root_dir, "class_index.json"), "w") as f:
             json.dump(class_index, f)
         print("类别索引文件创建完成！")
 
@@ -109,7 +113,7 @@ class TestShipClassificationPipeline(unittest.TestCase):
     def test_1_split_dataset(self):
         """测试数据集划分"""
         print("\n=== 测试数据集划分 ===")
-        cmd = f"python split_dataset.py --dataset_root {self.data_dir} --train_ratio 0.8"
+        cmd = f"python {os.path.join(self.current_dir, 'split_dataset.py')} --dataset_root {self.data_dir} --train_ratio 0.8"
         self.assertEqual(self._run_command(cmd), 0)
         
         # 验证目录结构
@@ -122,20 +126,22 @@ class TestShipClassificationPipeline(unittest.TestCase):
     def test_2_train_model(self):
         """测试模型训练"""
         print("\n=== 测试模型训练 ===")
-        cmd = f"python train.py --dataset_root {self.data_dir} --epochs 2 --batch_size 2 --lr 0.001"
+        cmd = f"python {os.path.join(self.current_dir, 'train.py')} --dataset_root {self.data_dir} --epochs 2 --batch_size 2 --lr 0.001"
         self.assertEqual(self._run_command(cmd), 0)
         
         # 验证权重文件是否生成
-        self.assertTrue(os.path.exists("weights/vgg13_best.pth"))
+        self.assertTrue(os.path.exists(os.path.join(self.root_dir, "weights", "vgg13_best.pth")))
         # 验证训练统计文件是否生成
-        self.assertTrue(os.path.exists("training_statistics.json"))
+        self.assertTrue(os.path.exists(os.path.join(self.root_dir, "training_statistics.json")))
         print("模型训练测试完成！")
 
     def test_3_test_model(self):
         """测试模型评估"""
         print("\n=== 测试模型评估 ===")
         val_dir = os.path.join(self.data_dir, "val")
-        cmd = f'python test.py --weights_path weights/vgg13_best.pth --img_paths {val_dir} --batch_size 2 --cls_index class_index.json'
+        weights_path = os.path.join(self.root_dir, "weights", "vgg13_best.pth")
+        cls_index = os.path.join(self.root_dir, "class_index.json")
+        cmd = f'python {os.path.join(self.current_dir, "test.py")} --weights_path {weights_path} --img_paths {val_dir} --batch_size 2 --cls_index {cls_index}'
         self.assertEqual(self._run_command(cmd), 0)
         print("模型评估测试完成！")
 
@@ -143,28 +149,32 @@ class TestShipClassificationPipeline(unittest.TestCase):
         """测试分类结果检查"""
         print("\n=== 测试分类结果检查 ===")
         val_dir = os.path.join(self.data_dir, "val")
-        cmd = f'python check_classification.py --weights_path weights/vgg13_best.pth --img_paths {val_dir} --batch_size 2 --conf_thr 0.9 --cls_index class_index.json'
+        weights_path = os.path.join(self.root_dir, "weights", "vgg13_best.pth")
+        cls_index = os.path.join(self.root_dir, "class_index.json")
+        cmd = f'python {os.path.join(self.current_dir, "check_classification.py")} --weights_path {weights_path} --img_paths {val_dir} --batch_size 2 --conf_thr 0.9 --cls_index {cls_index}'
         self.assertEqual(self._run_command(cmd), 0)
         
         # 验证是否生成了低置信度预测结果目录
-        self.assertTrue(os.path.exists("low_confidence_predictions"))
+        self.assertTrue(os.path.exists(os.path.join(self.root_dir, "low_confidence_predictions")))
         print("分类结果检查测试完成！")
 
     def test_5_draw_plots(self):
         """测试绘图功能"""
         print("\n=== 测试绘图功能 ===")
-        cmd = "python draw_plots.py --json_path training_statistics.json --save_dir plots"
+        stats_path = os.path.join(self.root_dir, "training_statistics.json")
+        plots_dir = os.path.join(self.root_dir, "plots")
+        cmd = f"python {os.path.join(self.current_dir, 'draw_plots.py')} --json_path {stats_path} --save_dir {plots_dir}"
         self.assertEqual(self._run_command(cmd), 0)
         
         # 验证是否生成了图表
-        self.assertTrue(os.path.exists("plots/train_loss.png"))
-        self.assertTrue(os.path.exists("plots/val_accuracy.png"))
+        self.assertTrue(os.path.exists(os.path.join(plots_dir, "train_loss.png")))
+        self.assertTrue(os.path.exists(os.path.join(plots_dir, "val_accuracy.png")))
         print("绘图功能测试完成！")
 
     def test_6_full_pipeline(self):
         """测试完整流程"""
         print("\n=== 测试完整流程 ===")
-        cmd = f"python run_all.py --data_root {self.data_dir} --epochs 2 --batch_size 2 --lr 0.001"
+        cmd = f"python {os.path.join(self.current_dir, 'run_all.py')} --data_root {self.data_dir} --epochs 2 --batch_size 2 --lr 0.001"
         self.assertEqual(self._run_command(cmd), 0)
         print("完整流程测试完成！")
 

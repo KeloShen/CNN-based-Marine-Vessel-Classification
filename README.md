@@ -11,42 +11,54 @@
 
 ## 项目结构
 ```
-├── data/               # 原始数据集目录
-│   ├── sea/           # 非船类图像
-│   └── ship/          # 船类图像
-├── model.py           # VGG13网络模型定义
-├── train.py           # 训练脚本
-├── test.py            # 测试脚本
-├── test_pipeline.py   # 完整流程测试脚本
-├── split_dataset.py   # 数据集划分脚本
-├── draw_plots.py      # 绘制训练曲线脚本
-├── check_classification.py  # 分类结果检查脚本
-├── run_all.py         # 一键运行所有流程的脚本
-├── ship_classification.ipynb  # Colab notebook文件
-├── requirements.txt    # 项目依赖
-└── README.md          # 项目说明
+├── data/                    # 数据集目录
+│   ├── sea/                # 非船类图像
+│   └── ship/               # 船类图像
+├── source_codes/           # 源代码目录
+│   ├── model.py           # VGG13网络模型定义
+│   ├── train.py           # 训练脚本
+│   ├── test.py            # 测试脚本
+│   ├── test_pipeline.py   # 完整流程测试脚本
+│   ├── split_dataset.py   # 数据集划分脚本
+│   ├── draw_plots.py      # 绘制训练曲线脚本
+│   ├── check_classification.py  # 分类结果检查脚本
+│   └── run_all.py         # 一键运行所有流程的脚本
+├── weights/                # 模型权重保存目录
+├── plots/                  # 训练曲线图保存目录
+├── results/                # 其他结果文件目录
+├── colab.ipynb            # Colab notebook文件
+├── requirements.txt        # 项目依赖
+└── README.md              # 项目说明
 
 注：运行split_dataset.py后，data目录结构将变为：
 data/
-├── train/            # 训练集（由split_dataset.py生成）
-│   ├── sea/         # 非船类图像
-│   └── ship/        # 船类图像
-└── val/             # 验证集（由split_dataset.py生成）
-    ├── sea/         # 非船类图像
-    └── ship/        # 船类图像
+├── train/                 # 训练集（由split_dataset.py生成）
+│   ├── sea/              # 非船类图像
+│   └── ship/             # 船类图像
+└── val/                  # 验证集（由split_dataset.py生成）
+    ├── sea/              # 非船类图像
+    └── ship/             # 船类图像
 ```
 
 ## 使用方法
 
 ### 方法一：使用Google Colab（推荐）
 
-1. 点击下面的链接在Colab中打开notebook：
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/你的用户名/仓库名/blob/main/ship_classification.ipynb)
+1. 在Google Colab中打开`colab.ipynb`文件：
+   - 访问 https://github.com/KeloShen/CNN-based-Marine-Vessel-Classification
+   - 打开`colab.ipynb`文件
+   - 点击"在Colab中打开"按钮
 
-2. 在Colab中运行notebook：
-   - 点击"代码执行程序"→"更改运行时类型"，选择"GPU"
-   - 按顺序运行所有单元格
-   - notebook中包含了完整的数据准备、训练和评估流程
+2. 配置运行环境：
+   - 点击"代码执行程序"→"更改运行时类型"
+   - 选择"GPU"作为硬件加速器
+   - 确保有足够的运行时内存
+
+3. 运行notebook：
+   - 按顺序执行所有代码单元格
+   - 观察训练过程和输出结果
+   - 所有结果会自动保存到指定目录
+
 
 ### 方法二：本地运行
 
@@ -67,34 +79,34 @@ pip install -r requirements.txt
 
 4. 运行完整流程：
 ```bash
-python run_all.py --data_root ./data/ --epochs 100 --batch_size 64 --lr 0.0001
+python source_codes/run_all.py --data_root ./data/ --epochs 100 --batch_size 64 --lr 0.0001
 ```
 
 或者分步运行：
 
 1. 划分数据集：
 ```bash
-python split_dataset.py --dataset_root ./data/ --train_ratio 0.8
+python source_codes/split_dataset.py --dataset_root ./data/ --train_ratio 0.8
 ```
 
 2. 训练模型：
 ```bash
-python train.py --dataset_root ./data/ --epochs 100 --batch_size 64 --lr 0.0001
+python source_codes/train.py --dataset_root ./data/ --epochs 100 --batch_size 64 --lr 0.0001
 ```
 
 3. 测试模型：
 ```bash
-python test.py --weights_path weights/vgg13_best.pth --dataset_root ./data/
+python source_codes/test.py --weights_path weights/vgg13_best.pth --dataset_root ./data/
 ```
 
 4. 检查分类结果：
 ```bash
-python check_classification.py --weights_path weights/vgg13_best.pth --dataset_root ./data/ --conf_thr 0.9
+python source_codes/check_classification.py --weights_path weights/vgg13_best.pth --dataset_root ./data/ --conf_thr 0.9
 ```
 
 5. 绘制训练曲线：
 ```bash
-python draw_plots.py
+python source_codes/draw_plots.py
 ```
 
 ### 方法三：运行测试流程
@@ -102,7 +114,7 @@ python draw_plots.py
 为了验证整个项目的正确性，我们提供了完整的测试流程：
 
 ```bash
-python test_pipeline.py --data_root ./data/ --test_weights_dir ./test_weights/ --test_plots_dir ./test_plots/
+python source_codes/test_pipeline.py --data_root ./data/ --test_weights_dir ./test_weights/ --test_plots_dir ./test_plots/
 ```
 
 测试流程包括：

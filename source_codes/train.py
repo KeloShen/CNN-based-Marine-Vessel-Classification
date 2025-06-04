@@ -11,6 +11,10 @@ from tqdm import tqdm
 import sys
 
 def main(args):
+    # 获取当前脚本所在目录和项目根目录
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    root_dir = os.path.dirname(current_dir)
+    
     # 设置设备
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     print(f"Using {device} device")
@@ -45,7 +49,7 @@ def main(args):
     class_idx = train_dataset.class_to_idx
     class_dict = dict((v, k) for k, v in class_idx.items())
     json_str = json.dumps(class_dict, indent=4)
-    with open("class_index.json", "w") as json_file:
+    with open(os.path.join(root_dir, "class_index.json"), "w") as json_file:
         json_file.write(json_str)
 
     # 数据加载器
@@ -84,8 +88,8 @@ def main(args):
     # 训练参数
     epochs = args.epochs
     best_acc = 0.0
-    save_path = "weights/vgg13_best.pth"
-    os.makedirs("weights", exist_ok=True)
+    save_path = os.path.join(root_dir, "weights", "vgg13_best.pth")
+    os.makedirs(os.path.join(root_dir, "weights"), exist_ok=True)
     
     # 记录训练过程
     train_steps = len(train_loader)
@@ -145,7 +149,7 @@ def main(args):
         "accuracy": acc_history,
         "time": time_history
     }
-    with open("training_statistics.json", "w") as f:
+    with open(os.path.join(root_dir, "training_statistics.json"), "w") as f:
         json.dump(statistics, f, indent=4)
 
     print("Training finished!")

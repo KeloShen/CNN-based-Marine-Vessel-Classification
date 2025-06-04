@@ -12,6 +12,10 @@ from model import vgg13
 
 
 def main(args):
+    # 获取当前脚本所在目录和项目根目录
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    root_dir = os.path.dirname(current_dir)
+    
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     # 数据预处理
@@ -110,7 +114,7 @@ def main(args):
                 wrong_preds.add(img_path_list[start_idx + i])
 
     # 保存低置信度的预测结果
-    low_probs_dir = 'low_confidence_predictions'
+    low_probs_dir = os.path.join(root_dir, 'low_confidence_predictions')
     if os.path.exists(low_probs_dir):
         shutil.rmtree(low_probs_dir)
     os.makedirs(low_probs_dir)
@@ -143,7 +147,8 @@ def parse_args():
                         help='测试图片路径模式')
     parser.add_argument('--cls_index', type=str, default='class_index.json',
                         help='类别索引文件路径')
-    parser.add_argument('--weights_path', type=str, default='weights/vgg13_best.pth',
+    parser.add_argument('--weights_path', type=str, 
+                        default=os.path.join('weights', 'vgg13_best.pth'),
                         help='模型权重文件路径')
     parser.add_argument('--conf_thr', type=float, default=0.9,
                         help='置信度阈值(0.5~1.0)')
